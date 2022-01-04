@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         MoveAround();
+        Debug.Log(currentNode);
     }
 
     private void MoveAround()
