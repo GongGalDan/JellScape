@@ -27,6 +27,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Camera cam;
 
+    [SerializeField]
+    private float walkBobSpeed = 14f;
+    [SerializeField]
+    private float walkBobAmount = 14f;
+    [SerializeField]
+    private float sprintBobSpeed = 14f;
+    [SerializeField]
+    private float sprintBobAmount = 14f;
+
+    private float defaultYPos = 0;
+    private float timer;
+
+    private Vector3 velocity;
+
     private Rigidbody myRigid;
     private Animator animator;
 
@@ -37,6 +51,7 @@ public class PlayerController : MonoBehaviour
         myRigid = GetComponent<Rigidbody>();
         applySpeed = walkSpeed;
         animator = GetComponent<Animator>();
+        defaultYPos = cam.transform.localPosition.y;
     }
 
     // Update is called once per frame
@@ -46,6 +61,26 @@ public class PlayerController : MonoBehaviour
         Move();
         CameraRotation();
         CharacterRotation();
+        HandleHeadBob();
+    }
+
+    private void HandleHeadBob()
+    {
+        if (velocity.magnitude != 0f)
+        {
+            timer += Time.deltaTime * (isRun ? sprintBobSpeed : walkBobSpeed);
+            cam.transform.localPosition = new Vector3(
+                cam.transform.localPosition.x,
+                defaultYPos + Mathf.Sin(timer) * (isRun ? sprintBobAmount : walkBobAmount),
+                cam.transform.localPosition.z);
+        }
+        else if (velocity.magnitude == 0f)
+        {
+            cam.transform.localPosition = Vector3.Lerp(
+                cam.transform.localPosition,
+                new Vector3(cam.transform.localPosition.x, defaultYPos, cam.transform.localPosition.z)
+                , Time.deltaTime);
+        }
     }
 
     private void Run()
@@ -54,11 +89,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             Running();
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 80f, Time.deltaTime * 10);
         }
         // 달리기 그만
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             StopRunning();
+        }
+        if (!isRun)
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60f, Time.deltaTime * 20);
         }
     }
 
@@ -67,7 +107,6 @@ public class PlayerController : MonoBehaviour
         isRun = false;
         animator.SetBool("Run", false);
         applySpeed = walkSpeed;
-
     }
 
     private void Running()
@@ -88,7 +127,7 @@ public class PlayerController : MonoBehaviour
         Vector3 moveVertical = transform.forward * moveDirZ;
 
         // 속도 설정
-        Vector3 velocity = (moveHorizontal + moveVertical).normalized * applySpeed;
+        velocity = (moveHorizontal + moveVertical).normalized * applySpeed;
 
         if (velocity.magnitude != 0.0f)
         {
