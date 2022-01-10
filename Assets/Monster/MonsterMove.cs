@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-public class Enemy : MonoBehaviour
+public class MonsterMove : MonoBehaviour
 {
     NavMeshAgent agent;
     public Transform path;
