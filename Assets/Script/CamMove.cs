@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainCamera_Move : MonoBehaviour
+public class CamMove : MonoBehaviour
 {
-    public Transform Player;
+    public Transform target;
     public Vector3 offset;
 
     void Update()
     {
-        transform.position = Player.position + offset;
+        transform.position = target.position + offset;
     }
-
 }
