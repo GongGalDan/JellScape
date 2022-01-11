@@ -341,7 +341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435219552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.146, z: 0}
+  m_LocalPosition: {x: 0, y: 0.362, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4484534805015550551}
@@ -694,23 +694,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - abilityName: Attack +1
-    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
     AbilityGrade: 1
     weight: 10
   - abilityName: HP +1
-    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
     AbilityGrade: 2
     weight: 20
   - abilityName: Speed +1
-    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
     AbilityGrade: 3
     weight: 50
   - abilityName: Atk Speed +1
-    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
     AbilityGrade: 2
     weight: 20
   - abilityName: Critical +1
-    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
     AbilityGrade: 0
     weight: 5
   total: 0
