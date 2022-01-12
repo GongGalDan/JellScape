@@ -6,7 +6,7 @@ using System;
 public class MonsterData : MonoBehaviour
 {
     public TextAsset monsterData;
-
+    public Dictionary<string, MonsterData.Monster> monstersDic = new Dictionary<string, MonsterData.Monster>();
     [System.Serializable]
     public class Monster
     {
@@ -30,11 +30,12 @@ public class MonsterData : MonoBehaviour
     public MonsterList myMonsterList = new MonsterList();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ReadCSV();
+        SetMonstersDic();
     }
-    public MonsterList ReadCSV()
+    public void ReadCSV()
     {
         string[] data = monsterData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
 
@@ -54,7 +55,14 @@ public class MonsterData : MonoBehaviour
             myMonsterList.monsters[i].RangedAttackRange = int.Parse(data[9 * (i + 1) + 7]);
             myMonsterList.monsters[i].detectRange = int.Parse(data[9 * (i + 1) + 8]);
         }
+    }
 
-        return myMonsterList;
+    public void SetMonstersDic()
+    {
+        for (int i = 0; i < myMonsterList.monsters.Length; i++)
+        {
+            monstersDic.Add(myMonsterList.monsters[i].name, myMonsterList.monsters[i]);
+            Debug.Log(myMonsterList.monsters[i].name);
+        }
     }
 }

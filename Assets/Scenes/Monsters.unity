@@ -153,7 +153,7 @@ Transform:
   - {fileID: 1674546209}
   - {fileID: 88045263}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &33928872
 PrefabInstance:
@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 103924767}
   - component: {fileID: 103924766}
   - component: {fileID: 103924765}
+  - component: {fileID: 103924768}
   m_Layer: 0
   m_Name: Slush
   m_TagString: Untagged
@@ -387,6 +388,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &103924768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103924763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!1 &133011763
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,51 +441,8 @@ Transform:
   - {fileID: 1278609882}
   - {fileID: 457578856}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &141977230
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 141977232}
-  - component: {fileID: 141977233}
-  m_Layer: 0
-  m_Name: MonsterManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &141977232
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141977230}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.416706, y: 4.099105, z: 0.2807399}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &141977233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141977230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1433545ebd55a26419aa4aab2f767122, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &154082223
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +629,7 @@ Transform:
   - {fileID: 1454770566}
   - {fileID: 915085675}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &287819256
 PrefabInstance:
@@ -753,8 +734,9 @@ GameObject:
   - component: {fileID: 309681949}
   - component: {fileID: 309681948}
   - component: {fileID: 309681947}
+  - component: {fileID: 309681950}
   m_Layer: 0
-  m_Name: Minicar
+  m_Name: MinicarFigure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -826,6 +808,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &309681950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309681945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 8
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!1 &408792736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1155,7 @@ GameObject:
   - component: {fileID: 513509019}
   - component: {fileID: 513509018}
   - component: {fileID: 513509017}
+  - component: {fileID: 513509020}
   m_Layer: 0
   m_Name: CapsuleMinicar
   m_TagString: Untagged
@@ -1224,6 +1230,29 @@ NavMeshAgent:
   m_BaseOffset: 0.43
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &513509020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513509015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 7
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!1 &514524985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,8 +1418,9 @@ GameObject:
   - component: {fileID: 646895440}
   - component: {fileID: 646895439}
   - component: {fileID: 646895438}
+  - component: {fileID: 646895441}
   m_Layer: 0
-  m_Name: JJonDeuGi
+  m_Name: JjonDeuGi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1462,6 +1492,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &646895441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646895436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!1 &702729345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,7 +1730,7 @@ Transform:
   - {fileID: 103924764}
   - {fileID: 1139508586}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &834876869
 GameObject:
@@ -1691,6 +1744,7 @@ GameObject:
   - component: {fileID: 834876873}
   - component: {fileID: 834876872}
   - component: {fileID: 834876871}
+  - component: {fileID: 834876874}
   m_Layer: 0
   m_Name: FigureMuchine
   m_TagString: Untagged
@@ -1764,6 +1818,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &834876874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834876869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 6
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!1 &915085674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,8 +1961,9 @@ GameObject:
   - component: {fileID: 993044590}
   - component: {fileID: 993044589}
   - component: {fileID: 993044588}
+  - component: {fileID: 993044591}
   m_Layer: 0
-  m_Name: Robot
+  m_Name: RobotFigure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1957,6 +2035,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &993044591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993044586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 10
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!1 &999500740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,7 +2374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1263283584}
   m_Layer: 0
-  m_Name: HardIceCreamParent
+  m_Name: IceCreamParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2293,7 +2394,7 @@ Transform:
   - {fileID: 1395124290}
   - {fileID: 269365891}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1274327571
 GameObject:
@@ -2337,6 +2438,7 @@ GameObject:
   - component: {fileID: 1278609885}
   - component: {fileID: 1278609884}
   - component: {fileID: 1278609883}
+  - component: {fileID: 1278609886}
   m_Layer: 0
   m_Name: ChocoPiePack
   m_TagString: Untagged
@@ -2410,6 +2512,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1278609886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278609881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!4 &1284956146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 849944443e3052c44939edf44cc2ff17, type: 3}
@@ -2485,7 +2610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1374672714}
   m_Layer: 0
-  m_Name: MinicarParent
+  m_Name: MinicarFigureParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2505,7 +2630,7 @@ Transform:
   - {fileID: 309681946}
   - {fileID: 1076609540}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1395124289
 GameObject:
@@ -2519,8 +2644,9 @@ GameObject:
   - component: {fileID: 1395124293}
   - component: {fileID: 1395124292}
   - component: {fileID: 1395124291}
+  - component: {fileID: 1395124294}
   m_Layer: 0
-  m_Name: HardIceCream
+  m_Name: IceCream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2592,6 +2718,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1395124294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395124289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!1 &1427545848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2634,6 +2783,7 @@ GameObject:
   - component: {fileID: 1454770569}
   - component: {fileID: 1454770568}
   - component: {fileID: 1454770567}
+  - component: {fileID: 1454770570}
   m_Layer: 0
   m_Name: FishIceCream
   m_TagString: Untagged
@@ -2707,6 +2857,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1454770570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454770565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 5
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!1 &1455815639
 GameObject:
   m_ObjectHideFlags: 0
@@ -3034,8 +3207,9 @@ GameObject:
   - component: {fileID: 1657228014}
   - component: {fileID: 1657228013}
   - component: {fileID: 1657228012}
+  - component: {fileID: 1657228015}
   m_Layer: 0
-  m_Name: Animal
+  m_Name: AnimalFigure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3107,6 +3281,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1657228015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657228010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 9
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!1 &1674546208
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,6 +3316,7 @@ GameObject:
   - component: {fileID: 1674546211}
   - component: {fileID: 1674546210}
   - component: {fileID: 1674546212}
+  - component: {fileID: 1674546213}
   m_Layer: 0
   m_Name: Dalgona
   m_TagString: Untagged
@@ -3192,6 +3390,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 88045263}
+--- !u!114 &1674546213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674546208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc8766afe0e3134cad69b72183d7820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  monster:
+    name: 
+    hp: 0
+    meleeAttackDamage: 0
+    rangedAttackDamage: 0
+    attackSpeed: 0
+    speed: 0
+    meleeAttackRange: 0
+    RangedAttackRange: 0
+    detectRange: 0
 --- !u!1 &1706492324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3312,7 +3533,7 @@ Transform:
   - {fileID: 513509016}
   - {fileID: 1459766054}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793236813
 GameObject:
@@ -3554,7 +3775,7 @@ Transform:
   - {fileID: 646895437}
   - {fileID: 154082224}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2010415340
 GameObject:
@@ -3646,7 +3867,7 @@ Transform:
   - {fileID: 993044587}
   - {fileID: 1603421392}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2052036928
 GameObject:
@@ -3658,7 +3879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2052036929}
   m_Layer: 0
-  m_Name: AnimalParent
+  m_Name: AnimalFigureParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3678,7 +3899,7 @@ Transform:
   - {fileID: 1657228011}
   - {fileID: 2125118973}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2068029150
 GameObject:
@@ -3710,7 +3931,7 @@ Transform:
   - {fileID: 834876870}
   - {fileID: 498555958}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2125118972
 GameObject:

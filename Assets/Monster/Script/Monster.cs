@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public enum Type
+    public enum MonsterType
     {
         Dalgona,
         Jjondeugi,
@@ -18,18 +18,34 @@ public class Monster : MonoBehaviour
         AnimalFigure,
         RobotFigure
     };
+    public MonsterType type;
 
-    public Type type;
+    [SerializeField]
+    MonsterData.Monster monster;
+
+    MonsterData monsterData;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        monsterData = GameObject.Find("MonsterData").GetComponent<MonsterData>();
+        SetMonsterData();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void SetMonsterData()
+    {
+        foreach (MonsterData.Monster values in monsterData.monstersDic.Values)
+        {
+            if (type.ToString() == values.name)
+            {
+                monster = values;
+            }
+        }
     }
 }
