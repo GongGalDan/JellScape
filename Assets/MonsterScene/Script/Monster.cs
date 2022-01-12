@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IAttack
 {
     public enum MonsterType
     {
@@ -46,6 +46,37 @@ public class Monster : MonoBehaviour
             {
                 monster = values;
             }
+        }
+    }
+    
+    public void Attack()
+    {
+        switch (type)
+        {
+            case MonsterType.Dalgona:
+                break;
+            case MonsterType.Jjondeugi:
+                break;
+            case MonsterType.ChocoPie:
+                break;
+            case MonsterType.Icecream:
+                break;
+            case MonsterType.Slush:
+                break;
+            case MonsterType.FishIcecream:
+                break;
+            case MonsterType.FigureMuchine:
+                break;
+            case MonsterType.FigureCapsule:
+                break;
+            case MonsterType.MinicarFigure:
+                break;
+            case MonsterType.AnimalFigure:
+                break;
+            case MonsterType.RobotFigure:
+                break;
+            default:
+                break;
         }
     }
 }
