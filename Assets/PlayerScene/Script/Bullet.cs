@@ -5,13 +5,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     Rigidbody rigid;
-
-    public Gun gun;
+    public float bulletspeed; //ÃÑ¾Ë ¼Óµµ
 
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        rigid.velocity = transform.forward * gun.fireRate;
+        rigid.velocity = transform.forward * bulletspeed;
     }
 
 

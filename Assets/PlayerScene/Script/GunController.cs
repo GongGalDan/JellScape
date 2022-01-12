@@ -6,13 +6,11 @@ public class GunController : MonoBehaviour
 {
     [SerializeField]
     private Gun gun; //현재 무기
-    public float bulletspeed; //총알 속도
 
     private float currentFireRate; //연사 속도 계산
 
-
-    public GameObject bullet;
-    public Transform firePos;
+    public GameObject bulletFactory; //총알
+    public Transform firePos; //발사위치
 
     void Start()
     {
@@ -28,19 +26,21 @@ public class GunController : MonoBehaviour
     private void GunFireRateCalc() // 연사속도 재계산
     {
         if (currentFireRate > 0)
-            currentFireRate -= Time.deltaTime; //
+            currentFireRate -= Time.deltaTime;
     }
 
     private void Shoot() // 발사
     {
-        if (Input.GetMouseButton(0) && currentFireRate <= 0) //누르고, 속도가 0보다 작거나 같을경우
+        if (Input.GetMouseButtonDown(0) && currentFireRate <= 0) //누르고, 속도가 0보다 작거나 같을경우
         {
-            GameObject intantBullet = Instantiate(bullet, firePos.position, firePos.rotation); //instantiate 인스턴스화 (변수, 위치, 각도)
-            Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
-            bulletRigid.velocity = firePos.forward * Time.deltaTime * bulletspeed;
+            GameObject bullet = Instantiate(bulletFactory);
+            bullet.transform.position = firePos.position;
+            bullet.transform.forward = firePos.forward;
 
-            Destroy(gameObject, 3); 
-            Debug.Log("총알 발사함");
+            currentFireRate += gun.fireRate;
+
+            Destroy(bullet, gun.range); //1.0f = 1초뒤에 삭제 = 사거리 활용
         }
+
     }
 }

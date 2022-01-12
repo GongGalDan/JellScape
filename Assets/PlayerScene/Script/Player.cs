@@ -15,18 +15,15 @@ public class Player : MonoBehaviour
     float xMove; //x축
     float zMove; //z축
 
-
     bool fDown; //기본 공격
-
+    bool sdown1; //1번아이템
+    bool sdown2; //2번아이템
 
     Vector3 moveVec;
 
     bool isBorder; //벽에 닿았는지
 
-
     GameObject nearObject; //근처에있는 오브젝트
-
-
 
     void Start()
     {
@@ -92,19 +89,23 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Item") //태그가 item이면서
+        if (other.tag == "Item") //태그가 item이면
         {
-            Item item = other.GetComponent<Item>();
+            nearObject = other.gameObject; //nearobject에 저장
+      
+            Item item = nearObject.GetComponent<Item>();
             switch (item.mainType) //item 메인 타입중에서
             {
                 case Item.MainType.Item: //item인 object만
                     if (CurItem == MaxItem)
                         return;
                     CurItem += item.value;
+                    int weaponIndex = item.number;
+                    hasWeapons[weaponIndex] = true;
                     break;
             }
 
-            Destroy(other.gameObject);
+            Destroy(nearObject);
         }
         
     }
