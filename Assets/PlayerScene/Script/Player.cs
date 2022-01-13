@@ -16,14 +16,15 @@ public class Player : MonoBehaviour
     float zMove; //z축
 
     bool fDown; //기본 공격
-    bool sdown1; //1번아이템
-    bool sdown2; //2번아이템
 
     Vector3 moveVec;
 
     bool isBorder; //벽에 닿았는지
 
     GameObject nearObject; //근처에있는 오브젝트
+    Item equipItem;
+    ItemSwitching switching;
+
 
     void Start()
     {
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        moveVec = new Vector3(xMove, 0, zMove).normalized;
+        moveVec = new Vector3(xMove, 0, zMove);
         if(!isBorder) //충돌하지 않으면 움직이도록
             transform.position += moveVec * Speed * Time.deltaTime;
     }
@@ -99,8 +100,9 @@ public class Player : MonoBehaviour
                 case Item.MainType.Item: //item인 object만
                     if (CurItem == MaxItem)
                         return;
-                    CurItem += item.value;
-                    int weaponIndex = item.number;
+                    CurItem += item.value; //현재 아이템 개수에는 value값이 더해지고
+                    Debug.Log("dtd");
+                    int weaponIndex = item.number; //weaponindex에는 number가 들어감
                     hasWeapons[weaponIndex] = true;
                     break;
             }
@@ -108,6 +110,14 @@ public class Player : MonoBehaviour
             Destroy(nearObject);
         }
         
+    }
+
+    void Swap()
+    {
+        if (equipItem = null) 
+            return;
+
+
     }
 
 }

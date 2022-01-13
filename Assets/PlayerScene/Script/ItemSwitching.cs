@@ -4,15 +4,68 @@ using UnityEngine;
 
 public class ItemSwitching : MonoBehaviour
 {
-    public int selectWeapon = 0;
+    public float switchDelay = 1f;
+    public GameObject[] weapons;
+    public bool[] hasWaepons;
 
-    void Start()
+    private int index = 0;
+    public bool isSwitching = false;
+
+    private void Start()
     {
-        foreach(Transform weapon in transform)
+        InitializeWeapon();
+    }
+
+    private void Update()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel")>0 && !isSwitching)
         {
-            weapon.gameObject.SetActive(false);
+            index++;
+            if (index >= weapons.Length)
+                index = 0;
+            StartCoroutine(SwitchDelay(index));
+             
         }
 
-        transform.GetChild(selectWeapon).gameObject.SetActive(true);
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && !isSwitching)
+        {
+            index--;
+            if (index < 0)
+                index = weapons.Length - 1;
+            StartCoroutine(SwitchDelay(index));
+        }
+    }
+
+
+
+
+    private void InitializeWeapon()
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i].SetActive(false);
+        }
+
+        weapons[0].SetActive(true);
+        index = 0;
+    }
+
+    IEnumerator SwitchDelay(int newIndex)
+    {
+        isSwitching = true;
+        SwitchWeapons(newIndex);
+        yield return new WaitForSeconds(switchDelay);
+        isSwitching = false;
+    }
+
+    void SwitchWeapons(int newIndex)
+    {
+        for(int i=0; i<weapons.Length; i++)
+        {
+            weapons[i].SetActive(false);
+        }
+
+       weapons[newIndex].SetActive(true);
+
     }
 }
