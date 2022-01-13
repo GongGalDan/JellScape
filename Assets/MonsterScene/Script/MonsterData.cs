@@ -6,22 +6,8 @@ using System;
 public class MonsterData : MonoBehaviour
 {
     public TextAsset monsterData;
-    public Dictionary<string, MonsterData.Monster> monstersDic = new Dictionary<string, MonsterData.Monster>();
-    [System.Serializable]
-    public class Monster
-    {
-        public string name;
-        public float hp;
-        public float meleeAttackDamage;
-        public float rangedAttackDamage;
-        public float attackSpeed;
-        public float speed;
-        public float meleeAttackRange;
-        public float RangedAttackRange;
-        public float detectRange;
-    }
+    public Dictionary<string, Monster> monstersDic = new Dictionary<string, Monster>();
 
-    [System.Serializable]
     public class MonsterList
     {
         public Monster[] monsters;
@@ -49,10 +35,10 @@ public class MonsterData : MonoBehaviour
             myMonsterList.monsters[i].hp = int.Parse(data[9 * (i + 1) + 1]);
             myMonsterList.monsters[i].meleeAttackDamage = int.Parse(data[9 * (i + 1) + 2]);
             myMonsterList.monsters[i].rangedAttackDamage = int.Parse(data[9 * (i + 1) + 3]);
-            myMonsterList.monsters[i].attackSpeed = int.Parse(data[9 * (i + 1) + 4]);
+            myMonsterList.monsters[i].attackCoolTime = int.Parse(data[9 * (i + 1) + 4]);
             myMonsterList.monsters[i].speed = int.Parse(data[9 * (i + 1) + 5]);
             myMonsterList.monsters[i].meleeAttackRange = int.Parse(data[9 * (i + 1) + 6]);
-            myMonsterList.monsters[i].RangedAttackRange = int.Parse(data[9 * (i + 1) + 7]);
+            myMonsterList.monsters[i].rangedAttackRange = int.Parse(data[9 * (i + 1) + 7]);
             myMonsterList.monsters[i].detectRange = int.Parse(data[9 * (i + 1) + 8]);
         }
     }
@@ -62,7 +48,6 @@ public class MonsterData : MonoBehaviour
         for (int i = 0; i < myMonsterList.monsters.Length; i++)
         {
             monstersDic.Add(myMonsterList.monsters[i].name, myMonsterList.monsters[i]);
-            Debug.Log(myMonsterList.monsters[i].name);
         }
     }
 }
