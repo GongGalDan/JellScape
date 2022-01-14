@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class Dalgona : MonsterMeleeFSM
 {
-  
-    // Start is called before the first frame update
-    void Start()
+    public GameObject enemyCanvasGo;
+    public GameObject meleeAtkArea;
+
+    private void OnDrawGizmosSelected()
     {
-        //Debug.Log(monster.name);
-        //Debug.Log(monster.hp);
-        //Debug.Log(monster.meleeAttackDamage);
-        //Debug.Log(monster.rangedAttackDamage);
-        //Debug.Log(monster.attackCoolTime);
-        //Debug.Log(monster.speed);
-        //Debug.Log(monster.meleeAttackRange);
-        //Debug.Log(monster.rangedAttackRange);
-        //Debug.Log(monster.detectRange);
+        if (monster == null) return;
+
+        Gizmos.color = Color.yellow;
+        // 인식 범위 표시
+        Gizmos.DrawWireSphere(transform.position, monster.detectRange);
+        Gizmos.color = Color.red;
+        // 공격 범위 표시
+        Gizmos.DrawWireSphere(transform.position, monster.meleeAttackRange);
     }
 
-    // Update is called once per frame
-    void Update()
+    override protected void Start()
     {
-        
+        base.Start();
+        SetMeleeAtkArea();
+    }
+
+    override protected void Update()
+    {
+        base.Update();
+    }
+
+    // 공격 범위 설정
+    void SetMeleeAtkArea()
+    {
+        gameObject.transform.GetComponentInChildren<SphereCollider>().radius = monster.meleeAttackRange;
     }
 }

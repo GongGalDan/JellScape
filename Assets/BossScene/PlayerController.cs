@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float walkSpeed;
     [SerializeField]
     private float runSpeed;
+    // 적용할 속도 변수
     private float applySpeed;
 
     // 상태 변수
@@ -28,13 +29,13 @@ public class PlayerController : MonoBehaviour
     private Camera cam;
 
     [SerializeField]
-    private float walkBobSpeed = 14f;
+    private float walkBobSpeed = 10f;
     [SerializeField]
-    private float walkBobAmount = 14f;
+    private float walkBobAmount = 0.05f;
     [SerializeField]
     private float sprintBobSpeed = 14f;
     [SerializeField]
-    private float sprintBobAmount = 14f;
+    private float sprintBobAmount = 0.1f;
 
     private float defaultYPos = 0;
     private float timer;
@@ -44,17 +45,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody myRigid;
     private Animator animator;
 
-
-    // Use this for initialization
     void Start()
     {
         myRigid = GetComponent<Rigidbody>();
+        // 초기엔 걷는 속도
         applySpeed = walkSpeed;
         animator = GetComponent<Animator>();
         defaultYPos = cam.transform.localPosition.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Run();
@@ -64,18 +63,25 @@ public class PlayerController : MonoBehaviour
         HandleHeadBob();
     }
 
+    // 걷거나 뛸 때 머리가 위아래 움직이는 효과
     private void HandleHeadBob()
     {
+        // 현재 속도가 0 이상 일때
         if (velocity.magnitude != 0f)
         {
+            // Sin 함수에 넣어줄 각도 
+            // Sin(0) = 0 부터 시작하여 시간이 흐름에 따라 최대 1 ~ 최소 -1 값을 갖는다.
             timer += Time.deltaTime * (isRun ? sprintBobSpeed : walkBobSpeed);
             cam.transform.localPosition = new Vector3(
                 cam.transform.localPosition.x,
+                // Sin 함수를 이용하여 카메라의 Y 값을 위 아래로 움직인다.
                 defaultYPos + Mathf.Sin(timer) * (isRun ? sprintBobAmount : walkBobAmount),
                 cam.transform.localPosition.z);
         }
+        // 속도가 0일때 (멈출 때)
         else if (velocity.magnitude == 0f)
         {
+            // Lerp 함수를 이용해 원래의 포지션으로 부드럽게 돌아온다.
             cam.transform.localPosition = Vector3.Lerp(
                 cam.transform.localPosition,
                 new Vector3(cam.transform.localPosition.x, defaultYPos, cam.transform.localPosition.z)
@@ -83,12 +89,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // 달리기
     private void Run()
     {
         // 달리기 시작
         if (Input.GetKey(KeyCode.LeftShift))
         {
             Running();
+            // 시야가 넓어져 빠른 속도감 연출
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 80f, Time.deltaTime * 10);
         }
         // 달리기 그만
@@ -98,10 +106,12 @@ public class PlayerController : MonoBehaviour
         }
         if (!isRun)
         {
+            // 시야가 좁아지며 느려진 속도감 연출
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60f, Time.deltaTime * 20);
         }
     }
 
+    // 달리기 멈춤
     private void StopRunning()
     {
         isRun = false;
@@ -109,6 +119,7 @@ public class PlayerController : MonoBehaviour
         applySpeed = walkSpeed;
     }
 
+    // 달리기 시작
     private void Running()
     {
         isRun = true;
@@ -116,6 +127,7 @@ public class PlayerController : MonoBehaviour
         applySpeed = runSpeed;
     }
 
+    // 플레이어 움직임
     private void Move()
     {
         // 입력 받아오기
@@ -129,6 +141,7 @@ public class PlayerController : MonoBehaviour
         // 속도 설정
         velocity = (moveHorizontal + moveVertical).normalized * applySpeed;
 
+        // 애니메이션 설정
         if (velocity.magnitude != 0.0f)
         {
             animator.SetBool("Walk", true);
@@ -138,7 +151,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Walk", false);
             animator.SetBool("Run", false);
         }
-        
 
         // 이동
         myRigid.MovePosition(transform.position + velocity * Time.deltaTime);
@@ -153,10 +165,6 @@ public class PlayerController : MonoBehaviour
         Vector3 characterRotationY = new Vector3(0f, yRotation, 0f) * lookSensitivity;
         // 캐릭터 회전
         myRigid.MoveRotation(myRigid.rotation * Quaternion.Euler(characterRotationY));
-
-        // 디버깅
-        Debug.Log(myRigid.rotation);
-        Debug.Log(myRigid.rotation.eulerAngles);
     }
 
     // 카메라 상하 회전

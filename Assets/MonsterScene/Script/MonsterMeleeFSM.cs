@@ -5,14 +5,29 @@ using UnityEngine.AI;
 
 public class MonsterMeleeFSM : MonsterBase
 {
+    // 상태 정의
+    public enum State
+    {
+        Idle,
+        Move,
+        Attack
+    };
+    [SerializeField]
+    public State currentState = State.Idle;
+
+    WaitForSeconds Delay500 = new WaitForSeconds(0.5f);
+    WaitForSeconds Delay250 = new WaitForSeconds(0.25f);
+
+    // 이동 경로
     private Transform path;
     private List<Transform> nodes;
     private int currentNode = 0;
+
     bool isDetected;
-    Transform target;
-  
-    void Start() 
+
+    override protected void Start() 
     {
+        base.Start();
         path = transform.parent.GetChild(1).GetComponent<Transform>();
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
         nodes = new List<Transform>();
@@ -24,38 +39,116 @@ public class MonsterMeleeFSM : MonsterBase
             }
         }
         nvAgent = GetComponent<NavMeshAgent>();
-        target = GameObject.Find("Player").GetComponent<Transform>();
+        nvAgent.stoppingDistance = monster.meleeAttackRange;
 
-        Debug.Log(monster.name);
-        Debug.Log(monster.hp);
-        Debug.Log(monster.meleeAttackDamage);
-        Debug.Log(monster.rangedAttackDamage);
-        Debug.Log(monster.attackCoolTime);
-        Debug.Log(monster.speed);
-        Debug.Log(monster.meleeAttackRange);
-        Debug.Log(monster.rangedAttackRange);
-        Debug.Log(monster.detectRange);
+        StartCoroutine(FSM());
     }
 
-    protected void Update()
+    protected virtual IEnumerator FSM()
     {
-        MoveAround();
+        yield return null;
+
+        // ----------------------------------------------------------------------
+        // 스테이지 제작 후 어떤 식으로 몬스터의 상태를 시작할 것 인지 결정해야함
+        // ----------------------------------------------------------------------
+
+        while (true)
+        {
+            yield return StartCoroutine(currentState.ToString());
+        }
     }
 
+    virtual protected IEnumerator Idle()
+    {
+        yield return null;
+
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            animator.SetTrigger("Idle");
+        }
+
+        if (CanAtkStateFun())
+        {
+            if (canAtk)
+            {
+                currentState = State.Attack;
+            }
+            else
+            {
+                currentState = State.Idle;
+                transform.LookAt(player.transform.position);
+            }
+        }
+        else
+        {
+            currentState = State.Move;
+        }
+    }
+
+    virtual protected IEnumerator Attack()
+    {
+        yield return null;
+
+        nvAgent.stoppingDistance = 0f;
+        nvAgent.isStopped = true;
+        nvAgent.SetDestination(player.transform.position);
+        yield return Delay500;
+
+        nvAgent.isStopped = false;
+        nvAgent.speed = 30f;
+        canAtk = false;
+
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            animator.SetTrigger("Attack");
+        }
+        // AtkEffect(); 필요시 구현
+        yield return Delay500;
+
+        nvAgent.speed = monster.speed;
+        nvAgent.stoppingDistance = monster.meleeAttackRange;
+        currentState = State.Idle;
+    }
+
+    virtual protected IEnumerator Move()
+    {
+        yield return null;
+
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Move"))
+        {
+            animator.SetTrigger("Move");
+        }
+        if (CanAtkStateFun() && canAtk)
+        {
+            currentState = State.Attack;
+        }
+        else if (distance > monster.detectRange)
+        {
+            //MoveAround();
+        }
+        else
+        {
+            nvAgent.SetDestination(player.transform.position);
+        }
+    }
+    // 경로 순회
     private void MoveAround()
     {
-        if (isDetected) return;
+        // 노드와의 거리가 가까워지면 다음 노드로
         if (Vector3.Distance(transform.position, nodes[currentNode].position) < 0.5f)
         {
-            if (currentNode == nodes.Count - 1)
+            if ((currentNode + 1) % nodes.Count == 0)
             {
                 currentNode = 0;
             }
             else
-            {
                 currentNode++;
-            }
         }
-        nvAgent.destination = nodes[currentNode].position;
+        nvAgent.SetDestination(nodes[currentNode].position);
+    }
+
+    override protected void Update()
+    {
+        base.Update();
     }
 }

@@ -50,6 +50,4 @@ public class RandomAbility : MonoBehaviour
         }
         return null;
     }
-
-
 }

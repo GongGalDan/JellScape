@@ -40,7 +40,6 @@ public class GunController : MonoBehaviour
             bulletRigid.velocity = firePos.forward * Time.deltaTime * bulletspeed;
 
             Destroy(gameObject, 3); 
-            Debug.Log("총알 발사함");
         }
     }
 }

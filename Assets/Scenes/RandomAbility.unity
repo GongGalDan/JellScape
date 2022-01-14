@@ -317,6 +317,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298218154}
   m_Mesh: {fileID: 973877516759717424, guid: 7472e878fa798a44793cdf00979a0cea, type: 3}
+--- !u!114 &427567727 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5499702605284043723, guid: 75cb612308941fe4ca50b9b4244ad8a6, type: 3}
+  m_PrefabInstance: {fileID: 1125903818}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &435219552
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,23 +706,23 @@ MonoBehaviour:
   abilities:
   - abilityName: Attack +1
     abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
-    AbilityGrade: 1
+    abilityGrade: 0
     weight: 10
   - abilityName: HP +1
     abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
-    AbilityGrade: 2
+    abilityGrade: 0
     weight: 20
   - abilityName: Speed +1
     abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
-    AbilityGrade: 3
+    abilityGrade: 0
     weight: 50
   - abilityName: Atk Speed +1
     abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
-    AbilityGrade: 2
+    abilityGrade: 0
     weight: 20
   - abilityName: Critical +1
     abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
-    AbilityGrade: 0
+    abilityGrade: 0
     weight: 5
   total: 0
   result: []
@@ -816,6 +827,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4550596939569232240, guid: 75cb612308941fe4ca50b9b4244ad8a6, type: 3}
+      propertyPath: abilityGrade
+      value: 
+      objectReference: {fileID: 427567727}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75cb612308941fe4ca50b9b4244ad8a6, type: 3}
 --- !u!1 &1260698224

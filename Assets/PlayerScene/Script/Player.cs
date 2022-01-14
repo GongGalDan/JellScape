@@ -83,8 +83,6 @@ public class Player : MonoBehaviour
 
     void StopToWall()
     {
-        Debug.DrawRay(transform.position, transform.forward * 5, Color.green);
-        //ray를 보여주는 함수(시작위치, 쏘는방향 * 길이 , 색깔)
         isBorder = Physics.Raycast(transform.position, moveVec, 5, LayerMask.GetMask("Wall"));
         // Raycast = ray에 닿는 오브젝트를 가지하는 함수(위치, 방향,길이,layer - wall에 닿으면) true로 바뀜
     }

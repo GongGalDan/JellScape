@@ -6,8 +6,9 @@ using UnityEngine.AI;
 
 public class MonsterBase : MonoBehaviour
 {
+    // 몬스터 정보
     MonsterData monsterData;
-
+    // 몬스터 타입 지정
     public enum MonsterType
     {
         Dalgona,
@@ -37,7 +38,7 @@ public class MonsterBase : MonoBehaviour
 
     public LayerMask layerMask;
 
-    protected void Start()
+    virtual protected void Start()
     {
         monsterData = GameObject.Find("MonsterData").GetComponent<MonsterData>();
         SetMonsterData();
@@ -51,20 +52,12 @@ public class MonsterBase : MonoBehaviour
         attackCoolTimeCalc = monster.attackCoolTime;
 
         StartCoroutine(CalcCoolTime());
-
-        Debug.Log(monster.name);
-        Debug.Log(monster.hp);
-        Debug.Log(monster.meleeAttackDamage);
-        Debug.Log(monster.rangedAttackDamage);
-        Debug.Log(monster.attackCoolTime);
-        Debug.Log(monster.speed);
-        Debug.Log(monster.meleeAttackRange);
-        Debug.Log(monster.rangedAttackRange);
-        Debug.Log(monster.detectRange);
     }
 
+    // 몬스터 정보 세팅 
     private void SetMonsterData()
     {
+        // 몬스터 정보를 가져와서 현재 Type과 같은 이름의 몬스터 정보를 저장
         foreach (Monster values in monsterData.monstersDic.Values)
         {
             if (type.ToString() == values.name)
@@ -74,19 +67,25 @@ public class MonsterBase : MonoBehaviour
         }
     }
 
+    // 공격 가능 여부 
     protected bool CanAtkStateFun()
     {
+        // 타겟 방향 설정
         Vector3 targetDir = new Vector3(player.transform.position.x - transform.position.x, 0f, player.transform.position.z - transform.position.z);
 
+        // 타겟을 향해 광선 발사
         Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), targetDir, out RaycastHit hit, 30f, layerMask);
+       
+        // 타겟과의 거리
         distance = Vector3.Distance(player.transform.position, transform.position);
 
+        // 타겟이 없다면
         if (hit.transform == null)
         {
             Debug.Log("hit.transform == null");
             return false;
         }
-
+        // 타겟이 Player이고 공격 범위 안에 있다면
         if (hit.transform.CompareTag("Player") && (distance <= monster.meleeAttackRange || distance <= monster.rangedAttackRange))
         {
             return true;
@@ -94,15 +93,17 @@ public class MonsterBase : MonoBehaviour
         else return false;
     }
 
+    // 공격 쿨타임
     protected virtual IEnumerator CalcCoolTime()
     {
         while (true)
         {
             yield return null;
+            // 공격이 쿨타임이라면
             if (!canAtk)
             {
                 attackCoolTimeCalc -= Time.deltaTime;
-                Debug.Log(attackCoolTimeCalc);
+                // 쿨타임이 끝나면
                 if (attackCoolTimeCalc <= 0)
                 {
                     attackCoolTimeCalc = monster.attackCoolTime;
@@ -111,4 +112,6 @@ public class MonsterBase : MonoBehaviour
             }
         }
     }
+
+    protected virtual void Update() { }
 }
