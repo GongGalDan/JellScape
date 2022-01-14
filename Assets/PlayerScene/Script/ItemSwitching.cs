@@ -18,13 +18,23 @@ public class ItemSwitching : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxis("Mouse ScrollWheel")>0 && !isSwitching)
+        swap();
+       
+    }
+
+    void swap()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") != 0 && !isSwitching) // 0이 아닐때 = 위로올리거나(양수) 밑으로 내릴때(음수) = 가만히 안있을때
         {
+            //if (currentIItems.count != 2) //아이템개수가 2개가 아니면 = 2개면 실행한다
+                return;//기능을 안한다
+
+            Debug.Log("d");
             index++;
             if (index >= weapons.Length)
                 index = 0;
             StartCoroutine(SwitchDelay(index));
-             
+            
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && !isSwitching)
@@ -35,7 +45,6 @@ public class ItemSwitching : MonoBehaviour
             StartCoroutine(SwitchDelay(index));
         }
     }
-
 
 
 

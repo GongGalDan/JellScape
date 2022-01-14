@@ -11,8 +11,6 @@ public class Item : MonoBehaviour
     public MainType mainType; //maintype 설정
     public SubType subType; //subtype 설정
     public string itemName; //아이템 이름
-    public Sprite itemImage; //아이템 이미지
-    public GameObject itemPrefab; //아이템 프리팹
     public int value; //아이템의 개수
     public int number; //아이템 번호
 

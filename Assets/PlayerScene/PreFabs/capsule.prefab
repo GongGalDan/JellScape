@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1759831068327174438}
   - component: {fileID: 2298687890637129423}
-  - component: {fileID: -2067654206429958661}
+  - component: {fileID: 6953298873929017699}
   m_Layer: 0
   m_Name: capsule
   m_TagString: Item
@@ -47,7 +47,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.64
   m_Center: {x: -0.89, y: 0.31, z: -0.5}
---- !u!114 &-2067654206429958661
+--- !u!114 &6953298873929017699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,10 +56,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1380350694965787548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16fc6ca3e151b86429144d9273f504cd, type: 3}
+  m_Script: {fileID: 11500000, guid: d28d6d25ad7298043952dbcc64844e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: ea3cd7b50bd174c4d88366a160366cf0, type: 2}
+  mainType: 0
+  subType: 0
+  itemName: capsule
+  value: 1
+  number: 2
 --- !u!1 &2470411494789794023
 GameObject:
   m_ObjectHideFlags: 0

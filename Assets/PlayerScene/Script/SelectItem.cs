@@ -21,7 +21,6 @@ public class SelectItem : MonoBehaviour
     {
         item = _item;
         itemCount = _count;
-        itemImage.sprite = item.itemImage;
 
         SetColor(1);
     }

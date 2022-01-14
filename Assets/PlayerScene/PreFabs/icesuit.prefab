@@ -253,7 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7937448341875415463}
   - component: {fileID: 7614956172713541194}
-  - component: {fileID: -3246858292852369283}
+  - component: {fileID: 7088006850867262931}
   m_Layer: 0
   m_Name: icesuit
   m_TagString: Item
@@ -291,7 +291,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.82, y: 1.35, z: 0.68}
   m_Center: {x: -0.06, y: 0.54, z: 0.07}
---- !u!114 &-3246858292852369283
+--- !u!114 &7088006850867262931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -300,7 +300,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7308404977302438685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16fc6ca3e151b86429144d9273f504cd, type: 3}
+  m_Script: {fileID: 11500000, guid: d28d6d25ad7298043952dbcc64844e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: b7718f602e8fda341be260abdad2ec70, type: 2}
+  mainType: 0
+  subType: 0
+  itemName: icesuit
+  value: 1
+  number: 3

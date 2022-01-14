@@ -9,13 +9,16 @@ public class Player : MonoBehaviour
 
     public int CurItem; //현재 소지한 아이템 개수
     public int MaxItem; //최대 소지가능한 아이템 개수
-    public GameObject[] weapons;
-    public bool[] hasWeapons;
+    public float itemDelay; //아이템 교체 딜레이시간
+    public GameObject[] items;
+    public bool[] hasitems;
+    int itemIndex = -1; //0부터 아이템 inex 설정
 
     float xMove; //x축
     float zMove; //z축
 
     bool fDown; //기본 공격
+    bool isSwap;
 
     Vector3 moveVec;
 
@@ -23,12 +26,11 @@ public class Player : MonoBehaviour
 
     GameObject nearObject; //근처에있는 오브젝트
     Item equipItem;
-    ItemSwitching switching;
 
+    
 
     void Start()
     {
-        
     }
 
     void Awake()
@@ -93,7 +95,7 @@ public class Player : MonoBehaviour
         if (other.tag == "Item") //태그가 item이면
         {
             nearObject = other.gameObject; //nearobject에 저장
-      
+
             Item item = nearObject.GetComponent<Item>();
             switch (item.mainType) //item 메인 타입중에서
             {
@@ -101,23 +103,12 @@ public class Player : MonoBehaviour
                     if (CurItem == MaxItem)
                         return;
                     CurItem += item.value; //현재 아이템 개수에는 value값이 더해지고
-                    Debug.Log("dtd");
-                    int weaponIndex = item.number; //weaponindex에는 number가 들어감
-                    hasWeapons[weaponIndex] = true;
+                    itemIndex = item.number; //weaponindex에는 number가 들어감
+                    hasitems[itemIndex] = true;
+                    Destroy(nearObject);
                     break;
             }
-
-            Destroy(nearObject);
         }
-        
-    }
-
-    void Swap()
-    {
-        if (equipItem = null) 
-            return;
-
-
     }
 
 }
