@@ -7,6 +7,10 @@ public class Player2 : MonoBehaviour
     public float Speed;
     public Camera cam;
 
+    public int currentItem;
+    public int maxItem;
+
+
     float xHorizontal; // a, d x축 이동
     float zVertical; // w, s z축 이동
 
@@ -14,11 +18,12 @@ public class Player2 : MonoBehaviour
 
     Vector3 moveVec;
 
+    GameObject nearObject;
 
 
     void Start()
     {
-        
+        Items items = GetComponent<Items>();
     }
 
 
