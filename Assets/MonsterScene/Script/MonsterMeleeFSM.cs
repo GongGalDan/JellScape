@@ -23,7 +23,7 @@ public class MonsterMeleeFSM : MonsterBase
     private List<Transform> nodes;
     private int currentNode = 0;
 
-    bool isDetected;
+    private Vector3 lastPlayerPos;
 
     override protected void Start() 
     {
@@ -88,14 +88,14 @@ public class MonsterMeleeFSM : MonsterBase
     virtual protected IEnumerator Attack()
     {
         yield return null;
-
+ 
         nvAgent.stoppingDistance = 0f;
-        nvAgent.isStopped = true;
-        nvAgent.SetDestination(player.transform.position);
+        lastPlayerPos = player.transform.position;
+        nvAgent.SetDestination(lastPlayerPos);
         yield return Delay500;
 
         nvAgent.isStopped = false;
-        nvAgent.speed = 30f;
+        nvAgent.speed = 50f;
         canAtk = false;
 
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
@@ -120,20 +120,25 @@ public class MonsterMeleeFSM : MonsterBase
         }
         if (CanAtkStateFun() && canAtk)
         {
+            transform.LookAt(player.transform.position);
+            nvAgent.isStopped = true;
+            nvAgent.velocity = Vector3.zero;
             currentState = State.Attack;
         }
-        else if (distance > monster.detectRange)
+        if (distance > monster.detectRange)
         {
-            //MoveAround();
+            MoveAround();
         }
-        else
+        else if (distance < monster.detectRange)
         {
+            nvAgent.stoppingDistance = monster.meleeAttackRange;
             nvAgent.SetDestination(player.transform.position);
         }
     }
     // 경로 순회
     private void MoveAround()
     {
+        nvAgent.stoppingDistance = 0f;
         // 노드와의 거리가 가까워지면 다음 노드로
         if (Vector3.Distance(transform.position, nodes[currentNode].position) < 0.5f)
         {

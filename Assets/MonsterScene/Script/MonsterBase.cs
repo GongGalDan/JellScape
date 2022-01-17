@@ -26,6 +26,7 @@ public class MonsterBase : MonoBehaviour
     public MonsterType type;
 
     protected Monster monster;
+    [SerializeField]
     protected bool canAtk;
     protected float attackCoolTimeCalc;
 
@@ -67,7 +68,7 @@ public class MonsterBase : MonoBehaviour
         }
     }
 
-    // 공격 가능 여부 
+    // 공격 가능 범위 감지
     protected bool CanAtkStateFun()
     {
         // 타겟 방향 설정
@@ -75,19 +76,25 @@ public class MonsterBase : MonoBehaviour
 
         // 타겟을 향해 광선 발사
         Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), targetDir, out RaycastHit hit, 30f, layerMask);
-       
+        Debug.DrawRay(new Vector3(transform.position.x, 0.5f, transform.position.z), targetDir, Color.green);
+
         // 타겟과의 거리
         distance = Vector3.Distance(player.transform.position, transform.position);
 
         // 타겟이 없다면
         if (hit.transform == null)
         {
-            Debug.Log("hit.transform == null");
             return false;
         }
         // 타겟이 Player이고 공격 범위 안에 있다면
         if (hit.transform.CompareTag("Player") && (distance <= monster.meleeAttackRange || distance <= monster.rangedAttackRange))
         {
+            Debug.Log("Player in Attack Range");
+            return true;
+        }
+        else if (transform.position == player.transform.position)
+        { 
+            Debug.Log("Player in Attack Range");
             return true;
         }
         else return false;
