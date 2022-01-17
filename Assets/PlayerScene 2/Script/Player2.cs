@@ -7,10 +7,6 @@ public class Player2 : MonoBehaviour
     public float Speed;
     public Camera cam;
 
-    public int currentItem;
-    public int maxItem;
-
-
     float xHorizontal; // a, d x축 이동
     float zVertical; // w, s z축 이동
 
@@ -19,11 +15,13 @@ public class Player2 : MonoBehaviour
     Vector3 moveVec;
 
     GameObject nearObject;
+    Animator animat;
 
 
     void Start()
     {
         Items items = GetComponent<Items>();
+        animat = GetComponentInChildren<Animator>();
     }
 
 
@@ -47,6 +45,8 @@ public class Player2 : MonoBehaviour
         moveVec = new Vector3(xHorizontal, 0, zVertical);
         if (!isBorder) //충돌하지 않으면 움직이도록
             transform.position += moveVec * Speed * Time.deltaTime;
+
+        animat.SetBool("isWalk", moveVec != Vector3.zero);
     }
 
     void Turn()
