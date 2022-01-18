@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BasicWeapon : MonoBehaviour
 {
-    public float shootrate; //연사 속도
-    public float range; //공격 범위
+    Player2 player;
     public GameObject bulletPrefab; //총알의 모양
     public Transform bulletPos; //총알이 발사되는 위치
 
     private float shootReady; //연사속도계산
+    private void Start()
+    {
+        player = GetComponentInParent<Player2>();
+    }
 
     private void Update()
     {
@@ -31,9 +34,9 @@ public class BasicWeapon : MonoBehaviour
             bullet.transform.position = bulletPos.position; //bullotpos의 위치에서
             bullet.transform.forward = bulletPos.forward; //bulletpos의 forward로 나아간다
 
-            shootReady += shootrate;
+            shootReady += player.shootrate;
 
-            Destroy(bullet, range);
+            Destroy(bullet, player.range);
         }
     }
 

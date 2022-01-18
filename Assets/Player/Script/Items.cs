@@ -112,6 +112,5 @@ public class Items : MonoBehaviour
             currentItems[0].SetActive(false); //끄고
             currentItems.Remove(currentItems[0]);//지운다.
         }
-
     }
 }

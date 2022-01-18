@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
-    public float Speed;
     public Camera cam;
 
     float xHorizontal; // a, d x축 이동
@@ -14,6 +13,17 @@ public class Player2 : MonoBehaviour
 
     Vector3 moveVec;
     Animator animat;
+
+    //player ability
+    public float damage; //공격력
+    public float shootrate; //공격속도
+    public float speed; //이동속도
+    public float range; //사거리
+    public float currentHp; //현재 hp
+    public float MaxHp; //최대 hp
+    public float defence; //방어력
+    public float critical; //크리티컬
+
 
 
     void Start()
@@ -42,7 +52,7 @@ public class Player2 : MonoBehaviour
     {
         moveVec = new Vector3(xHorizontal, 0, zVertical);
         if (!isBorder) //충돌하지 않으면 움직이도록
-            transform.position += moveVec * Speed * Time.deltaTime;
+            transform.position += moveVec * speed * Time.deltaTime;
 
         animat.SetBool("isWalk", moveVec != Vector3.zero);
     }
