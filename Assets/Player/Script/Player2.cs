@@ -13,8 +13,6 @@ public class Player2 : MonoBehaviour
     bool isBorder;
 
     Vector3 moveVec;
-
-    GameObject nearObject;
     Animator animat;
 
 
