@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CatMove : MonoBehaviour
+public class Rat : MonoBehaviour
 {
     NavMeshAgent nvAgent;
     GameObject player;
@@ -24,7 +24,7 @@ public class CatMove : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Caught by Cat");
+            Debug.Log("Caught by Rat");
         }
     }
 }
