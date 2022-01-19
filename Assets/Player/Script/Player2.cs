@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
-    public Camera cam;
+    public Camera mainCamera;
 
     float xHorizontal; // a, d x축 이동
     float zVertical; // w, s z축 이동
@@ -12,24 +12,30 @@ public class Player2 : MonoBehaviour
     bool isBorder;
 
     Vector3 moveVec;
-    Animator animat;
+    Animator animator;
 
-    //player ability
-    public float damage; //공격력
-    public float shootrate; //공격속도
-    public float speed; //이동속도
-    public float range; //사거리
+    //player ability (basic~ 기본능력치(시작할때 가지는능력), current~ 더해지는 능력치(확인용))
+    public float basicDamage;
+    public float currentDamage; //공격력 
+    public float basicShootRate;
+    public float currentShootRate; //공격속도
+    public float basicSpeed;
+    public float currentSpeed; //이동속도
+    public float basicRange;
+    public float currentRange; //사거리
     public float currentHp; //현재 hp
     public float MaxHp; //최대 hp
-    public float defence; //방어력
-    public float critical; //크리티컬
+    public float basicDefence; 
+    public float currentDefence; //방어력
+    public float basicCritical;
+    public float currentCritical; //크리티컬
 
 
 
     void Start()
     {
         Items items = GetComponent<Items>();
-        animat = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
 
@@ -52,9 +58,9 @@ public class Player2 : MonoBehaviour
     {
         moveVec = new Vector3(xHorizontal, 0, zVertical);
         if (!isBorder) //충돌하지 않으면 움직이도록
-            transform.position += moveVec * speed * Time.deltaTime;
+            transform.position += moveVec * currentSpeed * Time.deltaTime;
 
-        animat.SetBool("isWalk", moveVec != Vector3.zero);
+        animator.SetBool("isWalk", moveVec != Vector3.zero);
     }
 
     void Turn()
@@ -63,7 +69,7 @@ public class Player2 : MonoBehaviour
         transform.LookAt(transform.position + moveVec);
 
         //#2. 마우스에 의한 회전
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit rayHit;
         if (Physics.Raycast(ray, out rayHit, 100))
         {

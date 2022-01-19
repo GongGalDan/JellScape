@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class BasicBullet : MonoBehaviour
 {
-    Player2 player;
     Rigidbody rigid;
+    float bulletSpeed = 20f;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponentInParent<Player2>();
         rigid = GetComponent<Rigidbody>();
-        rigid.velocity = transform.forward * player.shootrate;//加档 = 规氢 * 加仿
+        rigid.velocity = transform.forward * bulletSpeed;//加档 = 规氢 * 加仿
     }
 
 

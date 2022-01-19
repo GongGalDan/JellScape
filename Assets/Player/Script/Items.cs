@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
+    //스위칭
     public List<GameObject> itemlist; //item object를 넣고
     public List<GameObject> currentItems = new List<GameObject>();//현재 입수한 아이템이 표시되도록 add해준다
 
-    ItemInfo itemifo;
-
-    private void Start()
-    {
-        itemifo = GetComponent<ItemInfo>();
-    }
+    public float switchDelay;
+    bool isSwitching;
 
     void Update()
     {
@@ -88,11 +85,15 @@ public class Items : MonoBehaviour
         {
             currentItems[1].SetActive(false);
         }
-        if(Input.GetAxis("Mouse ScrollWheel") !=0 )
+        if(Input.GetAxis("Mouse ScrollWheel") !=0 && !isSwitching)
         {
             if (currentItems.Count != 2)
                 return;
-            else swap();
+            else
+            {
+                swap();
+                StartCoroutine(SwitchDelay());
+            }
         }
     }
 
@@ -112,5 +113,12 @@ public class Items : MonoBehaviour
             currentItems[0].SetActive(false); //끄고
             currentItems.Remove(currentItems[0]);//지운다.
         }
+    }
+
+    IEnumerator SwitchDelay()
+    {
+        isSwitching = true;
+        yield return new WaitForSeconds(switchDelay);
+        isSwitching = false;
     }
 }

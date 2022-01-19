@@ -4,24 +4,36 @@ using UnityEngine;
 
 public class UsableItem : MonoBehaviour
 {
-    float attackDelay;
+    float useDelay=0;
+    float apoloDelay = 0.7f;
+    float stickDelay = 1f;
 
     Player2 player; //체력, speed 이동속도
     Items items;
-    Animator animat;
+    Animator animator;
 
 
     private void Start()
     {
         player = GetComponent<Player2>();
         items = GetComponent<Items>();
-        animat = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
         Use();
+        UseDelay();
     }
+
+    void UseDelay()
+    {
+        if (useDelay > 0)
+        {
+            useDelay -= Time.deltaTime;
+        }
+    }
+
 
     void Use()
     {
@@ -32,24 +44,26 @@ public class UsableItem : MonoBehaviour
         }
 
 
-        if(Input.GetMouseButtonDown(1) && items.currentItems.Count != 0)
+        if(Input.GetMouseButtonDown(1) && items.currentItems.Count != 0 && useDelay <=0)
         {
            if(items.currentItems[0] == items.itemlist[0])
             {
                 Debug.Log("아폴로로 공격 중");
-                animat.SetTrigger("doAttack");
+                useDelay += apoloDelay;
+                animator.SetTrigger("doAttack");
             }
 
             if (items.currentItems[0] == items.itemlist[1])
             {
                 Debug.Log("스틱으로 공격 중");
-                animat.SetTrigger("doAttack");
+                useDelay += stickDelay;
+                animator.SetTrigger("doAttack");
             }
 
             if (items.currentItems[0] == items.itemlist[2])
             {
                 Debug.Log("캡슐로 공격 중");
-                animat.SetTrigger("doAttack");
+                animator.SetTrigger("doAttack");
             }
 
             if (items.currentItems[0] == items.itemlist[3])
