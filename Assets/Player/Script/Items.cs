@@ -11,6 +11,12 @@ public class Items : MonoBehaviour
     public float switchDelay;
     bool isSwitching;
 
+    Animator animator;
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         UpdateItem();
@@ -91,6 +97,7 @@ public class Items : MonoBehaviour
                 return;
             else
             {
+                animator.SetTrigger("doSwap");
                 swap();
                 StartCoroutine(SwitchDelay());
             }

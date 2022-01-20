@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class UsableItem : MonoBehaviour
 {
+    public float apoloDamage;
+    public float stickDamage;
     public BoxCollider meleeArea;
     public CapsuleCollider SpecialArea;
-    public TrailRenderer trailEffect;
 
 
     float useDelay=0;
@@ -20,12 +21,13 @@ public class UsableItem : MonoBehaviour
 
     private void Start()
     {
-        player = GetComponent<Player2>();
-        items = GetComponent<Items>();
-        animator = GetComponentInChildren<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player2>();
+        items = GameObject.FindGameObjectWithTag("Player").GetComponent<Items>();
+        animator = GetComponentInParent<Animator>();
     }
 
-    private void Update()
+
+    void Update()
     {
         Use();
         UseDelay();
@@ -51,7 +53,8 @@ public class UsableItem : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1) && items.currentItems.Count != 0 && useDelay <=0)
         {
-           if(items.currentItems[0] == items.itemlist[0])
+            
+            if (items.currentItems[0] == items.itemlist[0])
             {
                 Debug.Log("아폴로로 공격 중");
                 StopCoroutine("Swing");
@@ -61,7 +64,7 @@ public class UsableItem : MonoBehaviour
             }
 
             if (items.currentItems[0] == items.itemlist[1])
-            {
+            { 
                 Debug.Log("스틱으로 공격 중");
                 StopCoroutine("Swing");
                 StartCoroutine("Swing");
@@ -78,21 +81,22 @@ public class UsableItem : MonoBehaviour
             if (items.currentItems[0] == items.itemlist[3])
             {
                 Debug.Log("얼음 갑옷으로 방어 중");
+                animator.SetTrigger("doDie");
             }
         }
 
     }
+
     IEnumerator Swing()
     {
         yield return new WaitForSeconds(0.1f);
         meleeArea.enabled = true;
-        trailEffect.enabled = true;
+        Debug.Log("공격시작");
 
         yield return new WaitForSeconds(0.2f);
         meleeArea.enabled = false;
+        Debug.Log("공격끝");
 
-        yield return new WaitForSeconds(0.3f);
-        trailEffect.enabled = false;
-
+        yield return new WaitForSeconds(0.5f);
     }
 }
