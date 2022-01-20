@@ -8,10 +8,12 @@ public class Enemy : MonoBehaviour
     public float MaxHp;
 
     Player2 player;
+    Attack equipWeapon;
 
     private void Update()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player2>();
+        equipWeapon = GetComponent<Attack>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,13 +27,13 @@ public class Enemy : MonoBehaviour
 
         if (other.CompareTag("Apolo"))
         {
-            currentHp -= 20; //아폴로의 데미지
+            currentHp -= equipWeapon.damage; //아폴로의 데미지
             Debug.Log(currentHp + "아폴로에게 맞음");
         }
 
         if (other.CompareTag("Stick"))
         {
-            currentHp -= 20; //스틱이 데미지
+            currentHp -= equipWeapon.damage; //스틱이 데미지
             Debug.Log(currentHp + "스틱에게 맞음");
         }
 

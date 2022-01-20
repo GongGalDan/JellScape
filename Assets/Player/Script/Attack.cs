@@ -4,52 +4,37 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    // 근접무기
-    float attackDelay;
+    public enum Type { Melee, Buff, Special};
+    public Type type;
+    public int damage;
+    public float rate;
+    public BoxCollider meleeArea;
+    public CapsuleCollider SpecialArea;
+    public TrailRenderer trailEffect;
 
-    Items items;
-    Animator animat;
-    Player2 player;
-
-    private void Start()
+    public void Use()
     {
-        items = GetComponent<Items>();
-        animat = GetComponent<Animator>();
-        player = GetComponent<Player2>();
-    }
-
-    void AttackDelay()
-    {
-        if (attackDelay > 0)
-            attackDelay -= Time.deltaTime;
-    }
-
-    void Melee()
-    {
-        if (Input.GetMouseButtonDown(1) && attackDelay < 0)
+        if(type== Type.Melee)
         {
-            if (items.currentItems[0] == items.itemlist[0]) //아폴로 공격처리
-            {
-                animat.SetTrigger("doAttack");
-                attackDelay += player.basicShootRate;
-            }
-
-            if (items.currentItems[0] == items.itemlist[1]) //스틱 공격 처리
-            {
-                animat.SetTrigger("doAttack");
-                attackDelay += player.basicShootRate;
-            }
-            if (items.currentItems[0] == items.itemlist[2])
-            {
-                animat.SetTrigger("doAttack");
-                attackDelay += player.basicShootRate;
-            }
-            if (items.currentItems[0] == items.itemlist[3])
-            {
-                animat.SetTrigger("doAttack");
-                attackDelay += player.basicShootRate;
-            }
+            StopCoroutine("Swing");
+            StartCoroutine("Swing");
         }
+    }
+
+    IEnumerator Swing()
+    {
+        yield return new WaitForSeconds(0.1f);
+        meleeArea.enabled = true;
+        trailEffect.enabled = true;
+
+        yield return new WaitForSeconds(0.2f);
+        meleeArea.enabled = false;
+
+        yield return new WaitForSeconds(0.3f);
+        trailEffect.enabled = false;
 
     }
+
+
+
 }

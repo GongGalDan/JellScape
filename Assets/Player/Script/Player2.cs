@@ -10,9 +10,18 @@ public class Player2 : MonoBehaviour
     float zVertical; // w, s z축 이동
 
     bool isBorder;
+    bool isAttackReady;
+    bool isMove;
+    bool isTurn;
+    bool isSwap;
+
+
 
     Vector3 moveVec;
     Animator animator;
+    Items items;
+    Attack equipWeapon;
+    float attackDelay;
 
     //player ability (basic~ 기본능력치(시작할때 가지는능력), current~ 더해지는 능력치(확인용))
     public float basicDamage;
@@ -34,8 +43,9 @@ public class Player2 : MonoBehaviour
 
     void Start()
     {
-        Items items = GetComponent<Items>();
+        items = GetComponent<Items>();
         animator = GetComponentInChildren<Animator>();
+        equipWeapon = GetComponent<Attack>();
     }
 
 
@@ -44,7 +54,7 @@ public class Player2 : MonoBehaviour
         GetInput();
         Move();
         Turn();
-   
+        Hit();
     }
 
     void GetInput()
@@ -76,9 +86,8 @@ public class Player2 : MonoBehaviour
             Vector3 nextVec = rayHit.point - transform.position;
             nextVec.y = 0;
             transform.LookAt(transform.position + nextVec);
+            isTurn = true;
         }
-
-
     }
 
     void StopWall()
@@ -89,4 +98,21 @@ public class Player2 : MonoBehaviour
         //Raycast = ray에 닿는 오브젝트를 가지는 함수(위치, 방향, 길이, layer - wall에 닿으면 true가됨) = 움직임X
     }
 
+
+    void Hit()
+    {
+        if (equipWeapon == null)
+            return;
+
+        attackDelay += Time.deltaTime;
+        isAttackReady = equipWeapon.rate < attackDelay;
+
+        if(Input.GetMouseButtonDown(1) && isAttackReady)
+        {
+            
+            equipWeapon.Use();
+            animator.SetTrigger("doAttac"); // (equipWeapon.type == Attack.Type.Melee ? "doAttack" : "doSwing" );
+            attackDelay = 0;
+        }
+    }
 }

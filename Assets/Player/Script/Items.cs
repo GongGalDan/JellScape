@@ -74,7 +74,7 @@ public class Items : MonoBehaviour
         
     }
 
-    void UpdateItem()
+     void UpdateItem()
     {
         if (currentItems.Count == 0)
             return;
@@ -85,7 +85,7 @@ public class Items : MonoBehaviour
         {
             currentItems[1].SetActive(false);
         }
-        if(Input.GetAxis("Mouse ScrollWheel") !=0 && !isSwitching)
+        if(Input.GetAxis("Mouse ScrollWheel") !=0 && !isSwitching) //isSwitching¿Ã false¿œ ∂ß
         {
             if (currentItems.Count != 2)
                 return;
