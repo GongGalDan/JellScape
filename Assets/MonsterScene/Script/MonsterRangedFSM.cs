@@ -46,7 +46,7 @@ public class MonsterRangedFSM : MonsterBase
         nvAgent = GetComponent<NavMeshAgent>();
         nvAgent.stoppingDistance = monster.rangedAttackRange;
 
-        StartCoroutine(FSM());
+        StartCoroutine(FSM());   
     }
 
     protected virtual IEnumerator FSM()
