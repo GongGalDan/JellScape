@@ -15,7 +15,6 @@ public class MonsterData : MonoBehaviour
 
     public MonsterList myMonsterList = new MonsterList();
 
-    // Start is called before the first frame update
     void Awake()
     {
         ReadCSV();

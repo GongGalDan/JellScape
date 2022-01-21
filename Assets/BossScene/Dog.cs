@@ -8,14 +8,12 @@ public class Dog : MonoBehaviour
     NavMeshAgent nvAgent;
     GameObject dogDestination;
 
-    // Start is called before the first frame update
     void Start()
     {
         nvAgent = GetComponent<NavMeshAgent>();
         dogDestination = GameObject.Find("DogDestination");
     }
 
-    // Update is called once per frame
     void Update()
     {
         nvAgent.SetDestination(dogDestination.transform.position);
