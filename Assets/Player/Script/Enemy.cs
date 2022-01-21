@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
 
         if (other.CompareTag("Stick"))
         {
-            currentHp -= useItem.stickDamage; //스틱이 데미지
+            currentHp -= useItem.stickDamage; //스틱의 데미지
             Debug.Log(currentHp + "스틱에게 맞음");
         }
 

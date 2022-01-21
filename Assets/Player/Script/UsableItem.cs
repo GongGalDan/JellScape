@@ -24,6 +24,7 @@ public class UsableItem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player2>();
         items = GameObject.FindGameObjectWithTag("Player").GetComponent<Items>();
         animator = GetComponentInParent<Animator>();
+        meleeArea.enabled = false;
     }
 
 

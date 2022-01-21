@@ -11,10 +11,6 @@ public class Player2 : MonoBehaviour
 
     bool isBorder;
     bool isAttackReady;
-    bool isMove;
-    bool isTurn;
-    bool isSwap;
-
 
 
     Vector3 moveVec;
@@ -84,7 +80,6 @@ public class Player2 : MonoBehaviour
             Vector3 nextVec = rayHit.point - transform.position;
             nextVec.y = 0;
             transform.LookAt(transform.position + nextVec);
-            isTurn = true;
         }
     }
 
