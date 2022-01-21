@@ -10,12 +10,16 @@ public class Enemy : MonoBehaviour
     Player2 player;
     UsableItem useItem;
 
+    MeshRenderer mesh;
+    Material material;
+
     private void Update()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player2>();
         useItem = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<UsableItem>();
 
-
+        mesh = GetComponent<MeshRenderer>();
+        material = mesh.material;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,12 +35,14 @@ public class Enemy : MonoBehaviour
         {
             currentHp -= useItem.apoloDamage; //아폴로의 데미지
             Debug.Log(currentHp + "아폴로에게 맞음");
+            material.color = new Color(0,100,0);
         }
 
         if (other.CompareTag("Stick"))
         {
             currentHp -= useItem.stickDamage; //스틱의 데미지
             Debug.Log(currentHp + "스틱에게 맞음");
+            material.color = new Color(100, 100, 0);
         }
 
 

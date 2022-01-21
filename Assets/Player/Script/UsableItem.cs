@@ -90,7 +90,7 @@ public class UsableItem : MonoBehaviour
 
     IEnumerator Swing()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         meleeArea.enabled = true;
         Debug.Log("공격시작");
 
