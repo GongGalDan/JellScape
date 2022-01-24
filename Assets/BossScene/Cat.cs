@@ -6,17 +6,26 @@ using UnityEngine.AI;
 public class Cat : MonoBehaviour
 {
     NavMeshAgent nvAgent;
-    GameObject player;
+    Transform catDestination;
+    Transform player;
 
     void Start()
     {
         nvAgent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        catDestination = GameObject.Find("CatDestination").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
-        nvAgent.SetDestination(player.transform.position);
+        if (Vector3.Distance(transform.position, player.position) < 6f)
+        {
+            nvAgent.SetDestination(player.position);
+        }
+        else
+        {
+            nvAgent.SetDestination(catDestination.position);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

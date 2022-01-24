@@ -7,16 +7,25 @@ public class Dog : MonoBehaviour
 {
     NavMeshAgent nvAgent;
     GameObject dogDestination;
+    Transform player;
 
     void Start()
     {
         nvAgent = GetComponent<NavMeshAgent>();
         dogDestination = GameObject.Find("DogDestination");
+        player = GameObject.Find("Player").GetComponent<Transform>();
     }
 
     void Update()
     {
-        nvAgent.SetDestination(dogDestination.transform.position);
+        if (Vector3.Distance(transform.position, player.position) < 6f) 
+        {
+            nvAgent.SetDestination(player.position);
+        }
+        else
+        {
+            nvAgent.SetDestination(dogDestination.transform.position);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
