@@ -103,8 +103,8 @@ public class MonsterMeleeFSM : MonsterBase
             animator.SetTrigger("Attack");
         }
         // AtkEffect(); 필요시 구현
-        yield return new WaitForSeconds(0.8f);
-
+        yield return new WaitForSeconds(1.5f);
+        
         nvAgent.speed = monster.speed;
         nvAgent.stoppingDistance = monster.meleeAttackRange;
         currentState = State.Idle;

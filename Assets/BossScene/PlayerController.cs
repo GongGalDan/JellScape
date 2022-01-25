@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
         Vector3 moveVertical = transform.forward * moveDirZ;
 
         // 속도 설정
-        velocity = (moveHorizontal + moveVertical).normalized * applySpeed;
+        velocity = (moveHorizontal + moveVertical).normalized * applySpeed * Time.deltaTime;
 
         // 애니메이션 설정
         if (velocity.magnitude != 0.0f)
@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // 이동
-        myRigid.MovePosition(transform.position + velocity * Time.deltaTime);
+        myRigid.MovePosition(transform.position + velocity);
     }
 
     // 캐릭터 좌우 회전
