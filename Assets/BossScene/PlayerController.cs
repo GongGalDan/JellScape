@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Run();
+      
+    }
+
+    void FixedUpdate()
+    {
         Move();
         CameraRotation();
         CharacterRotation();
@@ -153,7 +158,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // 이동
-        myRigid.MovePosition(transform.position + velocity);
+        transform.position += velocity;
     }
 
     // 캐릭터 좌우 회전
