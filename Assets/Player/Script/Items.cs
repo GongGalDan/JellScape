@@ -98,6 +98,7 @@ public class Items : MonoBehaviour
             else
             {
                 animator.SetTrigger("doSwap");
+                animator.SetBool("isAtatck", false);
                 swap();
                 StartCoroutine(SwitchDelay());
             }
