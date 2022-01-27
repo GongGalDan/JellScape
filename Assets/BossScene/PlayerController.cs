@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Run();
-      
     }
 
     void FixedUpdate()
@@ -76,7 +75,7 @@ public class PlayerController : MonoBehaviour
         {
             // Sin 함수에 넣어줄 각도 
             // Sin(0) = 0 부터 시작하여 시간이 흐름에 따라 최대 1 ~ 최소 -1 값을 갖는다.
-            timer += Time.deltaTime * (isRun ? sprintBobSpeed : walkBobSpeed);
+            timer += Time.fixedDeltaTime * (isRun ? sprintBobSpeed : walkBobSpeed);
             cam.transform.localPosition = new Vector3(
                 cam.transform.localPosition.x,
                 // Sin 함수를 이용하여 카메라의 Y 값을 위 아래로 움직인다.
@@ -90,7 +89,7 @@ public class PlayerController : MonoBehaviour
             cam.transform.localPosition = Vector3.Lerp(
                 cam.transform.localPosition,
                 new Vector3(cam.transform.localPosition.x, defaultYPos, cam.transform.localPosition.z)
-                , Time.deltaTime);
+                , Time.fixedDeltaTime);
         }
     }
 
@@ -102,7 +101,7 @@ public class PlayerController : MonoBehaviour
         {
             Running();
             // 시야가 넓어져 빠른 속도감 연출
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 80f, Time.deltaTime * 10);
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 80f, Time.fixedDeltaTime * 10);
         }
         // 달리기 그만
         if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -112,7 +111,7 @@ public class PlayerController : MonoBehaviour
         if (!isRun)
         {
             // 시야가 좁아지며 느려진 속도감 연출
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60f, Time.deltaTime * 20);
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60f, Time.fixedDeltaTime * 20);
         }
     }
 
@@ -144,7 +143,7 @@ public class PlayerController : MonoBehaviour
         Vector3 moveVertical = transform.forward * moveDirZ;
 
         // 속도 설정
-        velocity = (moveHorizontal + moveVertical).normalized * applySpeed * Time.deltaTime;
+        velocity = (moveHorizontal + moveVertical).normalized * applySpeed * Time.fixedDeltaTime;
 
         // 애니메이션 설정
         if (velocity.magnitude != 0.0f)
