@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2534141490635562535
+--- !u!1 &4068635771315487987
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1275430747820269264}
-  - component: {fileID: 7874722164951619421}
-  - component: {fileID: 7738057780562944442}
+  - component: {fileID: 5944537039725560601}
+  - component: {fileID: 2526730161748424124}
+  - component: {fileID: 5581232286256865741}
   m_Layer: 0
-  m_Name: Cylinder001
+  m_Name: Box001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1275430747820269264
+--- !u!4 &5944537039725560601
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2534141490635562535}
+  m_GameObject: {fileID: 4068635771315487987}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.28312466, y: 0.000000006055832, z: 0.5042198}
-  m_LocalScale: {x: 0.826562, y: 0.826562, z: 0.578131}
+  m_LocalPosition: {x: -0, y: 7.56979e-10, z: -0.6658464}
+  m_LocalScale: {x: 0.837943, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5866456644924064575}
-  m_RootOrder: 1
+  m_Father: {fileID: 934040026968895727}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7874722164951619421
+--- !u!33 &2526730161748424124
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2534141490635562535}
-  m_Mesh: {fileID: -951608786083511892, guid: 8106e2de74dd47c47bce12ed4bb3b278, type: 3}
---- !u!23 &7738057780562944442
+  m_GameObject: {fileID: 4068635771315487987}
+  m_Mesh: {fileID: 5060444177187149915, guid: 8106e2de74dd47c47bce12ed4bb3b278, type: 3}
+--- !u!23 &5581232286256865741
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2534141490635562535}
+  m_GameObject: {fileID: 4068635771315487987}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -81,7 +81,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &4436199904566237016
+--- !u!1 &4731759713025888231
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,9 +89,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3315805098401905756}
-  - component: {fileID: 868920359698355100}
-  - component: {fileID: 2453120483073538917}
+  - component: {fileID: 934040026968895727}
+  m_Layer: 0
+  m_Name: SesameOil_LOD1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934040026968895727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731759713025888231}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5944537039725560601}
+  m_Father: {fileID: 5866456644924064575}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5580597242025775462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3373799146885313048}
+  - component: {fileID: 3651498523973582365}
+  - component: {fileID: 2017805812537955224}
   m_Layer: 0
   m_Name: Box001
   m_TagString: Untagged
@@ -99,35 +130,116 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3315805098401905756
+--- !u!4 &3373799146885313048
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4436199904566237016}
+  m_GameObject: {fileID: 5580597242025775462}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 7.56979e-10, z: -0.6658464}
   m_LocalScale: {x: 0.837943, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5866456644924064575}
+  m_Father: {fileID: 7341947411511093103}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &868920359698355100
+--- !u!33 &3651498523973582365
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4436199904566237016}
+  m_GameObject: {fileID: 5580597242025775462}
   m_Mesh: {fileID: 5060444177187149915, guid: 8106e2de74dd47c47bce12ed4bb3b278, type: 3}
---- !u!23 &2453120483073538917
+--- !u!23 &2017805812537955224
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4436199904566237016}
+  m_GameObject: {fileID: 5580597242025775462}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5594784190165818155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 47950386102738625}
+  - component: {fileID: 3055670428931042612}
+  - component: {fileID: 1240013177119761563}
+  m_Layer: 0
+  m_Name: Cylinder001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &47950386102738625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594784190165818155}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.28312466, y: 0.000000006055832, z: 0.5042198}
+  m_LocalScale: {x: 0.826562, y: 0.826562, z: 0.578131}
+  m_Children: []
+  m_Father: {fileID: 7341947411511093103}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3055670428931042612
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594784190165818155}
+  m_Mesh: {fileID: -951608786083511892, guid: 8106e2de74dd47c47bce12ed4bb3b278, type: 3}
+--- !u!23 &1240013177119761563
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594784190165818155}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -171,6 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5866456644924064575}
+  - component: {fileID: 7555699308478656366}
   m_Layer: 0
   m_Name: SesameOil
   m_TagString: Untagged
@@ -189,8 +302,60 @@ Transform:
   m_LocalPosition: {x: -0.015163422, y: 2.944, z: 0.5209999}
   m_LocalScale: {x: 0.8835, y: 0.8835, z: 0.8835}
   m_Children:
-  - {fileID: 3315805098401905756}
-  - {fileID: 1275430747820269264}
+  - {fileID: 7341947411511093103}
+  - {fileID: 934040026968895727}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &7555699308478656366
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6494761927684495749}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0.00000011920929, z: -0.00000017881393}
+  m_Size: 1.3316933
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.03723227
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2017805812537955224}
+    - renderer: {fileID: 1240013177119761563}
+  m_Enabled: 1
+--- !u!1 &7591738270306707854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7341947411511093103}
+  m_Layer: 0
+  m_Name: SesameOil_LOD0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7341947411511093103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7591738270306707854}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3373799146885313048}
+  - {fileID: 47950386102738625}
+  m_Father: {fileID: 5866456644924064575}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
