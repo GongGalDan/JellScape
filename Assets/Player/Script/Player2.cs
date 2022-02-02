@@ -91,4 +91,26 @@ public class Player2 : MonoBehaviour
         //Raycast = ray에 닿는 오브젝트를 가지는 함수(위치, 방향, 길이, layer - wall에 닿으면 true가됨) = 움직임X
     }
 
+    void AddItemAbility()
+    {
+        if (items.currentItems[0].CompareTag("Apolo"))
+        {
+            currentRange += 0.2f;
+            currentDamage += 10;
+            currentShootRate += 0.1f;
+        }
+
+        if (items.currentItems[0].CompareTag("Stick"))
+        {
+            currentDamage += 10;
+            currentShootRate += 0.1f;
+        }
+
+        if (items.currentItems[0].CompareTag("Icesuit"))
+        {
+            currentDefence += 50;
+        }
+
+    }
+
 }

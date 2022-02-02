@@ -34,10 +34,10 @@ public class BasicWeapon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && shootReady >= 0)
         {
-            yield return new WaitForSeconds(0.1f);
+            //yield return new WaitForSeconds(0.05f);
             animator.SetTrigger("doThrow");
 
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.3f);
             GameObject bullet = Instantiate(bulletPrefab); //bullet은 prefab모양으로
             bullet.transform.position = bulletPos.position; //bullotpos의 위치에서
             bullet.transform.forward = bulletPos.forward; //bulletpos의 forward로 나아간다
