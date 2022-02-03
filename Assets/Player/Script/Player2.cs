@@ -62,7 +62,7 @@ public class Player2 : MonoBehaviour
     {
         moveVec = new Vector3(xHorizontal, 0, zVertical);
         if (!isBorder) //충돌하지 않으면 움직이도록
-            transform.position += moveVec * currentSpeed * Time.fixedDeltaTime;
+            transform.position += moveVec * currentSpeed * Time.deltaTime;
 
         animator.SetBool("isWalk", moveVec != Vector3.zero);
     }
