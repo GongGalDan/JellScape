@@ -8,19 +8,42 @@ public class Items : MonoBehaviour
     public List<GameObject> itemlist; //item object를 넣고
     public List<GameObject> currentItems = new List<GameObject>();//현재 입수한 아이템이 표시되도록 add해준다
 
+
     public float switchDelay;
     bool isSwitching;
 
+    Player2 player;
+    UsableItem usableItem;
     Animator animator;
     private void Start()
     {
+        player = GetComponent<Player2>();
         animator = GetComponent<Animator>();
+
     }
 
     void Update()
     {
         UpdateItem();
         removeItem();
+    }
+
+
+    void addAbility(GameObject currentItem) //addAbility의 매개변수 선언.
+    {
+        //player의 ability에 GameObejct인 currentItem에 usableItem을 불러와서 ability를 더해줌
+        player.currentDamage += currentItem.GetComponent<UsableItem>()._addDamage;
+        player.currentShootRate -= currentItem.GetComponent<UsableItem>()._addShootRate;
+        player.currentRange += currentItem.GetComponent<UsableItem>()._addRange;
+        player.currentDefence += currentItem.GetComponent<UsableItem>()._addDefence;
+    }
+
+    void deleteAbility(GameObject currentItem)
+    {
+        player.currentDamage -= currentItem.GetComponent<UsableItem>()._addDamage;
+        player.currentShootRate += currentItem.GetComponent<UsableItem>()._addShootRate;
+        player.currentRange -= currentItem.GetComponent<UsableItem>()._addRange;
+        player.currentDefence -= currentItem.GetComponent<UsableItem>()._addDefence;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,12 +57,12 @@ public class Items : MonoBehaviour
                 return;
                 }
                     
-                Debug.Log("아폴로");
                 currentItems.Add(itemlist[0]);
-                Debug.Log("아폴로를 추가하였습니다.");
-                Debug.Log("아이템의 개수가 증가하였습니다.");
+                usableItem = currentItems[0].GetComponent<UsableItem>();
+                addAbility(currentItems[0]);
+
                 Destroy(other.gameObject);
-                Debug.Log("필드에서 삭제 됩니다.");
+
             }
 
 
@@ -50,8 +73,11 @@ public class Items : MonoBehaviour
                 Debug.Log("더이상 먹을 수 없습니다.");
                 return;
                 }
-                Debug.Log("스틱");
+
                 currentItems.Add(itemlist[1]);
+                usableItem = currentItems[0].GetComponent<UsableItem>();
+                addAbility(currentItems[0]);
+
                 Destroy(other.gameObject);
             }
 
@@ -64,6 +90,9 @@ public class Items : MonoBehaviour
                 }
                 Debug.Log("얼음");
                 currentItems.Add(itemlist[2]);
+                usableItem = currentItems[0].GetComponent<UsableItem>();
+                addAbility(currentItems[0]);
+
                 Destroy(other.gameObject);
             }
 
@@ -77,6 +106,8 @@ public class Items : MonoBehaviour
 
         currentItems[0].SetActive(true);
 
+
+
         if(currentItems.Count == 2)
         {
             currentItems[1].SetActive(false);
@@ -88,11 +119,14 @@ public class Items : MonoBehaviour
             else
             {
                 animator.SetTrigger("doSwap");
+                deleteAbility(currentItems[0]);
                 swap();
+                addAbility(currentItems[0]);
                 StartCoroutine(SwitchDelay());
             }
         }
     }
+
 
     void swap()
     {

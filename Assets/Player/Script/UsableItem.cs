@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class UsableItem : MonoBehaviour
 {
-    public float apoloDamage;
-    public float stickDamage;
+    public float Damage;
     public BoxCollider meleeArea;
     public CapsuleCollider SpecialArea;
 
+    public float _addDamage;
+    public float _addShootRate;
+    public float _addRange;
+    public float _addDefence;
 
     float useDelay=0;
     float apoloDelay = 0.7f;

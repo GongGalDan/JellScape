@@ -33,14 +33,14 @@ public class Enemy : MonoBehaviour
 
         if (other.CompareTag("Apolo"))
         {
-            currentHp -= useItem.apoloDamage; //아폴로의 데미지
+            currentHp -= useItem.Damage; //아폴로의 데미지
             Debug.Log(currentHp + "아폴로에게 맞음");
             material.color = new Color(0,100,0);
         }
 
         if (other.CompareTag("Stick"))
         {
-            currentHp -= useItem.stickDamage; //스틱의 데미지
+            currentHp -= useItem.Damage; //스틱의 데미지
             Debug.Log(currentHp + "스틱에게 맞음");
             material.color = new Color(100, 100, 0);
         }
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
 
         if(currentHp <= 0)
         {
-            //총이 통과하도록 설정하는거 적기
+            gameObject.layer = 11;
             Destroy(gameObject, 0.3f);
         }
     }
