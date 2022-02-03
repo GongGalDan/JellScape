@@ -3347,12 +3347,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85b57d7498e64d4ebd14a4b6dfd4fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterData: {fileID: 0}
   type: 10
   canAtk: 0
+  attackCoolTimeCalc: 0
+  player: {fileID: 0}
+  nvAgent: {fileID: 0}
+  distance: 0
+  animator: {fileID: 0}
+  rigidBody: {fileID: 0}
   layerMask:
-    serializedVersion: 2
     m_Bits: 64
   currentState: 0
+  path: {fileID: 0}
+  nodes: []
+  currentNode: 0
   bulletPrefab: {fileID: 1512119660237793304, guid: f78f97c830228c74c8a4e83bccb7a5e3, type: 3}
   bulletSocket: {fileID: 24556375}
   bulletsNum: 3
