@@ -52,9 +52,9 @@ public class UsableItem : MonoBehaviour
         }
 
 
-        if(Input.GetMouseButtonDown(1) && items.currentItems.Count != 0 && useDelay <=0)
+        if (Input.GetMouseButtonDown(1) && items.currentItems.Count != 0 && useDelay <= 0)
         {
-            
+
             if (items.currentItems[0] == items.itemlist[0])
             {
                 Debug.Log("아폴로로 공격 중");
@@ -65,7 +65,7 @@ public class UsableItem : MonoBehaviour
             }
 
             if (items.currentItems[0] == items.itemlist[1])
-            { 
+            {
                 Debug.Log("스틱으로 공격 중");
                 StopCoroutine("Swing");
                 StartCoroutine("Swing");
@@ -74,12 +74,6 @@ public class UsableItem : MonoBehaviour
             }
 
             if (items.currentItems[0] == items.itemlist[2])
-            {
-                Debug.Log("캡슐로 공격 중");
-                animator.SetTrigger("doAttack");
-            }
-
-            if (items.currentItems[0] == items.itemlist[3])
             {
                 Debug.Log("얼음 갑옷으로 방어 중");
                 animator.SetTrigger("doDie");

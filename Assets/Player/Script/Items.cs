@@ -54,17 +54,7 @@ public class Items : MonoBehaviour
                 currentItems.Add(itemlist[1]);
                 Destroy(other.gameObject);
             }
-            else if (other.CompareTag("Capsule"))
-            {
-                if(currentItems.Count == 2)
-                {
-                Debug.Log("´õÀÌ»ó ¸ÔÀ» ¼ö ¾ø½À´Ï´Ù.");
-                return;
-                }
-                Debug.Log("Ä¸½¶");
-                currentItems.Add(itemlist[2]);
-                Destroy(other.gameObject);
-            }
+
             else if (other.CompareTag("Icesuit"))
             {
                 if(currentItems.Count == 2)
@@ -73,7 +63,7 @@ public class Items : MonoBehaviour
                 return;
                 }
                 Debug.Log("¾óÀ½");
-                currentItems.Add(itemlist[3]);
+                currentItems.Add(itemlist[2]);
                 Destroy(other.gameObject);
             }
 
@@ -98,7 +88,6 @@ public class Items : MonoBehaviour
             else
             {
                 animator.SetTrigger("doSwap");
-                animator.SetBool("isAtatck", false);
                 swap();
                 StartCoroutine(SwitchDelay());
             }
