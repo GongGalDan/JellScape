@@ -60,8 +60,8 @@ public class UsableItem : MonoBehaviour
                 Debug.Log("아폴로로 공격 중");
                 StopCoroutine("Swing");
                 StartCoroutine("Swing");
-                useDelay += apoloDelay;
                 animator.SetTrigger("doAttack");
+                useDelay += apoloDelay;
             }
 
             if (items.currentItems[0] == items.itemlist[1])
@@ -69,8 +69,8 @@ public class UsableItem : MonoBehaviour
                 Debug.Log("스틱으로 공격 중");
                 StopCoroutine("Swing");
                 StartCoroutine("Swing");
-                useDelay += stickDelay;
                 animator.SetTrigger("doAttack");
+                useDelay += stickDelay;
             }
 
             if (items.currentItems[0] == items.itemlist[2])
@@ -90,7 +90,7 @@ public class UsableItem : MonoBehaviour
 
     IEnumerator Swing()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         meleeArea.enabled = true;
         Debug.Log("공격시작");
 
