@@ -54,7 +54,7 @@ public class AnimalFigure : MonsterMeleeFSM
 
         if (other.CompareTag("Apolo"))
         { // 스크립트를 gameobject에서 찾아서 참조한다.
-            useItem = GameObject.FindGameObjectWithTag("Apolo").GetComponent<UsableItem>();
+            useItem = GameObject.FindGameObjectWithTag("Stick").GetComponent<UsableItem>();
             monster.hp -= useItem.Damage; //아폴로의 데미지
             Debug.Log(monster.hp + "아폴로에게 맞음");
             //material.color = new Color(0, 100, 0);
@@ -68,6 +68,12 @@ public class AnimalFigure : MonsterMeleeFSM
             //material.color = new Color(100, 100, 0);
         }
 
+        if (other.CompareTag("Player"))
+        {
+            playerStats.currentHp -= monster.meleeAttackDamage;
+            Debug.Log(playerStats.currentHp + "몬스터에게 맞음");
+
+        }
 
         if (monster.hp <= 0)
         {
@@ -75,6 +81,7 @@ public class AnimalFigure : MonsterMeleeFSM
             Destroy(gameObject, 0.3f);
         }
     }
+
 
     // 공격 범위 설정
     void SetMeleeAtkArea()

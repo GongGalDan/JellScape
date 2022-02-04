@@ -65,6 +65,13 @@ public class Player : MonoBehaviour
             transform.position += moveVec * currentSpeed * Time.deltaTime;
 
         animator.SetBool("isWalk", moveVec != Vector3.zero);
+
+        if (currentHp <= 0)
+        {
+            gameObject.layer = 12;
+            animator.SetTrigger("Dead");
+            moveVec = Vector3.zero;
+        }
     }
 
     void Turn()
