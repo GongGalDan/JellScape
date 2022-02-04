@@ -17,14 +17,14 @@ public class UsableItem : MonoBehaviour
     float apoloDelay = 0.7f;
     float stickDelay = 1f;
 
-    Player2 player; //체력, speed 이동속도
+    Player player; //체력, speed 이동속도
     Items items;
     Animator animator;
 
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player2>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         items = GameObject.FindGameObjectWithTag("Player").GetComponent<Items>();
         animator = GetComponentInParent<Animator>();
         meleeArea.enabled = false;
