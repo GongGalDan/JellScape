@@ -56,10 +56,14 @@ public class Items : MonoBehaviour
                 Debug.Log("더이상 먹을 수 없습니다.");
                 return;
                 }
-                    
+
                 currentItems.Add(itemlist[0]);
+
+                if (currentItems.Count == 1)
+                {
                 usableItem = currentItems[0].GetComponent<UsableItem>();
                 addAbility(currentItems[0]);
+                }
 
                 Destroy(other.gameObject);
 
@@ -75,8 +79,12 @@ public class Items : MonoBehaviour
                 }
 
                 currentItems.Add(itemlist[1]);
+
+                if (currentItems.Count == 1)
+                {
                 usableItem = currentItems[0].GetComponent<UsableItem>();
                 addAbility(currentItems[0]);
+                }
 
                 Destroy(other.gameObject);
             }
@@ -89,9 +97,14 @@ public class Items : MonoBehaviour
                 return;
                 }
                 Debug.Log("얼음");
+
                 currentItems.Add(itemlist[2]);
+
+                if (currentItems.Count == 1)
+                {
                 usableItem = currentItems[0].GetComponent<UsableItem>();
                 addAbility(currentItems[0]);
+                }
 
                 Destroy(other.gameObject);
             }
@@ -107,8 +120,7 @@ public class Items : MonoBehaviour
         currentItems[0].SetActive(true);
 
 
-
-        if(currentItems.Count == 2)
+        if (currentItems.Count == 2)
         {
             currentItems[1].SetActive(false);
         }
@@ -142,7 +154,9 @@ public class Items : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             currentItems[0].SetActive(false); //끄고
+            deleteAbility(currentItems[0]);//능력치 삭제
             currentItems.Remove(currentItems[0]);//지운다.
+            addAbility(currentItems[0]);//가지고 있던 아이템이 0번째가 되서 능력치를 더해준다.
         }
     }
 
