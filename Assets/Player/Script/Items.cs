@@ -12,12 +12,12 @@ public class Items : MonoBehaviour
     public float switchDelay;
     bool isSwitching;
 
-    Player2 player;
+    Player player;
     UsableItem usableItem;
     Animator animator;
     private void Start()
     {
-        player = GetComponent<Player2>();
+        player = GetComponent<Player>();
         animator = GetComponent<Animator>();
 
     }

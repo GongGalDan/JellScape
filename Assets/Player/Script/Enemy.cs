@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public float currentHp;
     public float MaxHp;
 
-    Player2 player;
+    Player player;
     UsableItem useItem;
 
     MeshRenderer mesh;
@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player2>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         useItem = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<UsableItem>();
 
         mesh = GetComponent<MeshRenderer>();

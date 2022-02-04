@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicWeapon : MonoBehaviour
 {
-    Player2 player;
+    Player player;
     public GameObject bulletPrefab; //총알의 모양
     public Transform bulletPos; //총알이 발사되는 위치
     public float delay;
@@ -15,7 +15,7 @@ public class BasicWeapon : MonoBehaviour
     private void Start()
     {
         animator = GetComponentInParent<Animator>();
-        player = GetComponentInParent<Player2>();
+        player = GetComponentInParent<Player>();
     }
 
     private void Update()
