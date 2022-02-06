@@ -7,11 +7,6 @@ public class AnimalFigure : MonsterMeleeFSM
     public GameObject enemyCanvasGo;
     public GameObject meleeAtkArea;
 
-    Player playerStats;
-    UsableItem useItem;
-    MeshRenderer mesh;
-    Material material;
-
     private void OnDrawGizmosSelected()
     {
         if (monster == null) return;
@@ -27,16 +22,17 @@ public class AnimalFigure : MonsterMeleeFSM
     override protected void Start()
     {
         base.Start();
+        hp = monster.hp;
         SetMeleeAtkArea();
-        playerStats = player.GetComponent<Player>();
-
-        //mesh = GetComponent<MeshRenderer>();
-        //material = mesh.material;
     }
 
     override protected void Update()
     {
         base.Update();
+        if (hp <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // -------------------------------------------------
@@ -47,32 +43,23 @@ public class AnimalFigure : MonsterMeleeFSM
     {
         if (other.CompareTag("Bullet"))
         {
-            monster.hp -= playerStats.currentDamage;
-            Debug.Log(monster.hp);
+            hp -= playerStats.currentDamage;
+            Debug.Log(hp);
             Destroy(other.gameObject);
         }
 
         if (other.CompareTag("Apolo"))
         { // 스크립트를 gameobject에서 찾아서 참조한다.
             useItem = GameObject.FindGameObjectWithTag("Apolo").GetComponent<UsableItem>();
-            monster.hp -= useItem.Damage; //아폴로의 데미지
-            Debug.Log(monster.hp + "아폴로에게 맞음");
-            //material.color = new Color(0, 100, 0);
+            hp -= useItem.Damage; //아폴로의 데미지
+            Debug.Log(hp + "아폴로에게 맞음");
         }
 
         if (other.CompareTag("Stick"))
         {
             useItem = GameObject.FindGameObjectWithTag("Stick").GetComponent<UsableItem>();
-            monster.hp -= useItem.Damage; //스틱의 데미지
-            Debug.Log(monster.hp + "스틱에게 맞음");
-            //material.color = new Color(100, 100, 0);
-        }
-
-
-        if (monster.hp <= 0)
-        {
-            //gameObject.layer = 11;
-            Destroy(gameObject, 0.3f);
+            hp -= useItem.Damage; //스틱의 데미지
+            Debug.Log(hp + "스틱에게 맞음");
         }
     }
 
