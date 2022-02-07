@@ -26,14 +26,11 @@ public class MonsterBase : MonoBehaviour
     public MonsterType type;
 
     protected Monster monster;
-    protected float hp;
     [SerializeField]
     protected bool canAtk;
     protected float attackCoolTimeCalc;
 
     protected GameObject player;
-    protected Player playerStats;
-    protected UsableItem useItem;
     protected NavMeshAgent nvAgent;
     protected float distance;
 
@@ -48,8 +45,6 @@ public class MonsterBase : MonoBehaviour
         SetMonsterData();
         player = GameObject.FindGameObjectWithTag("Player");
 
-        playerStats = player.GetComponent<Player>();
-
         nvAgent = GetComponent<NavMeshAgent>();
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
@@ -58,8 +53,6 @@ public class MonsterBase : MonoBehaviour
         attackCoolTimeCalc = monster.attackCoolTime;
 
         StartCoroutine(CalcCoolTime());
-
-        Debug.Log(monster.hp);
     }
 
     // 몬스터 정보 세팅 
@@ -127,7 +120,5 @@ public class MonsterBase : MonoBehaviour
         }
     }
 
-    protected virtual void Update() 
-    {
-    }
+    protected virtual void Update() { }
 }
