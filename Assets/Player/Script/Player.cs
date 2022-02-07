@@ -11,10 +11,12 @@ public class Player : MonoBehaviour
 
     bool isBorder;
     bool isAttackReady;
+    bool isDead = false;
 
 
     Vector3 moveVec;
     Animator animator;
+    Rigidbody rigidbody;
     Items items;
 
     float attackDelay;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
     {
         items = GetComponent<Items>();
         animator = GetComponentInChildren<Animator>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
 
@@ -49,6 +52,7 @@ public class Player : MonoBehaviour
         GetInput();
         Move();
         Turn();
+        Dead();
     }
 
     void GetInput()
@@ -66,12 +70,6 @@ public class Player : MonoBehaviour
 
         animator.SetBool("isWalk", moveVec != Vector3.zero);
 
-        if (currentHp <= 0)
-        {
-            gameObject.layer = 12;
-            animator.SetTrigger("Dead");
-            moveVec = Vector3.zero;
-        }
     }
 
     void Turn()
@@ -96,5 +94,14 @@ public class Player : MonoBehaviour
         //ray를 보여주는 함수(시작위치, 쏘는방향 * 길이 , 색깔)
         isBorder = Physics.Raycast(transform.position, moveVec, 5, LayerMask.GetMask("Wall"));
         //Raycast = ray에 닿는 오브젝트를 가지는 함수(위치, 방향, 길이, layer - wall에 닿으면 true가됨) = 움직임X
+    }
+
+    void Dead()
+    {
+        if (currentHp == 0)
+        {
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            animator.SetTrigger("Dead");
+        }
     }
 }

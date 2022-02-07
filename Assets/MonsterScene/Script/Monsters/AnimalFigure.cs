@@ -7,10 +7,6 @@ public class AnimalFigure : MonsterMeleeFSM
     public GameObject enemyCanvasGo;
     public GameObject meleeAtkArea;
 
-    Player playerStats;
-    UsableItem useItem;
-    MeshRenderer mesh;
-    Material material;
 
     private void OnDrawGizmosSelected()
     {
@@ -27,16 +23,19 @@ public class AnimalFigure : MonsterMeleeFSM
     override protected void Start()
     {
         base.Start();
+        hp = monster.hp;
         SetMeleeAtkArea();
-        playerStats = player.GetComponent<Player>();
-
-        //mesh = GetComponent<MeshRenderer>();
-        //material = mesh.material;
+    
     }
 
     override protected void Update()
     {
         base.Update();
+
+        if (hp <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // -------------------------------------------------
@@ -45,41 +44,36 @@ public class AnimalFigure : MonsterMeleeFSM
 
     private void OnTriggerEnter(Collider other)
     {
+        
+
         if (other.CompareTag("Bullet"))
         {
-            monster.hp -= playerStats.currentDamage;
-            Debug.Log(monster.hp);
-            Destroy(other.gameObject);
+            hp -= playerStats.currentDamage;
+            Destroy(other.gameObject); //충돌 하면 bullet이 사라지도록
+            Debug.Log(hp + "bullet에게 맞음");
+
         }
 
         if (other.CompareTag("Apolo"))
         { // 스크립트를 gameobject에서 찾아서 참조한다.
-            useItem = GameObject.FindGameObjectWithTag("Stick").GetComponent<UsableItem>();
-            monster.hp -= useItem.Damage; //아폴로의 데미지
-            Debug.Log(monster.hp + "아폴로에게 맞음");
-            //material.color = new Color(0, 100, 0);
+            useItem = GameObject.FindGameObjectWithTag("Apolo").GetComponent<UsableItem>();
+            hp -= useItem.Damage;
+            Debug.Log(hp + "apolo에게 맞음");
         }
 
         if (other.CompareTag("Stick"))
         {
             useItem = GameObject.FindGameObjectWithTag("Stick").GetComponent<UsableItem>();
-            monster.hp -= useItem.Damage; //스틱의 데미지
-            Debug.Log(monster.hp + "스틱에게 맞음");
-            //material.color = new Color(100, 100, 0);
+            hp -= useItem.Damage;
+            Debug.Log(hp + " stick에게 맞음");
         }
+
 
         if (other.CompareTag("Player"))
-        {
-            playerStats.currentHp -= monster.meleeAttackDamage;
-            Debug.Log(playerStats.currentHp + "몬스터에게 맞음");
-
-        }
-
-        if (monster.hp <= 0)
-        {
-            //gameObject.layer = 11;
-            Destroy(gameObject, 0.3f);
-        }
+         {
+           playerStats.currentHp -= monster.meleeAttackDamage;
+           Debug.Log(playerStats.currentHp + "몬스터에게 맞음");
+         }
     }
 
 
