@@ -71,7 +71,7 @@ public class AnimalFigure : MonsterMeleeFSM
 
         if (other.CompareTag("Player"))
          {
-           playerStats.currentHp -= monster.meleeAttackDamage;
+           playerStats.currentHp -= monster.meleeAttackDamage * 100/(100 + playerStats.currentDefence);
            Debug.Log(playerStats.currentHp + "몬스터에게 맞음");
          }
     }

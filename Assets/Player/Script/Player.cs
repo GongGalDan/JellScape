@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     bool isAttackReady;
     bool isDead = false;
 
+    public Vector3 moveVec;
 
-    Vector3 moveVec;
     Animator animator;
     Rigidbody rigidbody;
     Items items;
@@ -53,19 +53,19 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Dead();
+
     }
 
     void GetInput()
     {
         xHorizontal = Input.GetAxis("Horizontal");
         zVertical = Input.GetAxis("Vertical");
-
     }
 
     void Move()
     {
         moveVec = new Vector3(xHorizontal, 0, zVertical);
-        if (!isBorder) //충돌하지 않으면 움직이도록
+        if (!isBorder && !isDead) //충돌하지 않으면 움직이도록
             transform.position += moveVec * currentSpeed * Time.deltaTime;
 
         animator.SetBool("isWalk", moveVec != Vector3.zero);
@@ -74,17 +74,20 @@ public class Player : MonoBehaviour
 
     void Turn()
     {
-        //#1. 키보드에 의한 회전
-        transform.LookAt(transform.position + moveVec);
-
-        //#2. 마우스에 의한 회전
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit rayHit;
-        if (Physics.Raycast(ray, out rayHit, 100))
+        if (!isDead)
         {
-            Vector3 nextVec = rayHit.point - transform.position;
-            nextVec.y = 0;
-            transform.LookAt(transform.position + nextVec);
+            //#1. 키보드에 의한 회전
+            transform.LookAt(transform.position + moveVec);
+
+            //#2. 마우스에 의한 회전
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit rayHit;
+            if (Physics.Raycast(ray, out rayHit, 100))
+            {
+                Vector3 nextVec = rayHit.point - transform.position;
+                nextVec.y = 0;
+                transform.LookAt(transform.position + nextVec);
+            }
         }
     }
 
@@ -98,10 +101,21 @@ public class Player : MonoBehaviour
 
     void Dead()
     {
-        if (currentHp == 0)
+        if (isDead) return; //isdead가 true여서 밑에는 실행이 안됨.
+
+        if (currentHp <= 0)
         {
-            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            isDead = true;
             animator.SetTrigger("Dead");
         }
+    }
+
+    void CriticalDamage()
+    {// criticaldamage = currnetdamage *2 ㅇㅇ
+        // critical(수)만큼 random의수가 나오면 currentdamage = currentdamage *2 -> 매 프레임마다?
+        // 
+        // critical 만큼 안나오면 currentdamage이다
+        //
+
     }
 }
