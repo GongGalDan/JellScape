@@ -25,7 +25,7 @@ public class MonsterMeleeFSM : MonsterBase
 
     private Vector3 lastPlayerPos;
 
-    override protected void Start() 
+    protected override void Start() 
     {
         base.Start();
         path = transform.parent.GetChild(1).GetComponent<Transform>();
@@ -58,7 +58,7 @@ public class MonsterMeleeFSM : MonsterBase
         }
     }
 
-    virtual protected IEnumerator Idle()
+    protected virtual IEnumerator Idle()
     {
         yield return null;
 
@@ -85,7 +85,7 @@ public class MonsterMeleeFSM : MonsterBase
         }
     }
 
-    virtual protected IEnumerator Attack()
+    protected virtual IEnumerator Attack()
     {
         yield return null;
  
@@ -110,7 +110,7 @@ public class MonsterMeleeFSM : MonsterBase
         currentState = State.Idle;
     }
 
-    virtual protected IEnumerator Move()
+    protected virtual IEnumerator Move()
     {
         yield return null;
 
@@ -152,7 +152,7 @@ public class MonsterMeleeFSM : MonsterBase
         nvAgent.SetDestination(nodes[currentNode].position);
     }
 
-    override protected void Update()
+    protected override void Update()
     {
         base.Update();
     }

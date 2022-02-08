@@ -4,16 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class AbilityUI : MonoBehaviour, IPointerDownHandler
+public class AbilityUI : GameManager, IPointerDownHandler
 {
     public Image img;
     public Text abilityName;
     public Text abilityGrade;
+    public string abilityTag;
     Animator animator;
     bool isFliped;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         isFliped = false;
         animator = GetComponent<Animator>();
     }
@@ -23,6 +25,7 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
     {
         img.sprite = ability.abilityImage;
         abilityName.text = ability.abilityName;
+        abilityTag = ability.abilityTag;
     }
 
     // UI 클릭시 이벤트
@@ -40,6 +43,70 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
         {
             Debug.Log(abilityName.text);
             // 뽑히는 효과(애니메이션, 효과음) + 능력치 부여
+            if (abilityTag == "invincible")
+            {
+                invincible = true;
+            }
+            else if (abilityTag == "headShot")
+            {
+                headShot = true;
+            }
+            else if (abilityTag == "bombJelly")
+            {
+                bombJelly = true;
+            }
+            else if (abilityTag == "hotJelly")
+            {
+                hotJelly = true;
+            }
+            else if (abilityTag == "freezeJelly")
+            {
+                freezeJelly = true;
+            }
+            else if (abilityTag == "poisonJelly")
+            {
+                poisonJelly = true;
+            }
+            else if (abilityTag == "sparkJelly")
+            {
+                sparkJelly = true;
+            }
+            else if (abilityTag == "frontJelly")
+            {
+                frontJelly = true;
+            }
+            else if (abilityTag == "sideJelly")
+            {
+                sideJelly = true;
+            }
+            else if (abilityTag == "damage")
+            {
+                damage++;
+            }
+            else if (abilityTag == "attackSpeed")
+            {
+                attackSpeed++;
+            }
+            else if (abilityTag == "range")
+            {
+                range++;
+            }
+            else if (abilityTag == "critical")
+            {
+                critical++;
+            }
+            else if (abilityTag == "hp")
+            {
+                hp++;
+            }
+            else if (abilityTag == "defence")
+            {
+                defence++;
+            }
+            else if (abilityTag == "speed")
+            {
+                speed++;
+            }
         }
     }
 }

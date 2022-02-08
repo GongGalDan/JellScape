@@ -45,6 +45,8 @@ public class InheritSingleton<T> : MonoBehaviour where T : MonoBehaviour
 	{
 		instance = FindObjectOfType<T>();
 	}
+	protected virtual void Start(){}
+	protected virtual void Update(){}
 
 	//  클래스 파괴 시 여기서 파괴하지 않고 자식 클래스가 직접 파괴자를 호출하도록 가상화
 	virtual protected void OnApplicationQuit() { }

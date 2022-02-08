@@ -359,7 +359,7 @@ Transform:
   - {fileID: 159928874}
   - {fileID: 1975322850}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &553548552
 GameObject:
@@ -618,7 +618,7 @@ RectTransform:
   m_Children:
   - {fileID: 1358517604}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -689,7 +689,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &859463550
 MonoBehaviour:
@@ -703,27 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e49c2f2b3d0ed42a7bfc69e0c4b463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilities:
-  - abilityName: Attack +1
-    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
-    abilityGrade: 0
-    weight: 10
-  - abilityName: HP +1
-    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
-    abilityGrade: 0
-    weight: 20
-  - abilityName: Speed +1
-    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
-    abilityGrade: 0
-    weight: 50
-  - abilityName: Atk Speed +1
-    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
-    abilityGrade: 0
-    weight: 20
-  - abilityName: Critical +1
-    abilityImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
-    abilityGrade: 0
-    weight: 5
+  randomAbilities: []
   total: 0
   result: []
   parent: {fileID: 1358517604}
@@ -753,7 +733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 878384543158946411, guid: 75cb612308941fe4ca50b9b4244ad8a6, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 878384543158946411, guid: 75cb612308941fe4ca50b9b4244ad8a6, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1108,7 +1088,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1957316894
 GameObject:
@@ -1201,7 +1181,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -288.85, y: 0, z: 0}
 --- !u!1 &1975322849
 GameObject:
@@ -1235,6 +1215,49 @@ Transform:
   m_Father: {fileID: 435219553}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 23, z: 0}
+--- !u!1 &2093830921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2093830923}
+  - component: {fileID: 2093830922}
+  m_Layer: 0
+  m_Name: RandomManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2093830922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093830921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435d24141e015d24cae21ba9a103a04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2093830923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093830921}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.09698897, y: 0.83611965, z: 3.304635}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &60390651914384525
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1436,7 +1459,7 @@ Transform:
   - {fileID: 8091132605033668024}
   - {fileID: 3572178950497038458}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &646442508164423543
 MeshFilter:
