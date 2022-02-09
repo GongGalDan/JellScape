@@ -37,7 +37,14 @@ public class ScenesManager : InheritSingleton<ScenesManager>
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene("RandomAbility");
+                SceneManager.LoadScene("Monsters");
+            }
+        }
+        if (SceneManager.GetActiveScene().name == "Monsters")
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("TitleScene");
             }
         }
     }

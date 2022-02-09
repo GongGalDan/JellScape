@@ -44,7 +44,7 @@ public class MonsterBase : MonoBehaviour
 
     virtual protected void Start()
     {
-        monsterData = GameObject.Find("MonsterData").GetComponent<MonsterData>();
+        monsterData = GameObject.Find("GameManager").GetComponent<MonsterData>();
         SetMonsterData();
         player = GameObject.FindGameObjectWithTag("Player");
 

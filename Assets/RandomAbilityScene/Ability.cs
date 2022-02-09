@@ -19,6 +19,8 @@ public class Ability
     public int weight;
     // 뽑힌 여부 (중복 방지)
     public bool isPicked;
+    // 플레이어에게 선택되었는지 여부
+    public bool isSelected;
     // 젤리빈 원소 능력 (중복 방지)
     public bool isElement;
     // 한번만 뽑을 수 있는 능력인지

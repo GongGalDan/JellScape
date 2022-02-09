@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class AbilityUI : GameManager, IPointerDownHandler
+public class AbilityUI : MonoBehaviour, IPointerDownHandler
 {
     public Image img;
     public Text abilityName;
@@ -12,10 +12,13 @@ public class AbilityUI : GameManager, IPointerDownHandler
     public string abilityTag;
     Animator animator;
     bool isFliped;
+    bool isSelected;
 
-    protected override void Start()
+    PlayerData playerData;
+
+    void Start()
     {
-        base.Start();
+        playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         isFliped = false;
         animator = GetComponent<Animator>();
     }
@@ -42,71 +45,85 @@ public class AbilityUI : GameManager, IPointerDownHandler
         else if (isFliped)
         {
             Debug.Log(abilityName.text);
-            // 뽑히는 효과(애니메이션, 효과음) + 능력치 부여
+
             if (abilityTag == "invincible")
             {
-                invincible = true;
+                playerData.invincible = true;
             }
             else if (abilityTag == "headShot")
             {
-                headShot = true;
+                playerData.headShot = true;
             }
             else if (abilityTag == "bombJelly")
             {
-                bombJelly = true;
+                playerData.bombJelly = true;
             }
             else if (abilityTag == "hotJelly")
             {
-                hotJelly = true;
+                playerData.hotJelly = true;
             }
-            else if (abilityTag == "freezeJelly")
+            else if (abilityTag == "frozenJelly")
             {
-                freezeJelly = true;
+                playerData.frozenJelly = true;
             }
             else if (abilityTag == "poisonJelly")
             {
-                poisonJelly = true;
+                playerData.poisonJelly = true;
             }
             else if (abilityTag == "sparkJelly")
             {
-                sparkJelly = true;
+                playerData.sparkJelly = true;
             }
             else if (abilityTag == "frontJelly")
             {
-                frontJelly = true;
+                playerData.frontJelly = true;
             }
             else if (abilityTag == "sideJelly")
             {
-                sideJelly = true;
+                playerData.sideJelly = true;
             }
-            else if (abilityTag == "damage")
+            else if (abilityTag == "addDamage")
             {
-                damage++;
+                playerData.addDamage++;
             }
-            else if (abilityTag == "attackSpeed")
+            else if (abilityTag == "addShootRate")
             {
-                attackSpeed++;
+                playerData.addShootRate++;
             }
-            else if (abilityTag == "range")
+            else if (abilityTag == "addRange")
             {
-                range++;
+                playerData.addRange++;
             }
-            else if (abilityTag == "critical")
+            else if (abilityTag == "addCritical")
             {
-                critical++;
+                playerData.addCritical++;
             }
-            else if (abilityTag == "hp")
+            else if (abilityTag == "addHp")
             {
-                hp++;
+                playerData.addHp++;
             }
-            else if (abilityTag == "defence")
+            else if (abilityTag == "addDefence")
             {
-                defence++;
+                playerData.addDefence++;
             }
-            else if (abilityTag == "speed")
+            else if (abilityTag == "addSpeed")
             {
-                speed++;
+                playerData.addSpeed++;
             }
         }
+
+        for (int i = 0; i < playerData.abilities.Count; i++)
+        {
+            if (playerData.abilities[i].abilityTag == abilityTag)
+            {
+                playerData.abilities[i].isSelected = true;
+            }
+            if (playerData.abilities[i].isElement)
+            {
+                playerData.isElementPicked = true;
+            }
+        }
+
+        playerData.UpdatePlayerData();
     }
 }
