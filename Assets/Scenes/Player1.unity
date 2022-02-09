@@ -705,8 +705,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8860341177952172757, guid: 927dd443594bf844eb5f1586b1936522, type: 3}
+  basicEffect: {fileID: 0}
   bulletPos: {fileID: 262486705}
-  delay: 0.5
 --- !u!1 &416815583 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 890b718aafb77a34094bb37b2cf94483, type: 3}
@@ -909,7 +909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6738467523242001690, guid: e3c576288f8afbd429043e242a836451, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6738467523242001691, guid: e3c576288f8afbd429043e242a836451, type: 3}
       propertyPath: m_RootOrder
@@ -1499,8 +1499,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afbfc86e13f0834ebe4a7f76d7d141a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 100
-  MaxHp: 100
+  currentHp: 1000
+  MaxHp: 1000
 --- !u!1001 &1070128433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2012,7 +2012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6738467523242001690, guid: e3c576288f8afbd429043e242a836451, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6738467523242001691, guid: e3c576288f8afbd429043e242a836451, type: 3}
       propertyPath: m_RootOrder
@@ -2362,7 +2362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6738467523242001690, guid: e3c576288f8afbd429043e242a836451, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6738467523242001691, guid: e3c576288f8afbd429043e242a836451, type: 3}
       propertyPath: m_RootOrder

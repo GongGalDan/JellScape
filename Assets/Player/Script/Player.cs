@@ -32,12 +32,10 @@ public class Player : MonoBehaviour
     public float currentRange; //사거리
     public float currentHp; //현재 hp
     public float MaxHp; //최대 hp
-    public float basicDefence; 
+    public float basicDefence;
     public float currentDefence; //방어력
     public float basicCritical;
     public float currentCritical; //크리티컬
-
-
 
     void Start()
     {
@@ -110,12 +108,4 @@ public class Player : MonoBehaviour
         }
     }
 
-    void CriticalDamage()
-    {// criticaldamage = currnetdamage *2 ㅇㅇ
-        // critical(수)만큼 random의수가 나오면 currentdamage = currentdamage *2 -> 매 프레임마다?
-        // 
-        // critical 만큼 안나오면 currentdamage이다
-        //
-
-    }
 }

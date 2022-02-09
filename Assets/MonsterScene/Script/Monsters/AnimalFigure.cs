@@ -48,7 +48,17 @@ public class AnimalFigure : MonsterMeleeFSM
 
         if (other.CompareTag("Bullet"))
         {
-            hp -= playerStats.currentDamage;
+            int criticalRandom = Random.Range(0, 101);
+            if(criticalRandom < playerStats.currentCritical)
+            {
+                hp -= playerStats.currentDamage * 2;
+                Debug.Log("크리티컬 데미지");
+            }
+            else
+            {
+                hp -= playerStats.currentDamage;
+                Debug.Log("일반 데미지");
+            }
             Destroy(other.gameObject); //충돌 하면 bullet이 사라지도록
             Debug.Log(hp + "bullet에게 맞음");
 
