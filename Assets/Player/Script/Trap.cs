@@ -6,20 +6,20 @@ public class Trap : MonoBehaviour
 {
     public enum ConditionType{µÐÈ­, ¹Ì²ô·¯Áü, µ¥¹ÌÁö};
     public ConditionType condition;
+    public BoxCollider trapArea;
 
     public float damage;
-    
 
     Player playerStats;
     Rigidbody rigidbody;
-    GameObject player;
 
 
 
     void Start()
     {
-        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        rigidbody = GetComponent<Rigidbody>();
+        playerStats= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        rigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        trapArea.enabled = true;
     }
 
     // Update is called once per frame
@@ -28,18 +28,19 @@ public class Trap : MonoBehaviour
         
     }
 
-   /* private void OnCollision(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            
-                StartCoroutine("Condition");
-            
-        }
-    }*/
+    /* private void OnCollision(Collision collision)
+     {
+         if (collision.gameObject.CompareTag("Player"))
+         {
+
+                 StartCoroutine("Condition");
+
+         }
+     }*/
 
 
-    private void OnTriggerStay(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -54,28 +55,37 @@ public class Trap : MonoBehaviour
         {
             playerStats.currentSpeed -= 1;
             Debug.Log("µÐÈ­");
-            yield return new WaitForSeconds(3);
-            playerStats.currentSpeed += 1;
+            trapArea.enabled = false;
 
-            yield return null;
+            yield return new WaitForSeconds(1f);
+            trapArea.enabled = true;
+
+            
+            yield return new WaitForSeconds(3);
+            //***********¼öÁ¤*************
+            playerStats.currentSpeed = 3; //»Ì±â·Î ´õÇØÁø ´É·ÂÄ¡¸¦ ³Ö¾î¼­ ¿ø·¡´ë·Î µ¹¸°´Ù.
         }
 
         if (condition == ConditionType.¹Ì²ô·¯Áü)
         {
-            rigidbody.AddForce(transform.forward, ForceMode.Impulse);
+            rigidbody.AddForce(playerStats.moveVec * 20, ForceMode.Impulse);
             Debug.Log("¹Ì²ô·¯Áü");
             playerStats.currentHp -= damage;
             Debug.Log("¹Ì²ô·¯ÁüÇÇÇØ");
-            yield return new WaitForSeconds(1f);
+            trapArea.enabled = false;
 
-            yield return null;
+            yield return new WaitForSeconds(1f);
+            trapArea.enabled = true;
         }
 
         if (condition == ConditionType.µ¥¹ÌÁö)
         {
             playerStats.currentHp -= damage;
             Debug.Log("µ¥¹ÌÁö");
-            yield return null;
+            trapArea.enabled = false;
+
+            yield return new WaitForSeconds(1f);
+            trapArea.enabled = true;
         }
 
     }

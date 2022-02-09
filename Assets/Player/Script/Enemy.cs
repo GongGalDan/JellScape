@@ -24,11 +24,22 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Bullet"))
         {
-            currentHp -= player.currentDamage;
-            Debug.Log(currentHp);
-            Destroy(other.gameObject);
+            int criticalRandom = Random.Range(0, 101);
+            if (criticalRandom < player.currentCritical)
+            {
+                currentHp -= player.currentDamage * 2;
+                Debug.Log("크리티컬 데미지");
+            }
+            else
+            {
+                currentHp -= player.currentDamage;
+                Debug.Log("일반 데미지");
+            }
+            Destroy(other.gameObject); //충돌 하면 bullet이 사라지도록
+            Debug.Log(currentHp + "bullet에게 맞음");
         }
 
         if (other.CompareTag("Apolo"))
