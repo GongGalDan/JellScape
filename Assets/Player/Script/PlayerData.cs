@@ -6,19 +6,19 @@ public class PlayerData : MonoBehaviour
 {
     // 플레이어 기본 능력치
     [SerializeField]
-    private float hp = 100;
+    public float hp = 100;
     [SerializeField]
-    private float damage = 10;
+    public float damage = 10;
     [SerializeField]
-    private float shootRate = 0.5f;
+    public float shootRate = 0.5f;
     [SerializeField]
-    private float speed = 3;
+    public float speed = 3;
     [SerializeField]
-    private float range = 0.5f;
+    public float range = 0.5f;
     [SerializeField]
-    private float defence = 0;
+    public float defence = 0;
     [SerializeField]
-    private float critical = 10;
+    public float critical = 10;
 
     // 플레이어 추가 능력
     // S Rank

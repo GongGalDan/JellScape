@@ -45,10 +45,8 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
-
-        playerData.SetPlayerData(hp, damage, shootRate, speed, range, defence, critical);
+        InitPlayer();
     }
-
 
     void Update()
     {
@@ -57,6 +55,17 @@ public class Player : MonoBehaviour
         Turn();
         Dead();
 
+    }
+
+    void InitPlayer()
+    {
+        hp = playerData.hp;
+        damage = playerData.damage;
+        shootRate = playerData.shootRate;
+        speed = playerData.speed;
+        range = playerData.range;
+        defence = playerData.defence;
+        critical = playerData.critical;
     }
 
     void GetInput()

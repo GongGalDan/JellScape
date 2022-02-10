@@ -12,6 +12,7 @@ public class Trap : MonoBehaviour
 
     Player playerStats;
     Rigidbody rigidbody;
+    PlayerData playerdata;
 
 
 
@@ -19,6 +20,7 @@ public class Trap : MonoBehaviour
     {
         playerStats= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         rigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        playerdata = GameObject.Find("GameManager").GetComponent<PlayerData>();
         trapArea.enabled = true;
     }
 
@@ -27,18 +29,6 @@ public class Trap : MonoBehaviour
     {
         
     }
-
-    /* private void OnCollision(Collision collision)
-     {
-         if (collision.gameObject.CompareTag("Player"))
-         {
-
-                 StartCoroutine("Condition");
-
-         }
-     }*/
-
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -62,8 +52,8 @@ public class Trap : MonoBehaviour
 
             
             yield return new WaitForSeconds(3);
-            //***********수정*************
-            playerStats.speed = 3; //뽑기로 더해진 능력치를 넣어서 원래대로 돌린다.
+            
+            playerStats.speed = playerdata.speed; //뽑기로 더해진 능력치를 넣어서 원래대로 돌린다.
         }
 
         if (condition == ConditionType.미끄러짐)
