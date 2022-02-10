@@ -63,5 +63,18 @@ public class PlayerData : MonoBehaviour
         defence = 0 + (addDefence * 50);
         critical = 10 + (addCritical * 20);
     }
+
+    // 플레이어 능력치 넘겨주기
+    public void SetPlayerData(float hp, float damage, float shootRate, float speed, float range
+        , float defence, float critical)
+    {
+        hp = this.hp;
+        damage = this.damage;
+        shootRate = this.shootRate;
+        speed = this.speed;
+        range = this.range;
+        defence = this.defence;
+        critical = this.critical;
+    }
 }
 

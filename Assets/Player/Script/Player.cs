@@ -21,27 +21,32 @@ public class Player : MonoBehaviour
 
     float attackDelay;
 
-    //player ability (basic~ 기본능력치(시작할때 가지는능력), current~ 더해지는 능력치(확인용))
-    public float basicDamage;
-    public float currentDamage; //공격력 
-    public float basicShootRate;
-    public float currentShootRate; //공격속도
-    public float basicSpeed;
-    public float currentSpeed; //이동속도
-    public float basicRange;
-    public float currentRange; //사거리
-    public float currentHp; //현재 hp
-    public float MaxHp; //최대 hp
-    public float basicDefence;
-    public float currentDefence; //방어력
-    public float basicCritical;
-    public float currentCritical; //크리티컬
+    // 플레이어 기본 능력치
+    [SerializeField]
+    public float hp;
+    [SerializeField]
+    public float damage;
+    [SerializeField]
+    public float shootRate;
+    [SerializeField]
+    public float speed;
+    [SerializeField]
+    public float range;
+    [SerializeField]
+    public float defence;
+    [SerializeField]
+    public float critical;
+
+    PlayerData playerData;
 
     void Start()
     {
         items = GetComponent<Items>();
         animator = GetComponentInChildren<Animator>();
         rigidbody = GetComponent<Rigidbody>();
+        playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
+
+        playerData.SetPlayerData(hp, damage, shootRate, speed, range, defence, critical);
     }
 
 
@@ -64,7 +69,7 @@ public class Player : MonoBehaviour
     {
         moveVec = new Vector3(xHorizontal, 0, zVertical);
         if (!isBorder && !isDead) //충돌하지 않으면 움직이도록
-            transform.position += moveVec * currentSpeed * Time.deltaTime;
+            transform.position += moveVec * speed * Time.deltaTime;
 
         animator.SetBool("isWalk", moveVec != Vector3.zero);
 
@@ -101,7 +106,7 @@ public class Player : MonoBehaviour
     {
         if (isDead) return; //isdead가 true여서 밑에는 실행이 안됨.
 
-        if (currentHp <= 0)
+        if (hp <= 0)
         {
             isDead = true;
             animator.SetTrigger("Dead");

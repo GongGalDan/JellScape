@@ -32,18 +32,18 @@ public class Items : MonoBehaviour
     void addAbility(GameObject currentItem) //addAbility의 매개변수 선언.
     {
         //player의 ability에 GameObejct인 currentItem에 usableItem을 불러와서 ability를 더해줌
-        player.currentDamage += currentItem.GetComponent<UsableItem>()._addDamage;
-        player.currentShootRate -= currentItem.GetComponent<UsableItem>()._addShootRate;
-        player.currentRange += currentItem.GetComponent<UsableItem>()._addRange;
-        player.currentDefence += currentItem.GetComponent<UsableItem>()._addDefence;
+        player.damage += currentItem.GetComponent<UsableItem>()._addDamage;
+        player.shootRate -= currentItem.GetComponent<UsableItem>()._addShootRate;
+        player.range += currentItem.GetComponent<UsableItem>()._addRange;
+        player.defence += currentItem.GetComponent<UsableItem>()._addDefence;
     }
 
     void deleteAbility(GameObject currentItem)
     {
-        player.currentDamage -= currentItem.GetComponent<UsableItem>()._addDamage;
-        player.currentShootRate += currentItem.GetComponent<UsableItem>()._addShootRate;
-        player.currentRange -= currentItem.GetComponent<UsableItem>()._addRange;
-        player.currentDefence -= currentItem.GetComponent<UsableItem>()._addDefence;
+        player.damage -= currentItem.GetComponent<UsableItem>()._addDamage;
+        player.shootRate += currentItem.GetComponent<UsableItem>()._addShootRate;
+        player.range -= currentItem.GetComponent<UsableItem>()._addRange;
+        player.defence -= currentItem.GetComponent<UsableItem>()._addDefence;
     }
 
     private void OnTriggerEnter(Collider other)
