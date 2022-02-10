@@ -98,6 +98,12 @@ public class RandomAbility : MonoBehaviour
                 // 뽑은 것 으로 설정
                 randomAbilities[i].isPicked = true;
 
+                // 속성 능력 중첩 방치
+                if (randomAbilities[i].isElement)
+                {
+                    playerData.isElementPicked = true;
+                }
+
                 return temp;
             }
         }

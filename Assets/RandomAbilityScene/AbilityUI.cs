@@ -43,6 +43,7 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
             // 뒤집기
             animator.SetTrigger("Flip");
             isFliped = true;
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
         }
         // 뒤집힌 후 클릭 했을 때
         else if (isFliped)
@@ -52,6 +53,7 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
                 isPicked = false;
                 playerData.numSelectedAbilities--;
                 // 선택 해제 애니메이션
+                animator.SetTrigger("Deselect");
 
                 return;
             }
@@ -61,6 +63,7 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
                 isPicked = true;
                 playerData.numSelectedAbilities++;
                 // 선택 애니메이션
+                animator.SetTrigger("Select");
             }
         }
     }
@@ -141,10 +144,6 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
             if (playerData.abilities[i].abilityTag == abilityTag)
             {
                 playerData.abilities[i].isSelected = true;
-            }
-            if (playerData.abilities[i].abilityTag == abilityTag && playerData.abilities[i].isElement)
-            {
-                playerData.isElementPicked = true;
             }
         }
 
