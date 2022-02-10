@@ -12,7 +12,10 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
     public string abilityTag;
     Animator animator;
     bool isFliped;
+    // 최종 선택 되었는지
     bool isSelected;
+    // 뽑기 창에서의 선택
+    bool isPicked;
 
     PlayerData playerData;
 
@@ -44,72 +47,93 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
         // 뒤집힌 후 클릭 했을 때
         else if (isFliped)
         {
-            Debug.Log(abilityName.text);
+            if (isPicked)
+            {
+                isPicked = false;
+                playerData.numSelectedAbilities--;
+                // 선택 해제 애니메이션
 
-            if (abilityTag == "invincible")
-            {
-                playerData.invincible = true;
+                return;
             }
-            else if (abilityTag == "headShot")
+            if (playerData.numSelectedAbilities == 2) return;
+            if (!isPicked)
             {
-                playerData.headShot = true;
+                isPicked = true;
+                playerData.numSelectedAbilities++;
+                // 선택 애니메이션
             }
-            else if (abilityTag == "bombJelly")
-            {
-                playerData.bombJelly = true;
-            }
-            else if (abilityTag == "hotJelly")
-            {
-                playerData.hotJelly = true;
-            }
-            else if (abilityTag == "frozenJelly")
-            {
-                playerData.frozenJelly = true;
-            }
-            else if (abilityTag == "poisonJelly")
-            {
-                playerData.poisonJelly = true;
-            }
-            else if (abilityTag == "sparkJelly")
-            {
-                playerData.sparkJelly = true;
-            }
-            else if (abilityTag == "frontJelly")
-            {
-                playerData.frontJelly = true;
-            }
-            else if (abilityTag == "sideJelly")
-            {
-                playerData.sideJelly = true;
-            }
-            else if (abilityTag == "addDamage")
-            {
-                playerData.addDamage++;
-            }
-            else if (abilityTag == "addShootRate")
-            {
-                playerData.addShootRate++;
-            }
-            else if (abilityTag == "addRange")
-            {
-                playerData.addRange++;
-            }
-            else if (abilityTag == "addCritical")
-            {
-                playerData.addCritical++;
-            }
-            else if (abilityTag == "addHp")
-            {
-                playerData.addHp++;
-            }
-            else if (abilityTag == "addDefence")
-            {
-                playerData.addDefence++;
-            }
-            else if (abilityTag == "addSpeed")
-            {
-                playerData.addSpeed++;
-            }
+        }
+    }
+
+    public void ApplyAbilities()
+    {
+        if (!isPicked) return;
+
+        Debug.Log(abilityName.text);
+
+        if (abilityTag == "invincible")
+        {
+            playerData.invincible = true;
+        }
+        else if (abilityTag == "headShot")
+        {
+            playerData.headShot = true;
+        }
+        else if (abilityTag == "bombJelly")
+        {
+            playerData.bombJelly = true;
+        }
+        else if (abilityTag == "hotJelly")
+        {
+            playerData.hotJelly = true;
+        }
+        else if (abilityTag == "frozenJelly")
+        {
+            playerData.frozenJelly = true;
+        }
+        else if (abilityTag == "poisonJelly")
+        {
+            playerData.poisonJelly = true;
+        }
+        else if (abilityTag == "sparkJelly")
+        {
+            playerData.sparkJelly = true;
+        }
+        else if (abilityTag == "frontJelly")
+        {
+            playerData.frontJelly = true;
+        }
+        else if (abilityTag == "sideJelly")
+        {
+            playerData.sideJelly = true;
+        }
+        else if (abilityTag == "addDamage")
+        {
+            playerData.addDamage++;
+        }
+        else if (abilityTag == "addShootRate")
+        {
+            playerData.addShootRate++;
+        }
+        else if (abilityTag == "addRange")
+        {
+            playerData.addRange++;
+        }
+        else if (abilityTag == "addCritical")
+        {
+            playerData.addCritical++;
+        }
+        else if (abilityTag == "addHp")
+        {
+            playerData.addHp++;
+        }
+        else if (abilityTag == "addDefence")
+        {
+            playerData.addDefence++;
+        }
+        else if (abilityTag == "addSpeed")
+        {
+            playerData.addSpeed++;
         }
 
         for (int i = 0; i < playerData.abilities.Count; i++)
@@ -118,7 +142,7 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
             {
                 playerData.abilities[i].isSelected = true;
             }
-            if (playerData.abilities[i].isElement)
+            if (playerData.abilities[i].abilityTag == abilityTag && playerData.abilities[i].isElement)
             {
                 playerData.isElementPicked = true;
             }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : InheritSingleton<GameManager>
 {
-    public int numSelectedAbilities;
-
     protected override void Awake()
     {
         base.Awake();

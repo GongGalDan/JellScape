@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RandomAbility : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class RandomAbility : MonoBehaviour
     public List<Ability> result = new List<Ability>();
     public Transform parent;
     public GameObject cardPrefab;
+    public UnityEvent sendResult;
 
     void Start()
     {
@@ -37,6 +39,7 @@ public class RandomAbility : MonoBehaviour
             abilityUI.AbilityUISet(result[i]);
         }
 
+        sendResult.Invoke();
         // 다음 뽑기를 위해 리셋
         ResetAbilities();
     }
@@ -65,6 +68,7 @@ public class RandomAbility : MonoBehaviour
         {
             randomAbilities[i].isPicked = false;
         }
+        playerData.numSelectedAbilities = 0;
     }
 
     private Ability RandomPick()

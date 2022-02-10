@@ -44,6 +44,9 @@ public class PlayerData : MonoBehaviour
     // 속성 능력을 한번만 뽑을 수 있도록
     // 플레이어의 젤리빈이 속성을 가지고 있는지 
     public bool isElementPicked;
+    // 뽑기창에서 선택하는 갯수
+    public int numSelectedAbilities;
+
 
     public List<Ability> abilities = new List<Ability>();
 
