@@ -12,6 +12,7 @@ public class Trap : MonoBehaviour
 
     Player playerStats;
     Rigidbody rigidbody;
+    PlayerData playerdata;
 
 
 
@@ -19,6 +20,7 @@ public class Trap : MonoBehaviour
     {
         playerStats= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         rigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        playerdata = GameObject.Find("GameManager").GetComponent<PlayerData>();
         trapArea.enabled = true;
     }
 
@@ -27,18 +29,6 @@ public class Trap : MonoBehaviour
     {
         
     }
-
-    /* private void OnCollision(Collision collision)
-     {
-         if (collision.gameObject.CompareTag("Player"))
-         {
-
-                 StartCoroutine("Condition");
-
-         }
-     }*/
-
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -53,7 +43,7 @@ public class Trap : MonoBehaviour
     {
         if (condition == ConditionType.둔화)
         {
-            playerStats.currentSpeed -= 1;
+            playerStats.speed -= 1;
             Debug.Log("둔화");
             trapArea.enabled = false;
 
@@ -62,15 +52,15 @@ public class Trap : MonoBehaviour
 
             
             yield return new WaitForSeconds(3);
-            //***********수정*************
-            playerStats.currentSpeed = 3; //뽑기로 더해진 능력치를 넣어서 원래대로 돌린다.
+            
+            playerStats.speed = playerdata.speed; //뽑기로 더해진 능력치를 넣어서 원래대로 돌린다.
         }
 
         if (condition == ConditionType.미끄러짐)
         {
             rigidbody.AddForce(playerStats.moveVec * 20, ForceMode.Impulse);
             Debug.Log("미끄러짐");
-            playerStats.currentHp -= damage;
+            playerStats.hp -= damage;
             Debug.Log("미끄러짐피해");
             trapArea.enabled = false;
 
@@ -80,7 +70,7 @@ public class Trap : MonoBehaviour
 
         if (condition == ConditionType.데미지)
         {
-            playerStats.currentHp -= damage;
+            playerStats.hp -= damage;
             Debug.Log("데미지");
             trapArea.enabled = false;
 

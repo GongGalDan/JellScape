@@ -28,14 +28,14 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             int criticalRandom = Random.Range(0, 101);
-            if (criticalRandom < player.currentCritical)
+            if (criticalRandom < player.critical)
             {
-                currentHp -= player.currentDamage * 2;
+                currentHp -= player.damage * 2;
                 Debug.Log("크리티컬 데미지");
             }
             else
             {
-                currentHp -= player.currentDamage;
+                currentHp -= player.damage;
                 Debug.Log("일반 데미지");
             }
             Destroy(other.gameObject); //충돌 하면 bullet이 사라지도록

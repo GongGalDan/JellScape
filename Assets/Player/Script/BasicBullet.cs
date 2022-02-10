@@ -28,5 +28,10 @@ public class BasicBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (other.gameObject.tag == "Chest")
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -34,7 +34,7 @@ public class BasicWeapon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && shootReady <= 0)
         {
-            shootReady += player.currentShootRate; //딜레이시간
+            shootReady += player.shootRate; //딜레이시간
             //yield return new WaitForSeconds(0.05f);
             animator.SetTrigger("doThrow");
 
@@ -43,7 +43,7 @@ public class BasicWeapon : MonoBehaviour
             bullet.transform.position = bulletPos.position; //bullotpos의 위치에서
             bullet.transform.forward = bulletPos.forward; //bulletpos의 forward로 나아간다
 
-            Destroy(bullet, player.currentRange);
+            Destroy(bullet, player.range);
         }
     }
 
