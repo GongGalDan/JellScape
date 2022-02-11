@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimalFigure : MonsterMeleeFSM
 {
+    PlayerData playerData;
     public GameObject enemyCanvasGo;
     public GameObject meleeAtkArea;
 
@@ -22,8 +23,10 @@ public class AnimalFigure : MonsterMeleeFSM
 
     override protected void Start()
     {
+        playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         base.Start();
         hp = monster.hp;
+        speed = monster.speed;
         SetMeleeAtkArea();
     
     }
@@ -44,10 +47,24 @@ public class AnimalFigure : MonsterMeleeFSM
 
     private void OnTriggerEnter(Collider other)
     {
-        
 
         if (other.CompareTag("Bullet"))
         {
+            if(playerData.isElementPicked == true)
+            {
+                StartCoroutine("ElementJelly");
+            }
+
+            if(playerData.headShot == true)
+            {
+                int headShotRandom = Random.Range(0, 101);
+                if (headShotRandom < 3)
+                {
+                    hp -= 1000;
+                    Debug.Log("Çìµå ¼¦");
+                }
+            }
+
             int criticalRandom = Random.Range(0, 101);
             if(criticalRandom < playerStats.critical)
             {
@@ -84,6 +101,48 @@ public class AnimalFigure : MonsterMeleeFSM
            playerStats.hp -= monster.meleeAttackDamage * 100/(100 + playerStats.defence);
            Debug.Log(playerStats.hp + "¸ó½ºÅÍ¿¡°Ô ¸ÂÀ½");
          }
+    }
+
+    IEnumerator ElementJelly()
+    {
+        if (playerData.hotJelly == true)
+        {
+            hp -= 5;
+            yield return new WaitForSeconds(1f);
+            hp -= 5;
+            yield return new WaitForSeconds(1f);
+            hp -= 5;
+
+        }
+
+        if (playerData.frozenJelly == true)
+        {
+            speed *= 0.5f;
+        }
+
+        if (playerData.poisonJelly == true)
+        {
+            hp -= 10;
+            yield return new WaitForSeconds(3f);
+            hp -= 10;
+        }
+
+        if (playerData.sparkJelly == true)
+        {
+            //Âî¸´ÇÑ Á©¸®ºó = 10¾¿ 2¸¶¸® Ãß°¡ °ø°Ý 
+        }
+
+        if (playerData.bombJelly ==true)
+        {
+            RaycastHit[] rayHits = Physics.SphereCastAll
+                (transform.position, 10, Vector3.up, 0,LayerMask.GetMask("Monster"));
+
+            foreach (RaycastHit hitMonster in rayHits)
+            {
+                hitMonster.transform.GetComponent<MonsterBase>().hp -= 20;
+                Debug.Log("ÆøÅº");
+            }
+        }
     }
 
 

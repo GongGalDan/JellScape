@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BasicBullet : MonoBehaviour
 {
+    PlayerData playerData;
     Rigidbody rigid;
     [SerializeField] Material bulletcolor;
     float bulletSpeed = 20f;
@@ -11,6 +12,7 @@ public class BasicBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         rigid = GetComponent<Rigidbody>();
         rigid.velocity = transform.forward * bulletSpeed;//¼Óµµ = ¹æÇâ * ¼Ó·Â
         bulletcolor = GetComponent<TrailRenderer>().material;
@@ -43,39 +45,33 @@ public class BasicBullet : MonoBehaviour
     }
 
     // »ÌÀº ¼Ó¼º ´É·Âµé·Î ¹Ù²ãÁÖ±â
-    
+
     void ChangeBullet()
     {
-        if(Input.GetKeyDown("1"))
+        if (playerData.hotJelly == true)
         {
-            bulletcolor.color = Color.red;
-
-            Debug.Log("ÇÖ Á©¸®");
-        }
-        
-        if (Input.GetKeyDown("2"))
-        {
-            bulletcolor.color = Color.blue;
-            Debug.Log("¾ÆÀÌ½º Á©¸®");
+            bulletcolor.color = new Color(145 / 255f, 47 / 255f, 60 / 255f);
         }
 
-        if (Input.GetKeyDown("3"))
+        if (playerData.frozenJelly == true)
         {
-            bulletcolor.color = Color.yellow;
-            Debug.Log("Àü±â Á©¸®");
+            bulletcolor.color = new Color(47 / 255f, 88 / 255f, 145 / 255f);
         }
 
-        if (Input.GetKeyDown("4"))
+        if (playerData.poisonJelly == true)
         {
-            bulletcolor.color = Color.green;
-            Debug.Log("µ¶ Á©¸®");
+            bulletcolor.color = new Color(148 / 255f, 143 / 255f, 46 / 255f);
         }
 
-        if (Input.GetKeyDown("5"))
+        if (playerData.sparkJelly == true)
+        {
+            bulletcolor.color = new Color(78 / 255f, 148 / 255f, 46 / 255f);
+        }
+
+        if (playerData.bombJelly == true)
         {
             bulletcolor.color = Color.black;
-            Debug.Log("ÆøÅº Á©¸®");
         }
-
     }
+
 }

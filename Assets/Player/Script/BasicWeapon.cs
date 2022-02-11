@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicWeapon : MonoBehaviour
 {
     Player player;
+    PlayerData playerData;
     public GameObject bulletPrefab; //총알의 모양
     public Transform bulletPos; //총알이 발사되는 위치
     Animator animator;
@@ -13,6 +14,7 @@ public class BasicWeapon : MonoBehaviour
 
     private void Start()
     {
+        playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         animator = GetComponentInParent<Animator>();
         player = GetComponentInParent<Player>();
     }
@@ -31,7 +33,7 @@ public class BasicWeapon : MonoBehaviour
 
     IEnumerator Shoot()
     {
-        if (Input.GetMouseButtonDown(0) && shootReady <= 0)
+        if (Input.GetMouseButtonDown(0) && shootReady <= 0 && playerData.hp !=0)
         {
             shootReady += player.shootRate; //딜레이시간
             //yield return new WaitForSeconds(0.05f);
@@ -45,7 +47,5 @@ public class BasicWeapon : MonoBehaviour
             Destroy(bullet, player.range);
         }
     }
-
-    
 
 }

@@ -26,7 +26,8 @@ public class MonsterBase : MonoBehaviour
     public MonsterType type;
 
     protected Monster monster;
-    protected float hp;
+    public float hp;
+    protected float speed;
     [SerializeField]
     protected bool canAtk;
     protected float attackCoolTimeCalc;

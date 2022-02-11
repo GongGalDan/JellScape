@@ -58,7 +58,7 @@ public class Trap : MonoBehaviour
 
         if (condition == ConditionType.¹Ì²ô·¯Áü)
         {
-            rigidbody.AddForce(playerStats.moveVec * 20, ForceMode.Impulse);
+            rigidbody.AddForce(playerStats.moveVec.normalized * 20, ForceMode.Impulse);
             Debug.Log("¹Ì²ô·¯Áü");
             playerStats.hp -= damage;
             Debug.Log("¹Ì²ô·¯ÁüÇÇÇØ");

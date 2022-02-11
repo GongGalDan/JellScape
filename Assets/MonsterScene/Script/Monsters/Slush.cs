@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Slush : MonsterRangedFSM
 {
+    PlayerData playerData;
     public GameObject enemyCanvasGo;
     public GameObject meleeAtkArea;
 
@@ -21,18 +22,126 @@ public class Slush : MonsterRangedFSM
 
     override protected void Start()
     {
+        playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         base.Start();
+        hp = monster.hp;
+        speed = monster.speed;
         SetRangedAtkArea();
     }
 
     override protected void Update()
     {
         base.Update();
+        if (hp <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // -------------------------------------------------
     // 몬스터 HP와 플레이어와 데미지 입는 방식 구현 필요 
     // -------------------------------------------------
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Bullet"))
+        {
+            if (playerData.isElementPicked == true)
+            {
+                StartCoroutine("ElementJelly");
+            }
+
+            if (playerData.headShot == true)
+            {
+                int headShotRandom = Random.Range(0, 101);
+                if (headShotRandom < 3)
+                {
+                    hp -= 1000;
+                    Debug.Log("헤드 샷");
+                }
+            }
+
+            int criticalRandom = Random.Range(0, 101);
+            if (criticalRandom < playerStats.critical)
+            {
+                hp -= playerStats.damage * 2;
+                Debug.Log("크리티컬 데미지");
+            }
+            else
+            {
+                hp -= playerStats.damage;
+                Debug.Log("일반 데미지");
+            }
+            Destroy(other.gameObject); //충돌 하면 bullet이 사라지도록
+            Debug.Log(hp + "bullet에게 맞음");
+
+        }
+
+        if (other.CompareTag("Apolo"))
+        { // 스크립트를 gameobject에서 찾아서 참조한다.
+            useItem = GameObject.FindGameObjectWithTag("Apolo").GetComponent<UsableItem>();
+            hp -= useItem.Damage;
+            Debug.Log(hp + "apolo에게 맞음");
+        }
+
+        if (other.CompareTag("Stick"))
+        {
+            useItem = GameObject.FindGameObjectWithTag("Stick").GetComponent<UsableItem>();
+            hp -= useItem.Damage;
+            Debug.Log(hp + " stick에게 맞음");
+        }
+
+
+        if (other.CompareTag("Player"))
+        {
+            playerStats.hp -= monster.meleeAttackDamage * 100 / (100 + playerStats.defence);
+            Debug.Log(playerStats.hp + "몬스터에게 맞음");
+        }
+    }
+
+    IEnumerator ElementJelly()
+    {
+        if (playerData.hotJelly == true)
+        {
+            hp -= 5;
+            yield return new WaitForSeconds(1f);
+            hp -= 5;
+            yield return new WaitForSeconds(1f);
+            hp -= 5;
+
+        }
+
+        if (playerData.frozenJelly == true)
+        {
+            speed *= 0.5f;
+        }
+
+        if (playerData.poisonJelly == true)
+        {
+            hp -= 10;
+            yield return new WaitForSeconds(3f);
+            hp -= 10;
+        }
+
+        if (playerData.sparkJelly == true)
+        {
+            //찌릿한 젤리빈 = 10씩 2마리 추가 공격 
+        }
+
+        if (playerData.bombJelly == true)
+        {
+            RaycastHit[] rayHits = Physics.SphereCastAll
+                (transform.position, 10, Vector3.up, 0, LayerMask.GetMask("Monster"));
+
+            foreach (RaycastHit hitMonster in rayHits)
+            {
+                hitMonster.transform.GetComponent<MonsterBase>().hp -= 20;
+                Debug.Log("폭탄");
+            }
+        }
+    }
 
     // 공격 범위 설정
     void SetRangedAtkArea()
