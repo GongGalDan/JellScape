@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody myRigid;
     private Animator animator;
 
+    bool isStart;
+
     void Start()
     {
         myRigid = GetComponent<Rigidbody>();
@@ -52,15 +54,21 @@ public class PlayerController : MonoBehaviour
         applySpeed = walkSpeed;
         animator = GetComponent<Animator>();
         defaultYPos = cam.transform.localPosition.y;
+
+        StartCoroutine(WaitForCine());
     }
 
     void Update()
     {
+        if (!isStart) return;
+
         Run();
     }
 
     void FixedUpdate()
     {
+        if (!isStart) return;
+
         Move();
         CameraRotation();
         CharacterRotation();
@@ -185,5 +193,13 @@ public class PlayerController : MonoBehaviour
 
         // 카메라 회전
         cam.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
+    }
+
+    IEnumerator WaitForCine()
+    {
+        yield return null;
+
+        yield return new WaitForSeconds(15f);
+        isStart = true;
     }
 }
