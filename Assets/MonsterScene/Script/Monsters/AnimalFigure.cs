@@ -68,39 +68,39 @@ public class AnimalFigure : MonsterMeleeFSM
             int criticalRandom = Random.Range(0, 101);
             if(criticalRandom < playerStats.critical)
             {
-                hp -= playerStats.damage * 2;
-                Debug.Log("크리티컬 데미지");
+                //hp -= playerStats.damage * 2;
+               // Debug.Log("크리티컬 데미지");
             }
             else
             {
-                hp -= playerStats.damage;
-                Debug.Log("일반 데미지");
+                //hp -= playerStats.damage;
+               // Debug.Log("일반 데미지");
             }
             Destroy(other.gameObject); //충돌 하면 bullet이 사라지도록
-            Debug.Log(hp + "bullet에게 맞음");
+            //Debug.Log(hp + "bullet에게 맞음");
 
         }
 
         if (other.CompareTag("Apolo"))
         { // 스크립트를 gameobject에서 찾아서 참조한다.
             useItem = GameObject.FindGameObjectWithTag("Apolo").GetComponent<UsableItem>();
-            hp -= useItem.Damage;
+           // hp -= useItem.Damage;
             Debug.Log(hp + "apolo에게 맞음");
         }
 
         if (other.CompareTag("Stick"))
         {
             useItem = GameObject.FindGameObjectWithTag("Stick").GetComponent<UsableItem>();
-            hp -= useItem.Damage;
+           // hp -= useItem.Damage;
             Debug.Log(hp + " stick에게 맞음");
         }
 
-
+        /*
         if (other.CompareTag("Player"))
          {
            playerStats.hp -= monster.meleeAttackDamage * 100/(100 + playerStats.defence);
            Debug.Log(playerStats.hp + "몬스터에게 맞음");
-         }
+         }*/
     }
 
     IEnumerator ElementJelly()
@@ -129,7 +129,40 @@ public class AnimalFigure : MonsterMeleeFSM
 
         if (playerData.sparkJelly == true)
         {
-            //찌릿한 젤리빈 = 10씩 2마리 추가 공격 
+
+            RaycastHit[] rayHits = Physics.SphereCastAll
+                (transform.position, 10, Vector3.up, 0, LayerMask.GetMask("Monster"));
+
+            int count = 0;
+
+
+            foreach (RaycastHit hitMonster in rayHits)
+            { //rayHits범위에 있는 몬스터들을 hitMonster에 정렬
+
+                if (count >2)
+                    continue;
+
+                count++;
+                hitMonster.transform.GetComponent<MonsterBase>().hp -= 10;
+                
+                Debug.Log(hp +"전기");
+            }
+
+            /*
+            GameObject nearMonster;
+            List<GameObject> sparkMonster; 
+            nearMonster = GameObject.FindGameObjectWithTag("Monster").GetComponent<GameObject>();
+            float Distance = Vector3.Distance(gameObject.transform.position, nearMonster.transform.position);
+
+            if (Distance <= 10)
+            {
+                foreach(sparkMonster in nearMonster)
+                {
+
+                }
+            }
+            List<GameObject> */
+
         }
 
         if (playerData.bombJelly ==true)
@@ -138,7 +171,7 @@ public class AnimalFigure : MonsterMeleeFSM
                 (transform.position, 10, Vector3.up, 0,LayerMask.GetMask("Monster"));
 
             foreach (RaycastHit hitMonster in rayHits)
-            {
+            { //rayHits범위에 있는 몬스터들을 hitMonster에 정렬
                 hitMonster.transform.GetComponent<MonsterBase>().hp -= 20;
                 Debug.Log("폭탄");
             }

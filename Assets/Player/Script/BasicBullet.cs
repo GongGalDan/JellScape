@@ -5,8 +5,9 @@ using UnityEngine;
 public class BasicBullet : MonoBehaviour
 {
     PlayerData playerData;
+    public Material bulletColor;
     Rigidbody rigid;
-    [SerializeField] Material bulletcolor;
+    [SerializeField] Material trailColor;
     float bulletSpeed = 20f;
 
     // Start is called before the first frame update
@@ -15,7 +16,8 @@ public class BasicBullet : MonoBehaviour
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         rigid = GetComponent<Rigidbody>();
         rigid.velocity = transform.forward * bulletSpeed;//속도 = 방향 * 속력
-        bulletcolor = GetComponent<TrailRenderer>().material;
+        Material bulletColor;
+        trailColor = GetComponent<TrailRenderer>().material;
     }
 
     private void Update()
@@ -50,27 +52,32 @@ public class BasicBullet : MonoBehaviour
     {
         if (playerData.hotJelly == true)
         {
-            bulletcolor.color = new Color(145 / 255f, 47 / 255f, 60 / 255f);
+            bulletColor.color = new Color(250 / 255f, 50 / 255f, 70 / 255f);
+            trailColor.color = new Color(145 / 255f, 47 / 255f, 60 / 255f);
         }
 
         if (playerData.frozenJelly == true)
         {
-            bulletcolor.color = new Color(47 / 255f, 88 / 255f, 145 / 255f);
+            bulletColor.color = new Color(38 / 255f, 208 / 255f, 255 / 255f);
+            trailColor.color = new Color(47 / 255f, 88 / 255f, 145 / 255f);
         }
 
         if (playerData.poisonJelly == true)
         {
-            bulletcolor.color = new Color(148 / 255f, 143 / 255f, 46 / 255f);
+            bulletColor.color = new Color(38 / 255f, 255 / 255f, 45 / 255f);
+            trailColor.color = new Color(78 / 255f, 148 / 255f, 46 / 255f);
         }
 
         if (playerData.sparkJelly == true)
         {
-            bulletcolor.color = new Color(78 / 255f, 148 / 255f, 46 / 255f);
+            bulletColor.color = new Color(226 / 255f, 255 / 255f, 38 / 255f);
+            trailColor.color = new Color(148 / 255f, 143 / 255f, 46 / 255f);
         }
 
         if (playerData.bombJelly == true)
         {
-            bulletcolor.color = Color.black;
+            bulletColor.color = new Color(30 / 255f, 31 / 255f, 30 / 255f);
+            trailColor.color = Color.black;
         }
     }
 

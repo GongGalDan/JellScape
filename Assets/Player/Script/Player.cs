@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     bool isBorder;
     bool isAttackReady;
     bool isDead = false;
+    
+    [SerializeField]float invincibleTimer;
 
     public Vector3 moveVec;
 
@@ -54,7 +56,7 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Dead();
-
+        StartCoroutine("RandomAbility");
     }
 
     void InitPlayer()
@@ -119,6 +121,29 @@ public class Player : MonoBehaviour
         {
             isDead = true;
             animator.SetTrigger("Dead");
+        }
+    }
+
+    void RandomAbility()
+    {
+        if(playerData.invincible == true)
+        {
+            invincibleTimer += Time.deltaTime;
+
+            if (invincibleTimer >= 0 && invincibleTimer <= 3)
+            {
+                gameObject.layer = 12;
+            }
+
+            else if(invincibleTimer >3 && invincibleTimer <23)
+            { 
+                gameObject.layer = 6;
+            }
+
+            else if(invincibleTimer >= 23)
+            {
+                invincibleTimer = 0;
+            }
         }
     }
 
