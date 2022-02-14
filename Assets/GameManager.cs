@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : InheritSingleton<GameManager>
 {
+    // º¸½ºÀü
+    public int numOfCollectedKeys;
+
     protected override void Awake()
     {
         base.Awake();

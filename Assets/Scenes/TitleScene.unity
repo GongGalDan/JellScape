@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 1f41967cfc1757f48a05ab68c3e8e4bf, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f9221bb4ad77f4ab664a6969f890de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfCollectedKeys: 0
 --- !u!4 &64318
 Transform:
   m_ObjectHideFlags: 0
@@ -217,6 +218,7 @@ MonoBehaviour:
   addDefence: 0
   addSpeed: 0
   isElementPicked: 0
+  numSelectedAbilities: 0
   abilities:
   - abilityName: "\uD5E4\uB4DC\uC0F7"
     abilityTag: headShot
@@ -224,6 +226,7 @@ MonoBehaviour:
     abilityGrade: 0
     weight: 5
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 1
   - abilityName: "3\uCD08\uAC04 \uBB34\uC801"
@@ -232,6 +235,7 @@ MonoBehaviour:
     abilityGrade: 0
     weight: 5
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 1
   - abilityName: "\uD3ED\uD0C4 \uC824\uB9AC\uBE48"
@@ -240,6 +244,7 @@ MonoBehaviour:
     abilityGrade: 0
     weight: 5
     isPicked: 0
+    isSelected: 0
     isElement: 1
     isPickableOnce: 0
   - abilityName: "\uB9E4\uC6B4\uB9DB \uC824\uB9AC\uBE48"
@@ -248,6 +253,7 @@ MonoBehaviour:
     abilityGrade: 1
     weight: 10
     isPicked: 0
+    isSelected: 0
     isElement: 1
     isPickableOnce: 0
   - abilityName: "\uAF41\uAF41 \uC5B8 \uC824\uB9AC\uBE48"
@@ -256,6 +262,7 @@ MonoBehaviour:
     abilityGrade: 1
     weight: 10
     isPicked: 0
+    isSelected: 0
     isElement: 1
     isPickableOnce: 0
   - abilityName: "\uB3C5\uC774 \uB4E0 \uC824\uB9AC\uBE48"
@@ -264,6 +271,7 @@ MonoBehaviour:
     abilityGrade: 1
     weight: 10
     isPicked: 0
+    isSelected: 0
     isElement: 1
     isPickableOnce: 0
   - abilityName: "\uC9DC\uB9BF\uD55C \uC824\uB9AC\uBE48"
@@ -272,6 +280,7 @@ MonoBehaviour:
     abilityGrade: 1
     weight: 10
     isPicked: 0
+    isSelected: 0
     isElement: 1
     isPickableOnce: 0
   - abilityName: "\uBC1C\uC0AC \uC824\uB9AC\uBE48 1\uAC1C \uCD94\uAC00"
@@ -280,6 +289,7 @@ MonoBehaviour:
     abilityGrade: 2
     weight: 20
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 1
   - abilityName: "\uC591 \uC606 \uBC1C\uC0AC \uC824\uB9AC\uBE48 \uCD94\uAC00"
@@ -288,6 +298,7 @@ MonoBehaviour:
     abilityGrade: 2
     weight: 20
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 1
   - abilityName: "\uACF5\uACA9\uB825 \uC99D\uAC00"
@@ -296,6 +307,7 @@ MonoBehaviour:
     abilityGrade: 2
     weight: 20
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 0
   - abilityName: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
@@ -304,6 +316,7 @@ MonoBehaviour:
     abilityGrade: 2
     weight: 20
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 0
   - abilityName: "\uACF5\uACA9 \uC0AC\uAC70\uB9AC \uC99D\uAC00"
@@ -312,6 +325,7 @@ MonoBehaviour:
     abilityGrade: 2
     weight: 20
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 0
   - abilityName: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960 \uC99D\uAC00"
@@ -320,6 +334,7 @@ MonoBehaviour:
     abilityGrade: 2
     weight: 20
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 0
   - abilityName: "\uCCB4\uB825 \uC99D\uAC00"
@@ -328,6 +343,7 @@ MonoBehaviour:
     abilityGrade: 3
     weight: 30
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 0
   - abilityName: "\uBC29\uC5B4\uB825 \uC99D\uAC00"
@@ -336,6 +352,7 @@ MonoBehaviour:
     abilityGrade: 3
     weight: 30
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 0
   - abilityName: "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
@@ -344,6 +361,7 @@ MonoBehaviour:
     abilityGrade: 3
     weight: 30
     isPicked: 0
+    isSelected: 0
     isElement: 0
     isPickableOnce: 0
 --- !u!1 &1283224068

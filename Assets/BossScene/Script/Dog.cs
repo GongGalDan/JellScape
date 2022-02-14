@@ -10,6 +10,9 @@ public class Dog : MonoBehaviour
     Transform player;
     Animator animator;
     bool isStart;
+    float currentHeight;
+    float previousHeight;
+    float heightTimer;
 
     void Start()
     {
@@ -18,6 +21,9 @@ public class Dog : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Transform>();
         animator = GetComponent<Animator>();
         StartCoroutine(WaitForCine());
+
+        previousHeight = transform.position.y;
+        currentHeight = transform.position.y;
     }
 
     void Update()
@@ -32,6 +38,7 @@ public class Dog : MonoBehaviour
         {
             nvAgent.SetDestination(dogDestination.transform.position);
         }
+        CheckHeightDifference();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -63,5 +70,32 @@ public class Dog : MonoBehaviour
 
         nvAgent.isStopped = false;
         animator.SetBool("Run", true);
+    }
+
+    void CheckHeightDifference()
+    {
+        previousHeight = transform.position.y;
+
+        heightTimer += Time.deltaTime;
+
+        if (heightTimer > 2f)
+        {
+            currentHeight = transform.position.y;
+            heightTimer = 0;
+        }
+
+        if (previousHeight < currentHeight)
+        {
+            animator.SetBool("Land", true);
+        }
+        else if (previousHeight > currentHeight)
+        {
+            animator.SetBool("Jump", true);
+        }
+        else
+        {
+            animator.SetBool("Jump", false);
+            animator.SetBool("Land", false);
+        }    
     }
 }

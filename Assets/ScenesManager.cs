@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : InheritSingleton<ScenesManager>
 {
+    GameManager gm;
 
     protected override void Awake()
     {
         base.Awake();
-        var obj = FindObjectsOfType<ScenesManager>(); 
+        var obj = FindObjectsOfType<ScenesManager>();
+
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         if (obj.Length == 1) DontDestroyOnLoad(gameObject); 
         else Destroy(gameObject);
@@ -47,5 +50,12 @@ public class ScenesManager : InheritSingleton<ScenesManager>
                 SceneManager.LoadScene("TitleScene");
             }
         }
+    }
+
+    public void ToEnding()
+    {
+        if (gm.numOfCollectedKeys < 4) return;
+        
+        SceneManager.LoadScene("Ending");
     }
 }
