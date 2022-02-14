@@ -1,22 +1,22 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicBullet : MonoBehaviour
 {
     PlayerData playerData;
-    public Material bulletColor;
-    Rigidbody rigid;
-    [SerializeField] Material trailColor;
+    Rigidbody rigidbody;
+
+    [SerializeField] Material trailColor; //trail 색상 변경
+    public Material bulletColor; //bullet 색상 변경
+
     float bulletSpeed = 20f;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
-        rigid = GetComponent<Rigidbody>();
-        rigid.velocity = transform.forward * bulletSpeed;//�ӵ� = ���� * �ӷ�
-        Material bulletColor;
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.velocity = transform.forward * bulletSpeed;//속도 = 방향 * 속력
         trailColor = GetComponent<TrailRenderer>().material;
     }
 
@@ -25,7 +25,7 @@ public class BasicBullet : MonoBehaviour
         ChangeBullet();
     }
 
-
+    //충돌 처리
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.collider.CompareTag("Floor"))
@@ -46,36 +46,40 @@ public class BasicBullet : MonoBehaviour
         }
     }
 
-    // ���� �Ӽ� �ɷµ�� �ٲ��ֱ�
-
+    // 뽑은 속성 능력들로 바꿔주기
     void ChangeBullet()
     {
         if (playerData.hotJelly == true)
         {
+            //빨강
             bulletColor.color = new Color(250 / 255f, 50 / 255f, 70 / 255f);
             trailColor.color = new Color(145 / 255f, 47 / 255f, 60 / 255f);
         }
 
         if (playerData.frozenJelly == true)
         {
+            //파랑
             bulletColor.color = new Color(38 / 255f, 208 / 255f, 255 / 255f);
             trailColor.color = new Color(47 / 255f, 88 / 255f, 145 / 255f);
         }
 
         if (playerData.poisonJelly == true)
         {
+            //초록
             bulletColor.color = new Color(38 / 255f, 255 / 255f, 45 / 255f);
             trailColor.color = new Color(78 / 255f, 148 / 255f, 46 / 255f);
         }
 
         if (playerData.sparkJelly == true)
         {
+            //노랑
             bulletColor.color = new Color(226 / 255f, 255 / 255f, 38 / 255f);
             trailColor.color = new Color(148 / 255f, 143 / 255f, 46 / 255f);
         }
 
         if (playerData.bombJelly == true)
         {
+            //검정
             bulletColor.color = new Color(30 / 255f, 31 / 255f, 30 / 255f);
             trailColor.color = Color.black;
         }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +17,7 @@ public class TreasureChest : MonoBehaviour
         Delete();
     }
 
+    //충돌 처리
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
@@ -27,6 +28,7 @@ public class TreasureChest : MonoBehaviour
         }
     }
 
+    //10회 타격 후 삭제
     void Delete()
     {
         if(count == 10)

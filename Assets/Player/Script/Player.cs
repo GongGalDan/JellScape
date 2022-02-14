@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,24 +6,25 @@ public class Player : MonoBehaviour
 {
     public Camera mainCamera;
 
-    float xHorizontal; // a, d xÃà ÀÌµ¿
-    float zVertical; // w, s zÃà ÀÌµ¿
+    float xHorizontal; // a, d xì¶• ì´ë™
+    float zVertical; // w, s zì¶• ì´ë™
 
-    bool isBorder;
+    [SerializeField] float invincibleTimer;
+    float attackDelay;
+
+    bool isBorder; 
     bool isAttackReady;
     bool isDead = false;
-    
-    [SerializeField]float invincibleTimer;
 
     public Vector3 moveVec;
 
+    PlayerData playerData;
     Animator animator;
     Rigidbody rigidbody;
     Items items;
 
-    float attackDelay;
 
-    // ÇÃ·¹ÀÌ¾î ±âº» ´É·ÂÄ¡
+    // í”Œë ˆì´ì–´ ê¸°ë³¸ ëŠ¥ë ¥ì¹˜
     [SerializeField]
     public float hp;
     [SerializeField]
@@ -39,7 +40,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float critical;
 
-    PlayerData playerData;
 
     void Start()
     {
@@ -59,6 +59,8 @@ public class Player : MonoBehaviour
         StartCoroutine("RandomAbility");
     }
 
+
+    //player ëŠ¥ë ¥ì¹˜ ì ìš©
     void InitPlayer()
     {
         hp = playerData.hp;
@@ -70,16 +72,18 @@ public class Player : MonoBehaviour
         critical = playerData.critical;
     }
 
+    //í‚¤ ì…ë ¥
     void GetInput()
     {
         xHorizontal = Input.GetAxis("Horizontal");
         zVertical = Input.GetAxis("Vertical");
     }
 
+    //ì´ë™
     void Move()
     {
         moveVec = new Vector3(xHorizontal, 0, zVertical);
-        if (!isBorder && !isDead) //Ãæµ¹ÇÏÁö ¾ÊÀ¸¸é ¿òÁ÷ÀÌµµ·Ï
+        if (!isBorder && !isDead) //ì¶©ëŒí•˜ì§€ ì•Šìœ¼ë©´ ì›€ì§ì´ë„ë¡
             transform.position += moveVec * speed * Time.deltaTime;
 
         animator.SetBool("isWalk", moveVec != Vector3.zero);
@@ -90,10 +94,10 @@ public class Player : MonoBehaviour
     {
         if (!isDead)
         {
-            //#1. Å°º¸µå¿¡ ÀÇÇÑ È¸Àü
+            //#1. í‚¤ë³´ë“œì— ì˜í•œ íšŒì „
             transform.LookAt(transform.position + moveVec);
 
-            //#2. ¸¶¿ì½º¿¡ ÀÇÇÑ È¸Àü
+            //#2. ë§ˆìš°ìŠ¤ì— ì˜í•œ íšŒì „
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit rayHit;
             if (Physics.Raycast(ray, out rayHit, 100))
@@ -108,14 +112,15 @@ public class Player : MonoBehaviour
     void StopWall()
     {
         Debug.DrawRay(transform.position, transform.forward * 5, Color.green);
-        //ray¸¦ º¸¿©ÁÖ´Â ÇÔ¼ö(½ÃÀÛÀ§Ä¡, ½î´Â¹æÇâ * ±æÀÌ , »ö±ò)
+        //rayë¥¼ ë³´ì—¬ì£¼ëŠ” í•¨ìˆ˜(ì‹œì‘ìœ„ì¹˜, ì˜ëŠ”ë°©í–¥ * ê¸¸ì´ , ìƒ‰ê¹”)
         isBorder = Physics.Raycast(transform.position, moveVec, 5, LayerMask.GetMask("Wall"));
-        //Raycast = ray¿¡ ´ê´Â ¿ÀºêÁ§Æ®¸¦ °¡Áö´Â ÇÔ¼ö(À§Ä¡, ¹æÇâ, ±æÀÌ, layer - wall¿¡ ´êÀ¸¸é true°¡µÊ) = ¿òÁ÷ÀÓX
+        //Raycast = rayì— ë‹¿ëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ê°€ì§€ëŠ” í•¨ìˆ˜(ìœ„ì¹˜, ë°©í–¥, ê¸¸ì´, layer - wallì— ë‹¿ìœ¼ë©´ trueê°€ë¨) = ì›€ì§ì„X
     }
 
+    //ì‚¬ë§ì²˜ë¦¬
     void Dead()
     {
-        if (isDead) return; //isdead°¡ true¿©¼­ ¹Ø¿¡´Â ½ÇÇàÀÌ ¾ÈµÊ.
+        if (isDead) return; //isdeadê°€ trueì—¬ì„œ ë°‘ì—ëŠ” ì‹¤í–‰ì´ ì•ˆë¨.
 
         if (hp <= 0)
         {
@@ -124,6 +129,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //ë¬´ì ëŠ¥ë ¥ ì ìš©
     void RandomAbility()
     {
         if(playerData.invincible == true)
@@ -132,11 +138,13 @@ public class Player : MonoBehaviour
 
             if (invincibleTimer >= 0 && invincibleTimer <= 3)
             {
+                //3ì´ˆ ë™ì•ˆ ë¬´ì 
                 gameObject.layer = 12;
             }
 
             else if(invincibleTimer >3 && invincibleTimer <23)
             { 
+                //20ì´ˆ ì¿¨íƒ€ì„
                 gameObject.layer = 6;
             }
 

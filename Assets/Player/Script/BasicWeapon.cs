@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,14 +6,16 @@ public class BasicWeapon : MonoBehaviour
 {
     Player player;
     PlayerData playerData;
-    public GameObject bulletPrefab; //ÃÑ¾ËÀÇ ¸ğ¾ç
-    public Transform baiscPos; //ÃÑ¾ËÀÌ ¹ß»çµÇ´Â À§Ä¡
-    public Transform frontPos; //frontJelly À§Ä¡
-    public Transform sidePos1; //sideJEly
-    public Transform sidePos2;
+
     Animator animator;
 
-    private float shootReady; //¿¬»ç¼Óµµ°è»ê
+    public GameObject bulletPrefab; //ì´ì•Œì˜ ëª¨ì–‘
+    public Transform baiscPos; //ì´ì•Œì´ ë°œì‚¬ë˜ëŠ” ìœ„ì¹˜
+    public Transform frontPos; //frontJelly ìœ„ì¹˜
+    public Transform sidePos1; //sideJElly ìœ„ì¹˜
+    public Transform sidePos2; 
+
+    private float shootReady; //ì—°ì‚¬ì†ë„ê³„ì‚°
 
     private void Start()
     {
@@ -38,14 +40,13 @@ public class BasicWeapon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && shootReady <= 0 && playerData.hp !=0)
         {
-            shootReady += player.shootRate; //µô·¹ÀÌ½Ã°£
-            //yield return new WaitForSeconds(0.05f);
+            shootReady += player.shootRate; //ë”œë ˆì´ì‹œê°„
             animator.SetTrigger("doThrow");
 
             yield return new WaitForSeconds(0.3f);
-            GameObject bullet = Instantiate(bulletPrefab); //bulletÀº prefab¸ğ¾çÀ¸·Î
-            bullet.transform.position = baiscPos.position; //bullotposÀÇ À§Ä¡¿¡¼­
-            bullet.transform.forward = baiscPos.forward; //bulletposÀÇ forward·Î ³ª¾Æ°£´Ù
+            GameObject bullet = Instantiate(bulletPrefab); //bulletì€ prefabëª¨ì–‘ìœ¼ë¡œ
+            bullet.transform.position = baiscPos.position; //bullotposì˜ ìœ„ì¹˜ì—ì„œ
+            bullet.transform.forward = baiscPos.forward; //bulletposì˜ forwardë¡œ ë‚˜ì•„ê°„ë‹¤
 
             if (playerData.frontJelly == true)
             {
@@ -62,6 +63,7 @@ public class BasicWeapon : MonoBehaviour
         }
     }
 
+    //FrontJelly ëŠ¥ë ¥
     void FrontJelly()
     {
         GameObject bullet = Instantiate(bulletPrefab);
@@ -71,6 +73,7 @@ public class BasicWeapon : MonoBehaviour
         Destroy(bullet, player.range);
     }
 
+    //Left SideJelly ëŠ¥ë ¥
     void SideJelly1()
     {
         GameObject bullet = Instantiate(bulletPrefab);
@@ -80,6 +83,7 @@ public class BasicWeapon : MonoBehaviour
         Destroy(bullet, player.range);
     }
 
+    //Right SideJelly ëŠ¥ë ¥
     void SideJelly2()
     {
         GameObject bullet = Instantiate(bulletPrefab);

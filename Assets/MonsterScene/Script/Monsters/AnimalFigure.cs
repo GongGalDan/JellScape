@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,10 +14,10 @@ public class AnimalFigure : MonsterMeleeFSM
         if (monster == null) return;
 
         Gizmos.color = Color.yellow;
-        // ÀÎ½Ä ¹üÀ§ Ç¥½Ã
+        // ì¸ì‹ ë²”ìœ„ í‘œì‹œ
         Gizmos.DrawWireSphere(transform.position, monster.detectRange);
         Gizmos.color = Color.red;
-        // °ø°İ ¹üÀ§ Ç¥½Ã
+        // ê³µê²© ë²”ìœ„ í‘œì‹œ
         Gizmos.DrawWireSphere(transform.position, monster.meleeAttackRange);
     }
 
@@ -42,71 +42,78 @@ public class AnimalFigure : MonsterMeleeFSM
     }
 
     // -------------------------------------------------
-    // ¸ó½ºÅÍ HP¿Í ÇÃ·¹ÀÌ¾î¿Í µ¥¹ÌÁö ÀÔ´Â ¹æ½Ä ±¸Çö ÇÊ¿ä 
+    // ëª¬ìŠ¤í„° HPì™€ í”Œë ˆì´ì–´ì™€ ë°ë¯¸ì§€ ì…ëŠ” ë°©ì‹ êµ¬í˜„ í•„ìš” 
     // -------------------------------------------------
 
     private void OnTriggerEnter(Collider other)
     {
-
+        //Bullet ì¶©ëŒ ì²˜ë¦¬
         if (other.CompareTag("Bullet"))
         {
+            //ì†ì„±ì ¤ë¦¬
             if(playerData.isElementPicked == true)
             {
                 StartCoroutine("ElementJelly");
             }
 
+            //í—¤ë“œìƒ· 
             if(playerData.headShot == true)
             {
                 int headShotRandom = Random.Range(0, 101);
                 if (headShotRandom < 3)
                 {
                     hp -= 1000;
-                    Debug.Log("Çìµå ¼¦");
+                    Debug.Log("í—¤ë“œ ìƒ·");
                 }
             }
 
+            //í¬ë¦¬í‹°ì»¬ ë°ë¯¸ì§€
             int criticalRandom = Random.Range(0, 101);
             if(criticalRandom < playerStats.critical)
             {
-                //hp -= playerStats.damage * 2;
-               // Debug.Log("Å©¸®Æ¼ÄÃ µ¥¹ÌÁö");
+                hp -= playerStats.damage * 2;
+                Debug.Log(hp + "í¬ë¦¬í‹°ì»¬ ë°ë¯¸ì§€");
             }
             else
             {
-                //hp -= playerStats.damage;
-               // Debug.Log("ÀÏ¹İ µ¥¹ÌÁö");
+                hp -= playerStats.damage;
+                Debug.Log(hp + "ì¼ë°˜ ë°ë¯¸ì§€");
             }
-            Destroy(other.gameObject); //Ãæµ¹ ÇÏ¸é bulletÀÌ »ç¶óÁöµµ·Ï
-            //Debug.Log(hp + "bullet¿¡°Ô ¸ÂÀ½");
+            Destroy(other.gameObject); //ì¶©ëŒ í•˜ë©´ bulletì´ ì‚¬ë¼ì§€ë„ë¡
 
         }
 
+        //ì•„ì´í…œ ê³µê²©
         if (other.CompareTag("Apolo"))
-        { // ½ºÅ©¸³Æ®¸¦ gameobject¿¡¼­ Ã£¾Æ¼­ ÂüÁ¶ÇÑ´Ù.
+        {  
             useItem = GameObject.FindGameObjectWithTag("Apolo").GetComponent<UsableItem>();
-           // hp -= useItem.Damage;
-            Debug.Log(hp + "apolo¿¡°Ô ¸ÂÀ½");
+            hp -= useItem.Damage;
+            Debug.Log(hp + "apoloì—ê²Œ ë§ìŒ");
         }
 
         if (other.CompareTag("Stick"))
         {
             useItem = GameObject.FindGameObjectWithTag("Stick").GetComponent<UsableItem>();
-           // hp -= useItem.Damage;
-            Debug.Log(hp + " stick¿¡°Ô ¸ÂÀ½");
+            hp -= useItem.Damage;
+            Debug.Log(hp + " stickì—ê²Œ ë§ìŒ");
         }
-
-        /*
+        
+        /* player ì¶©ëŒ ì²˜ë¦¬
         if (other.CompareTag("Player"))
          {
+           //í”Œë ˆì´ì–´ hpëŠ” ëª¬ìŠ¤í„° ë°ë¯¸ì§€ì™€ ë°©ì–´ë ¥ê³µì‹ ë§Œí¼ ì¤„ì–´ë“ ë‹¤.
            playerStats.hp -= monster.meleeAttackDamage * 100/(100 + playerStats.defence);
-           Debug.Log(playerStats.hp + "¸ó½ºÅÍ¿¡°Ô ¸ÂÀ½");
+           Debug.Log(playerStats.hp + "ëª¬ìŠ¤í„°ì—ê²Œ ë§ìŒ");
          }*/
     }
 
+    //ElementJelly ëŠ¥ë ¥ì¹˜
     IEnumerator ElementJelly()
     {
+        //hotJelly ëŠ¥ë ¥
         if (playerData.hotJelly == true)
         {
+            //3ì´ˆê°„ 1ì´ˆë§ˆë‹¤ hpê°€ 5ì”© ì¤„ì–´ë“ ë‹¤.
             hp -= 5;
             yield return new WaitForSeconds(1f);
             hp -= 5;
@@ -115,21 +122,26 @@ public class AnimalFigure : MonsterMeleeFSM
 
         }
 
+        //frozenJelly
         if (playerData.frozenJelly == true)
         {
+            //ì ì˜ ì´ë™ì†ë„ê°€ ëŠë ¤ì§„ë‹¤.
             speed *= 0.5f;
         }
 
+        //poisonJelly
         if (playerData.poisonJelly == true)
         {
+            //hpê°€ 10ì”© 3ì´ˆë§ˆë‹¤ ì¤„ì–´ë“ ë‹¤.
             hp -= 10;
             yield return new WaitForSeconds(3f);
             hp -= 10;
         }
 
+        //sparkJelly
         if (playerData.sparkJelly == true)
         {
-
+            //ë²”ìœ„ì•ˆì— ìˆëŠ” ëª¬ìŠ¤í„°ë“¤ ì¤‘ 2ë§ˆë¦¬ë§Œ í”¼í•´ë¥¼ ì…ëŠ”ë‹¤.
             RaycastHit[] rayHits = Physics.SphereCastAll
                 (transform.position, 10, Vector3.up, 0, LayerMask.GetMask("Monster"));
 
@@ -137,7 +149,7 @@ public class AnimalFigure : MonsterMeleeFSM
 
 
             foreach (RaycastHit hitMonster in rayHits)
-            { //rayHits¹üÀ§¿¡ ÀÖ´Â ¸ó½ºÅÍµéÀ» hitMonster¿¡ Á¤·Ä
+            { //rayHitsë²”ìœ„ì— ìˆëŠ” ëª¬ìŠ¤í„°ë“¤ì„ hitMonsterì— ì •ë ¬
 
                 if (count >2)
                     continue;
@@ -145,41 +157,26 @@ public class AnimalFigure : MonsterMeleeFSM
                 count++;
                 hitMonster.transform.GetComponent<MonsterBase>().hp -= 10;
                 
-                Debug.Log(hp +"Àü±â");
+                Debug.Log(hp +"ì „ê¸°");
             }
-
-            /*
-            GameObject nearMonster;
-            List<GameObject> sparkMonster; 
-            nearMonster = GameObject.FindGameObjectWithTag("Monster").GetComponent<GameObject>();
-            float Distance = Vector3.Distance(gameObject.transform.position, nearMonster.transform.position);
-
-            if (Distance <= 10)
-            {
-                foreach(sparkMonster in nearMonster)
-                {
-
-                }
-            }
-            List<GameObject> */
-
         }
 
+        //bombJelly
         if (playerData.bombJelly ==true)
         {
             RaycastHit[] rayHits = Physics.SphereCastAll
                 (transform.position, 10, Vector3.up, 0,LayerMask.GetMask("Monster"));
 
             foreach (RaycastHit hitMonster in rayHits)
-            { //rayHits¹üÀ§¿¡ ÀÖ´Â ¸ó½ºÅÍµéÀ» hitMonster¿¡ Á¤·Ä
+            { 
+                //rayHitsë²”ìœ„ì— ìˆëŠ” ëª¬ìŠ¤í„°ë“¤ì„ hitMonsterì— ì •ë ¬, ë²”ìœ„ì— ìˆëŠ” ëª¬ìŠ¤í„°ë“¤ hpê°€ 20ë§Œí¼ ì¤„ì–´ë“ ë‹¤.
                 hitMonster.transform.GetComponent<MonsterBase>().hp -= 20;
-                Debug.Log("ÆøÅº");
+                Debug.Log(hp + "í­íƒ„");
             }
         }
     }
 
-
-    // °ø°İ ¹üÀ§ ¼³Á¤
+    // ê³µê²© ë²”ìœ„ ì„¤ì •
     void SetMeleeAtkArea()
     {
         gameObject.transform.GetComponentInChildren<SphereCollider>().radius = monster.meleeAttackRange;

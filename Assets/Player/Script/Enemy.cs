@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,28 +31,28 @@ public class Enemy : MonoBehaviour
             if (criticalRandom < player.critical)
             {
                 currentHp -= player.damage * 2;
-                Debug.Log("Å©¸®Æ¼ÄÃ µ¥¹ÌÁö");
+                Debug.Log("í¬ë¦¬í‹°ì»¬ ë°ë¯¸ì§€");
             }
             else
             {
                 currentHp -= player.damage;
-                Debug.Log("ÀÏ¹Ý µ¥¹ÌÁö");
+                Debug.Log("ì¼ë°˜ ë°ë¯¸ì§€");
             }
-            Destroy(other.gameObject); //Ãæµ¹ ÇÏ¸é bulletÀÌ »ç¶óÁöµµ·Ï
-            Debug.Log(currentHp + "bullet¿¡°Ô ¸ÂÀ½");
+            Destroy(other.gameObject); //ì¶©ëŒ í•˜ë©´ bulletì´ ì‚¬ë¼ì§€ë„ë¡
+            Debug.Log(currentHp + "bulletì—ê²Œ ë§žìŒ");
         }
 
         if (other.CompareTag("Apolo"))
         {
-            currentHp -= useItem.Damage; //¾ÆÆú·ÎÀÇ µ¥¹ÌÁö
-            Debug.Log(currentHp + "¾ÆÆú·Î¿¡°Ô ¸ÂÀ½");
+            currentHp -= useItem.Damage; //ì•„í´ë¡œì˜ ë°ë¯¸ì§€
+            Debug.Log(currentHp + "ì•„í´ë¡œì—ê²Œ ë§žìŒ");
             material.color = new Color(0,100,0);
         }
 
         if (other.CompareTag("Stick"))
         {
-            currentHp -= useItem.Damage; //½ºÆ½ÀÇ µ¥¹ÌÁö
-            Debug.Log(currentHp + "½ºÆ½¿¡°Ô ¸ÂÀ½");
+            currentHp -= useItem.Damage; //ìŠ¤í‹±ì˜ ë°ë¯¸ì§€
+            Debug.Log(currentHp + "ìŠ¤í‹±ì—ê²Œ ë§žìŒ");
             material.color = new Color(100, 100, 0);
         }
 
