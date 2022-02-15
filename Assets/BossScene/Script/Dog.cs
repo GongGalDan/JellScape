@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Dog : MonoBehaviour
 {
+    GameManager gm;
     NavMeshAgent nvAgent;
     GameObject dogDestination;
     Transform player;
@@ -16,6 +17,7 @@ public class Dog : MonoBehaviour
 
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         nvAgent = GetComponent<NavMeshAgent>();
         dogDestination = GameObject.Find("DogDestination");
         player = GameObject.Find("Player").GetComponent<Transform>();
@@ -40,11 +42,13 @@ public class Dog : MonoBehaviour
         }
         CheckHeightDifference();
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Caught by Dog");
+            gm.bossSceneLife--;
             StartCoroutine(Stop());
         }
     }

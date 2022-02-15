@@ -6,6 +6,7 @@ public class GameManager : InheritSingleton<GameManager>
 {
     // º¸½ºÀü
     public int numOfCollectedKeys;
+    public int bossSceneLife;
 
     protected override void Awake()
     {
@@ -18,7 +19,7 @@ public class GameManager : InheritSingleton<GameManager>
 
     protected override void Start()
     {
-        
+        bossSceneLife = 3;
     }
 
     protected override void Update()

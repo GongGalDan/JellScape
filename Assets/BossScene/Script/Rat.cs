@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Rat : MonoBehaviour
 {
+    GameManager gm;
     NavMeshAgent nvAgent;
     GameObject player;
     Animator animator;
@@ -12,6 +13,7 @@ public class Rat : MonoBehaviour
 
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         nvAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
@@ -29,6 +31,7 @@ public class Rat : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Caught by Rat");
+            gm.bossSceneLife--;
             StartCoroutine(Stop());
         }
     }

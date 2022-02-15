@@ -5,20 +5,27 @@ using UnityEngine.AI;
 
 public class Cat : MonoBehaviour
 {
+    GameManager gm;
     NavMeshAgent nvAgent;
     Transform catDestination;
     Transform player;
     Animator animator;
     bool isStart;
+    float currentHeight;
+    float previousHeight;
+    float heightTimer;
 
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         nvAgent = GetComponent<NavMeshAgent>();
         catDestination = GameObject.Find("CatDestination").transform;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
         StartCoroutine(WaitForCine());
 
+        previousHeight = transform.position.y;
+        currentHeight = transform.position.y;
     }
 
     void Update()
@@ -33,12 +40,14 @@ public class Cat : MonoBehaviour
         {
             nvAgent.SetDestination(catDestination.position);
         }
+        CheckHeightDifference();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Caught by Cat");
+            gm.bossSceneLife--;
             StartCoroutine(Stop());
         }
     }
@@ -63,5 +72,32 @@ public class Cat : MonoBehaviour
 
         nvAgent.isStopped = false;
         animator.SetBool("Run", true);
+    }
+
+    void CheckHeightDifference()
+    {
+        previousHeight = transform.position.y;
+
+        heightTimer += Time.deltaTime;
+
+        if (heightTimer > 2f)
+        {
+            currentHeight = transform.position.y;
+            heightTimer = 0;
+        }
+
+        if (previousHeight < currentHeight)
+        {
+            animator.SetBool("Land", true);
+        }
+        else if (previousHeight > currentHeight)
+        {
+            animator.SetBool("Jump", true);
+        }
+        else
+        {
+            animator.SetBool("Jump", false);
+            animator.SetBool("Land", false);
+        }
     }
 }
