@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : InheritSingleton<GameManager>
 {
+    ScenesManager sm;
+
     // º¸½ºÀü
     public int numOfCollectedKeys;
     public int bossSceneLife;
@@ -15,6 +17,8 @@ public class GameManager : InheritSingleton<GameManager>
 
         if (obj.Length == 1) DontDestroyOnLoad(gameObject);
         else Destroy(gameObject);
+
+        sm = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
     }
 
     protected override void Start()
@@ -24,6 +28,10 @@ public class GameManager : InheritSingleton<GameManager>
 
     protected override void Update()
     {
-        
+        if (bossSceneLife == 0)
+        {
+            sm.OnPlayerDead();
+            bossSceneLife = 3;
+        }
     }
 }

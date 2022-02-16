@@ -12,10 +12,10 @@ public class ScenesManager : InheritSingleton<ScenesManager>
         base.Awake();
         var obj = FindObjectsOfType<ScenesManager>();
 
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-
         if (obj.Length == 1) DontDestroyOnLoad(gameObject); 
         else Destroy(gameObject);
+
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     protected override void Start(){}
@@ -50,6 +50,11 @@ public class ScenesManager : InheritSingleton<ScenesManager>
                 SceneManager.LoadScene("TitleScene");
             }
         }
+    }
+
+    public void OnPlayerDead()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 
     public void ToEnding()

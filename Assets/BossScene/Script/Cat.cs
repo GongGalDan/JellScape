@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public class Cat : MonoBehaviour
@@ -10,6 +11,8 @@ public class Cat : MonoBehaviour
     Transform catDestination;
     Transform player;
     Animator animator;
+    public UnityEvent onHit;
+
     bool isStart;
     float currentHeight;
     float previousHeight;
@@ -48,6 +51,7 @@ public class Cat : MonoBehaviour
         {
             Debug.Log("Caught by Cat");
             gm.bossSceneLife--;
+            onHit.Invoke();
             StartCoroutine(Stop());
         }
     }
