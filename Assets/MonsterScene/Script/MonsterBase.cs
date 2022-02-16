@@ -26,7 +26,8 @@ public class MonsterBase : MonoBehaviour
     public MonsterType type;
 
     protected Monster monster;
-    protected float hp;
+    public float hp;
+    protected float speed;
     [SerializeField]
     protected bool canAtk;
     protected float attackCoolTimeCalc;
@@ -97,12 +98,10 @@ public class MonsterBase : MonoBehaviour
         // 타겟이 Player이고 공격 범위 안에 있다면
         if (hit.transform.CompareTag("Player") && (distance <= monster.meleeAttackRange || distance <= monster.rangedAttackRange))
         {
-            Debug.Log("Player in Attack Range");
             return true;
         }
         else if (transform.position == player.transform.position)
         { 
-            Debug.Log("Player in Attack Range");
             return true;
         }
         else return false;

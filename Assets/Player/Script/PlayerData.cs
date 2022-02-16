@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    // ÇÃ·¹ÀÌ¾î ±âº» ´É·ÂÄ¡
+    // í”Œë ˆì´ì–´ ê¸°ë³¸ ëŠ¥ë ¥ì¹˜
     [SerializeField]
     public float hp = 100;
     [SerializeField]
@@ -20,7 +20,7 @@ public class PlayerData : MonoBehaviour
     [SerializeField]
     public float critical = 10;
 
-    // ÇÃ·¹ÀÌ¾î Ãß°¡ ´É·Â
+    // í”Œë ˆì´ì–´ ì¶”ê°€ ëŠ¥ë ¥
     // S Rank
     public bool invincible;
     public bool headShot;
@@ -41,10 +41,10 @@ public class PlayerData : MonoBehaviour
     public int addHp;
     public int addDefence;
     public int addSpeed;
-    // ¼Ó¼º ´É·ÂÀ» ÇÑ¹ø¸¸ »ÌÀ» ¼ö ÀÖµµ·Ï
-    // ÇÃ·¹ÀÌ¾îÀÇ Á©¸®ºóÀÌ ¼Ó¼ºÀ» °¡Áö°í ÀÖ´ÂÁö 
+    // ì†ì„± ëŠ¥ë ¥ì„ í•œë²ˆë§Œ ë½‘ì„ ìˆ˜ ìˆë„ë¡
+    // í”Œë ˆì´ì–´ì˜ ì ¤ë¦¬ë¹ˆì´ ì†ì„±ì„ ê°€ì§€ê³  ìˆëŠ”ì§€ 
     public bool isElementPicked;
-    // »Ì±âÃ¢¿¡¼­ ¼±ÅÃÇÏ´Â °¹¼ö
+    // ë½‘ê¸°ì°½ì—ì„œ ì„ íƒí•˜ëŠ” ê°¯ìˆ˜
     public int numSelectedAbilities;
 
 
@@ -55,7 +55,7 @@ public class PlayerData : MonoBehaviour
         UpdatePlayerData();
     }
 
-    // ÇÃ·¹ÀÌ¾î ´É·ÂÄ¡ ¾÷µ¥ÀÌÆ®
+    // í”Œë ˆì´ì–´ ëŠ¥ë ¥ì¹˜ ì—…ë°ì´íŠ¸
     public void UpdatePlayerData()
     {
         hp = 100 + (addHp * 20);
@@ -67,7 +67,7 @@ public class PlayerData : MonoBehaviour
         critical = 10 + (addCritical * 20);
     }
 
-    // ÇÃ·¹ÀÌ¾î ´É·ÂÄ¡ ³Ñ°ÜÁÖ±â
+    // í”Œë ˆì´ì–´ ëŠ¥ë ¥ì¹˜ ë„˜ê²¨ì£¼ê¸°
     public void SetPlayerData(float hp, float damage, float shootRate, float speed, float range
         , float defence, float critical)
     {

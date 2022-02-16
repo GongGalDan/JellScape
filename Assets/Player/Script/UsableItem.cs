@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,16 +8,19 @@ public class UsableItem : MonoBehaviour
     public BoxCollider meleeArea;
     public CapsuleCollider SpecialArea;
 
+    //ì•„ì´í…œ ì¶”ê°€ ëŠ¥ë ¥ ìˆ˜ì¹˜
     public float _addDamage;
     public float _addShootRate;
     public float _addRange;
     public float _addDefence;
 
+
+    //ë”œë ˆì´ ì‹œê°„
     float useDelay=0;
     float apoloDelay = 0.7f;
     float stickDelay = 1f;
 
-    Player player; //Ã¼·Â, speed ÀÌµ¿¼Óµµ
+    Player player; //ì²´ë ¥, speed ì´ë™ì†ë„
     Items items;
     Animator animator;
 
@@ -46,21 +49,21 @@ public class UsableItem : MonoBehaviour
     }
 
 
+    //ì•„ì´í…œ ê³µê²©
     void Use()
     {
         if (Input.GetMouseButtonDown(1) && items.currentItems.Count == 0)
         {
-            Debug.Log("È¹µæÇÑ ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.");
+            Debug.Log("íšë“í•œ ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
-
 
         if (Input.GetMouseButtonDown(1) && items.currentItems.Count != 0 && useDelay <= 0)
         {
 
             if (items.currentItems[0] == items.itemlist[0])
             {
-                Debug.Log("¾ÆÆú·Î·Î °ø°İ Áß");
+                Debug.Log("ì•„í´ë¡œë¡œ ê³µê²© ì¤‘");
                 StopCoroutine("Swing");
                 StartCoroutine("Swing");
                 animator.SetTrigger("doAttack");
@@ -69,7 +72,7 @@ public class UsableItem : MonoBehaviour
 
             if (items.currentItems[0] == items.itemlist[1])
             {
-                Debug.Log("½ºÆ½À¸·Î °ø°İ Áß");
+                Debug.Log("ìŠ¤í‹±ìœ¼ë¡œ ê³µê²© ì¤‘");
                 StopCoroutine("Swing");
                 StartCoroutine("Swing");
                 animator.SetTrigger("doAttack");
@@ -78,22 +81,23 @@ public class UsableItem : MonoBehaviour
 
             if (items.currentItems[0] == items.itemlist[2])
             {
-                Debug.Log("¾óÀ½ °©¿ÊÀ¸·Î ¹æ¾î Áß");
+                Debug.Log("ì–¼ìŒ ê°‘ì˜·ìœ¼ë¡œ ë°©ì–´ ì¤‘");
                 animator.SetTrigger("doDie");
             }
         }
 
     }
 
+    //animationì— ë§ê²Œ attack ì„¤ì •
     IEnumerator Swing()
     {
         yield return new WaitForSeconds(0.5f);
         meleeArea.enabled = true;
-        Debug.Log("°ø°İ½ÃÀÛ");
+        Debug.Log("ê³µê²©ì‹œì‘");
 
         yield return new WaitForSeconds(0.01f);
         meleeArea.enabled = false;
-        Debug.Log("°ø°İ³¡");
+        Debug.Log("ê³µê²©ë");
 
         yield return new WaitForSeconds(0.5f);
     }

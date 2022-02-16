@@ -1,19 +1,25 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicWeapon : MonoBehaviour
 {
     Player player;
-    public GameObject bulletPrefab; //ÃÑ¾ËÀÇ ¸ğ¾ç
-    public TrailRenderer basicEffect; //ÃÑ¾Ë ÀÌÆåÆ®
-    public Transform bulletPos; //ÃÑ¾ËÀÌ ¹ß»çµÇ´Â À§Ä¡
+    PlayerData playerData;
+
     Animator animator;
 
-    private float shootReady; //¿¬»ç¼Óµµ°è»ê
+    public GameObject bulletPrefab; //ì´ì•Œì˜ ëª¨ì–‘
+    public Transform baiscPos; //ì´ì•Œì´ ë°œì‚¬ë˜ëŠ” ìœ„ì¹˜
+    public Transform frontPos; //frontJelly ìœ„ì¹˜
+    public Transform sidePos1; //sideJElly ìœ„ì¹˜
+    public Transform sidePos2; 
+
+    private float shootReady; //ì—°ì‚¬ì†ë„ê³„ì‚°
 
     private void Start()
     {
+        playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         animator = GetComponentInParent<Animator>();
         player = GetComponentInParent<Player>();
     }
@@ -32,51 +38,60 @@ public class BasicWeapon : MonoBehaviour
 
     IEnumerator Shoot()
     {
-        if (Input.GetMouseButtonDown(0) && shootReady <= 0)
+        if (Input.GetMouseButtonDown(0) && shootReady <= 0 && playerData.hp !=0)
         {
-            shootReady += player.shootRate; //µô·¹ÀÌ½Ã°£
-            //yield return new WaitForSeconds(0.05f);
+            shootReady += player.shootRate; //ë”œë ˆì´ì‹œê°„
             animator.SetTrigger("doThrow");
 
             yield return new WaitForSeconds(0.3f);
-            GameObject bullet = Instantiate(bulletPrefab); //bulletÀº prefab¸ğ¾çÀ¸·Î
-            bullet.transform.position = bulletPos.position; //bullotposÀÇ À§Ä¡¿¡¼­
-            bullet.transform.forward = bulletPos.forward; //bulletposÀÇ forward·Î ³ª¾Æ°£´Ù
+            GameObject bullet = Instantiate(bulletPrefab); //bulletì€ prefabëª¨ì–‘ìœ¼ë¡œ
+            bullet.transform.position = baiscPos.position; //bullotposì˜ ìœ„ì¹˜ì—ì„œ
+            bullet.transform.forward = baiscPos.forward; //bulletposì˜ forwardë¡œ ë‚˜ì•„ê°„ë‹¤
+
+            if (playerData.frontJelly == true)
+            {
+                FrontJelly();
+            }
+
+            if(playerData.sideJelly ==true)
+            {
+                SideJelly1();
+                SideJelly2();
+            }
 
             Destroy(bullet, player.range);
         }
     }
 
-    // »ÌÀº ¼Ó¼º ´É·Âµé·Î ¹Ù²ãÁÖ±â
-    /*
-    void ChangeBullet()
+    //FrontJelly ëŠ¥ë ¥
+    void FrontJelly()
     {
-        TrailRenderer swap;
-        if(Input.GetKeyDown("1"))
-        {
-            basicEffect.startColor = Color.red;
-        }
+        GameObject bullet = Instantiate(bulletPrefab);
+        bullet.transform.position = frontPos.position; 
+        bullet.transform.forward = frontPos.forward;
 
-        if (Input.GetKeyDown("2"))
-        {
-            basicEffect.startColor = Color.blue;
-        }
+        Destroy(bullet, player.range);
+    }
 
-        if (Input.GetKeyDown("3"))
-        {
-            basicEffect.startColor = Color.green;
-        }
+    //Left SideJelly ëŠ¥ë ¥
+    void SideJelly1()
+    {
+        GameObject bullet = Instantiate(bulletPrefab);
+        bullet.transform.position = sidePos1.position;
+        bullet.transform.forward = -sidePos1.right;
 
-        if (Input.GetKeyDown("4"))
-        {
-            basicEffect.startColor = Color.yellow;
-        }
+        Destroy(bullet, player.range);
+    }
 
-        if (Input.GetKeyDown("5"))
-        {
-            basicEffect.startColor = Color.black;
-        }
+    //Right SideJelly ëŠ¥ë ¥
+    void SideJelly2()
+    {
+        GameObject bullet = Instantiate(bulletPrefab);
+        bullet.transform.position = sidePos2.position;
+        bullet.transform.forward = sidePos2.right;
 
-    }*/
+        Destroy(bullet, player.range);
+
+    }
 
 }

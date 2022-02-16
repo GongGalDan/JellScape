@@ -1,13 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Items : MonoBehaviour
 {
-    //½ºÀ§Äª
-    public List<GameObject> itemlist; //item object¸¦ ³Ö°í
-    public List<GameObject> currentItems = new List<GameObject>();//ÇöÀç ÀÔ¼öÇÑ ¾ÆÀÌÅÛÀÌ Ç¥½ÃµÇµµ·Ï addÇØÁØ´Ù
-
+    //ìŠ¤ìœ„ì¹­
+    public List<GameObject> itemlist; //item objectë¥¼ ë„£ê³ 
+    public List<GameObject> currentItems = new List<GameObject>();//í˜„ì¬ ì…ìˆ˜í•œ ì•„ì´í…œì´ í‘œì‹œë˜ë„ë¡ addí•´ì¤€ë‹¤
 
     public float switchDelay;
     bool isSwitching;
@@ -15,6 +14,7 @@ public class Items : MonoBehaviour
     Player player;
     UsableItem usableItem;
     Animator animator;
+
     private void Start()
     {
         player = GetComponent<Player>();
@@ -28,16 +28,16 @@ public class Items : MonoBehaviour
         removeItem();
     }
 
-
-    void addAbility(GameObject currentItem) //addAbilityÀÇ ¸Å°³º¯¼ö ¼±¾ğ.
+    //ì•„ì´í…œ ëŠ¥ë ¥ì¹˜ë¥¼ ë”í•´ì£¼ëŠ” í•¨ìˆ˜
+    void addAbility(GameObject currentItem) 
     {
-        //playerÀÇ ability¿¡ GameObejctÀÎ currentItem¿¡ usableItemÀ» ºÒ·¯¿Í¼­ ability¸¦ ´õÇØÁÜ
         player.damage += currentItem.GetComponent<UsableItem>()._addDamage;
         player.shootRate -= currentItem.GetComponent<UsableItem>()._addShootRate;
         player.range += currentItem.GetComponent<UsableItem>()._addRange;
         player.defence += currentItem.GetComponent<UsableItem>()._addDefence;
     }
 
+    //ì•„ì´í…œ ëŠ¥ë ¥ì¹˜ë¥¼ ë¹¼ì£¼ëŠ” í•¨ìˆ˜
     void deleteAbility(GameObject currentItem)
     {
         player.damage -= currentItem.GetComponent<UsableItem>()._addDamage;
@@ -46,72 +46,70 @@ public class Items : MonoBehaviour
         player.defence -= currentItem.GetComponent<UsableItem>()._addDefence;
     }
 
+    //ì•„ì´í…œ íšë“
     private void OnTriggerEnter(Collider other)
     {
-
-            if (other.CompareTag("Apolo"))
+        if (other.CompareTag("Apolo"))
+        {
+            if (currentItems.Count == 2)
             {
-                if (currentItems.Count == 2)
-                {
-                Debug.Log("´õÀÌ»ó ¸ÔÀ» ¼ö ¾ø½À´Ï´Ù.");
+                Debug.Log("ë”ì´ìƒ ë¨¹ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
                 return;
-                }
-
-                currentItems.Add(itemlist[0]);
-
-                if (currentItems.Count == 1)
-                {
-                usableItem = currentItems[0].GetComponent<UsableItem>();
-                addAbility(currentItems[0]);
-                }
-
-                Destroy(other.gameObject);
-
             }
 
+            currentItems.Add(itemlist[0]);
 
-            else if(other.CompareTag("Stick"))
+            if (currentItems.Count == 1)
             {
-                if (currentItems.Count == 2)
-                {
-                Debug.Log("´õÀÌ»ó ¸ÔÀ» ¼ö ¾ø½À´Ï´Ù.");
-                return;
-                }
-
-                currentItems.Add(itemlist[1]);
-
-                if (currentItems.Count == 1)
-                {
                 usableItem = currentItems[0].GetComponent<UsableItem>();
                 addAbility(currentItems[0]);
-                }
-
-                Destroy(other.gameObject);
             }
 
-            else if (other.CompareTag("Icesuit"))
+            Destroy(other.gameObject);
+
+        }
+
+        else if(other.CompareTag("Stick"))
+        {
+            if (currentItems.Count == 2)
             {
-                if(currentItems.Count == 2)
-                {
-                Debug.Log("´õÀÌ»ó ¸ÔÀ» ¼ö ¾ø½À´Ï´Ù.");
+                Debug.Log("ë”ì´ìƒ ë¨¹ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
                 return;
-                }
-                Debug.Log("¾óÀ½");
+            }
 
-                currentItems.Add(itemlist[2]);
+            currentItems.Add(itemlist[1]);
 
-                if (currentItems.Count == 1)
-                {
+             if (currentItems.Count == 1)
+             {
                 usableItem = currentItems[0].GetComponent<UsableItem>();
                 addAbility(currentItems[0]);
-                }
+             }
 
-                Destroy(other.gameObject);
+             Destroy(other.gameObject);
+        }
+
+        else if (other.CompareTag("Icesuit"))
+        {
+            if(currentItems.Count == 2)
+            {
+                Debug.Log("ë”ì´ìƒ ë¨¹ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+                return;
+            }
+            Debug.Log("ì–¼ìŒ");
+
+            currentItems.Add(itemlist[2]);
+
+            if (currentItems.Count == 1)
+            {
+                usableItem = currentItems[0].GetComponent<UsableItem>();
+                addAbility(currentItems[0]);
             }
 
-        
+                Destroy(other.gameObject);
+        }
     }
 
+    //ì•„ì´í…œ ì‚¬ìš©
      void UpdateItem()
     {
         if (currentItems.Count == 0)
@@ -124,7 +122,8 @@ public class Items : MonoBehaviour
         {
             currentItems[1].SetActive(false);
         }
-        if(Input.GetAxis("Mouse ScrollWheel") !=0 && !isSwitching) //isSwitchingÀÌ falseÀÏ ¶§
+
+        if(Input.GetAxis("Mouse ScrollWheel") !=0 && !isSwitching) //isSwitchingì´ falseì¼ ë•Œ
         {
             if (currentItems.Count != 2)
                 return;
@@ -139,7 +138,7 @@ public class Items : MonoBehaviour
         }
     }
 
-
+    //ì•„ì´í…œ êµì²´
     void swap()
     {
         GameObject swpItm;
@@ -148,15 +147,15 @@ public class Items : MonoBehaviour
         currentItems[1] = swpItm;
     }
 
-
+    //ì•„ì´í…œ ì œê±°
     void removeItem()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            currentItems[0].SetActive(false); //²ô°í
-            deleteAbility(currentItems[0]);//´É·ÂÄ¡ »èÁ¦
-            currentItems.Remove(currentItems[0]);//Áö¿î´Ù.
-            addAbility(currentItems[0]);//°¡Áö°í ÀÖ´ø ¾ÆÀÌÅÛÀÌ 0¹øÂ°°¡ µÇ¼­ ´É·ÂÄ¡¸¦ ´õÇØÁØ´Ù.
+            currentItems[0].SetActive(false); //ë„ê³ 
+            deleteAbility(currentItems[0]);//ëŠ¥ë ¥ì¹˜ ì‚­ì œ
+            currentItems.Remove(currentItems[0]);//ì§€ìš´ë‹¤.
+            addAbility(currentItems[0]);//ê°€ì§€ê³  ìˆë˜ ì•„ì´í…œì´ 0ë²ˆì§¸ê°€ ë˜ì„œ ëŠ¥ë ¥ì¹˜ë¥¼ ë”í•´ì¤€ë‹¤.
         }
     }
 
