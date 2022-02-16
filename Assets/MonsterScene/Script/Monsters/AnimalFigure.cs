@@ -54,6 +54,7 @@ public class AnimalFigure : MonsterMeleeFSM
             if(playerData.isElementPicked == true)
             {
                 StartCoroutine("ElementJelly");
+                Destroy(other.gameObject);
             }
 
             //헤드샷 
@@ -64,6 +65,7 @@ public class AnimalFigure : MonsterMeleeFSM
                 {
                     hp -= 1000;
                     Debug.Log("헤드 샷");
+                    Destroy(other.gameObject);
                 }
             }
 
@@ -73,11 +75,13 @@ public class AnimalFigure : MonsterMeleeFSM
             {
                 hp -= playerStats.damage * 2;
                 Debug.Log(hp + "크리티컬 데미지");
+                Destroy(other.gameObject);
             }
             else
             {
                 hp -= playerStats.damage;
                 Debug.Log(hp + "일반 데미지");
+                Destroy(other.gameObject);
             }
             Destroy(other.gameObject); //충돌 하면 bullet이 사라지도록
 
