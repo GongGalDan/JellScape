@@ -54,37 +54,35 @@ public class AnimalFigure : MonsterMeleeFSM
             if(playerData.isElementPicked == true)
             {
                 StartCoroutine("ElementJelly");
-                Destroy(other.gameObject);
             }
 
             //헤드샷 
             if(playerData.headShot == true)
             {
-                int headShotRandom = Random.Range(0, 101);
+                int headShotRandom = Random.Range(0, 100);
                 if (headShotRandom < 3)
                 {
                     hp -= 1000;
                     Debug.Log("헤드 샷");
-                    Destroy(other.gameObject);
                 }
             }
 
-            //크리티컬 데미지
-            int criticalRandom = Random.Range(0, 101);
-            if(criticalRandom < playerStats.critical)
+            if (playerData.isElementPicked == false)
             {
-                hp -= playerStats.damage * 2;
-                Debug.Log(hp + "크리티컬 데미지");
-                Destroy(other.gameObject);
-            }
-            else
-            {
-                hp -= playerStats.damage;
-                Debug.Log(hp + "일반 데미지");
-                Destroy(other.gameObject);
+                //크리티컬 데미지
+                int criticalRandom = Random.Range(0, 101);
+                if (criticalRandom < playerStats.critical)
+                {
+                    hp -= playerStats.damage * 2;
+                    Debug.Log(hp + "크리티컬 데미지");
+                }
+                else
+                {
+                    hp -= playerStats.damage;
+                    Debug.Log(hp + "일반 데미지");
+                }
             }
             Destroy(other.gameObject); //충돌 하면 bullet이 사라지도록
-
         }
 
         //아이템 공격
@@ -119,11 +117,13 @@ public class AnimalFigure : MonsterMeleeFSM
         {
             //3초간 1초마다 hp가 5씩 줄어든다.
             hp -= 5;
+            Debug.Log("hotjelly 1");
             yield return new WaitForSeconds(1f);
             hp -= 5;
+            Debug.Log("hotjelly 2");
             yield return new WaitForSeconds(1f);
             hp -= 5;
-
+            Debug.Log("hotjelly 3");
         }
 
         //frozenJelly
@@ -131,6 +131,7 @@ public class AnimalFigure : MonsterMeleeFSM
         {
             //적의 이동속도가 느려진다.
             speed *= 0.5f;
+            Debug.Log("iceJelly");
         }
 
         //poisonJelly
@@ -138,8 +139,10 @@ public class AnimalFigure : MonsterMeleeFSM
         {
             //hp가 10씩 3초마다 줄어든다.
             hp -= 10;
+            Debug.Log("poisionJelly 1");
             yield return new WaitForSeconds(3f);
             hp -= 10;
+            Debug.Log("poisionJelly 2");
         }
 
         //sparkJelly
