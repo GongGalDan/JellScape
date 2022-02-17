@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody myRigid;
     private Animator animator;
+    private CapsuleCollider collider;
+    private Coroutine turnOnCollider;
 
     bool isStart;
 
@@ -54,6 +56,7 @@ public class PlayerController : MonoBehaviour
         applySpeed = walkSpeed;
         animator = GetComponent<Animator>();
         defaultYPos = cam.transform.localPosition.y;
+        collider = GetComponent<CapsuleCollider>();
 
         StartCoroutine(WaitForCine());
     }
@@ -63,6 +66,11 @@ public class PlayerController : MonoBehaviour
         if (!isStart) return;
 
         Run();
+
+        if (!collider.enabled && turnOnCollider == null)
+        {
+            turnOnCollider = StartCoroutine(TurnOnCollider());
+        }
     }
 
     void FixedUpdate()
@@ -201,5 +209,13 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(15f);
         isStart = true;
+    }
+
+    IEnumerator TurnOnCollider()
+    {
+        yield return new WaitForSeconds(5f);
+
+        collider.enabled = true;
+        turnOnCollider = null;
     }
 }

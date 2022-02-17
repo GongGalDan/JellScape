@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public class Dog : MonoBehaviour
@@ -10,6 +11,8 @@ public class Dog : MonoBehaviour
     GameObject dogDestination;
     Transform player;
     Animator animator;
+    public UnityEvent onHit;
+
     bool isStart;
     float currentHeight;
     float previousHeight;
@@ -49,6 +52,7 @@ public class Dog : MonoBehaviour
         {
             Debug.Log("Caught by Dog");
             gm.bossSceneLife--;
+            onHit.Invoke();
             StartCoroutine(Stop());
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public class Rat : MonoBehaviour
@@ -9,6 +10,7 @@ public class Rat : MonoBehaviour
     NavMeshAgent nvAgent;
     GameObject player;
     Animator animator;
+    public UnityEvent onHit;
     bool isStart;
 
     void Start()
@@ -32,6 +34,7 @@ public class Rat : MonoBehaviour
         {
             Debug.Log("Caught by Rat");
             gm.bossSceneLife--;
+            onHit.Invoke();
             StartCoroutine(Stop());
         }
     }
