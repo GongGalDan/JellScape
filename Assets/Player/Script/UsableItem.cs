@@ -6,14 +6,15 @@ public class UsableItem : MonoBehaviour
 {
     public float Damage;
     public BoxCollider meleeArea;
-    public CapsuleCollider SpecialArea;
+
+    public string itemName;
+    public Sprite itemImage; //아이템 이미지
 
     //아이템 추가 능력 수치
     public float _addDamage;
     public float _addShootRate;
     public float _addRange;
     public float _addDefence;
-
 
     //딜레이 시간
     float useDelay=0;
