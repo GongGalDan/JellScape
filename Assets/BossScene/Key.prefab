@@ -129,6 +129,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed161b33c204ffa45bbaf68365f87d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &9187497573872377343
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -156,11 +165,11 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.14748563
+  - screenRelativeHeight: 0.34837326
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5584621628640608299}
-  - screenRelativeHeight: 0.046543673
+  - screenRelativeHeight: 0.14561214
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 3452931718779813446}

@@ -16,7 +16,7 @@ public class Exit : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            sm.ToEnding();
+            sm.ToEndCutScene();
         }
     }
 }
