@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody myRigid;
     private Animator animator;
     private CapsuleCollider collider;
-    private Coroutine turnOnCollider;
+    private Coroutine ChangeLayer;
 
     bool isStart;
 
@@ -67,9 +67,9 @@ public class PlayerController : MonoBehaviour
 
         Run();
 
-        if (!collider.enabled && turnOnCollider == null)
+        if (gameObject.layer == 12 && ChangeLayer == null)
         {
-            turnOnCollider = StartCoroutine(TurnOnCollider());
+            ChangeLayer = StartCoroutine(ChangePlayerLayer());
         }
     }
 
@@ -211,11 +211,11 @@ public class PlayerController : MonoBehaviour
         isStart = true;
     }
 
-    IEnumerator TurnOnCollider()
+    IEnumerator ChangePlayerLayer()
     {
         yield return new WaitForSeconds(5f);
 
-        collider.enabled = true;
-        turnOnCollider = null;
+        gameObject.layer = 0;
+        ChangeLayer = null;
     }
 }

@@ -57,10 +57,40 @@ public class ScenesManager : InheritSingleton<ScenesManager>
         SceneManager.LoadScene("TitleScene");
     }
 
-    public void ToEnding()
+    public void ToFirstCutScene()
+    {
+
+    }
+
+    public void ToFirstStage()
+    {
+
+    }
+
+    public void ToSecondStage()
+    {
+
+    }
+
+    public void ToThirdStage()
+    {
+
+    }
+    
+    public void ToBossStage()
+    {
+
+    }
+
+    public void ToEndCutScene()
     {
         if (gm.numOfCollectedKeys < 4) return;
-        
+
         SceneManager.LoadScene("Ending");
+    }
+
+    public void ToTitle()
+    {
+
     }
 }

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Key : MonoBehaviour
 {
     GameManager gm;
+    public UnityEvent OnGetKey;
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class Key : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gm.numOfCollectedKeys++;
+            OnGetKey.Invoke();
 
             gameObject.SetActive(false);
         }

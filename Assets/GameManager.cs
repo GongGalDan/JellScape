@@ -23,6 +23,7 @@ public class GameManager : InheritSingleton<GameManager>
 
     protected override void Start()
     {
+        numOfCollectedKeys = 0;
         bossSceneLife = 3;
     }
 
