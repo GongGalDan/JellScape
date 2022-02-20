@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Dead();
-        StartCoroutine("RandomAbility");
+        RandomAbility();
     }
 
 

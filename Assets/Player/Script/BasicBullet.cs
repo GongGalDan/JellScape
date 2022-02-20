@@ -81,7 +81,14 @@ public class BasicBullet : MonoBehaviour
         {
             //검정
             bulletColor.color = new Color(30 / 255f, 31 / 255f, 30 / 255f);
-            trailColor.color = Color.black;
+            trailColor.color = new Color(0 / 255f, 0 / 255f, 0 / 255f);
+        }
+
+        else
+        {
+            //분홍
+            bulletColor.color = new Color(245 / 255f, 54 / 255f, 178 / 255f);
+            trailColor.color = new Color(245 / 255f, 54 / 255f, 121 / 255f);
         }
     }
 

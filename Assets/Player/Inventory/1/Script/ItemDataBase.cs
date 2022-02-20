@@ -10,14 +10,7 @@ public class ItemDataBase : MonoBehaviour
         instance = this;
     }
 
-    public List<Item> itemDB = new List<Item>();
-
-    public GameObject fieldItemPrefab; //생성할 아이템
-    public Vector3[] pos; // 생성 아이템 위치
-
-    private void Start()
-    {
-        for(int i = - ; object <)
-    }
+    public List<ItemType> itemDB;
+    public List<GameObject> currentItems = new List<GameObject>(); //
 
 }
