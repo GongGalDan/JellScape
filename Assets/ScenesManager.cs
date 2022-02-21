@@ -47,6 +47,27 @@ public class ScenesManager : InheritSingleton<ScenesManager>
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
+                SceneManager.LoadScene("Stage1");
+            }
+        }
+        if (SceneManager.GetActiveScene().name == "Stage1")
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("SecondStage");
+            }
+        }
+        if (SceneManager.GetActiveScene().name == "SecondStage")
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("ThirdStage");
+            }
+        }
+        if (SceneManager.GetActiveScene().name == "ThirdStage")
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
                 SceneManager.LoadScene("TitleScene");
             }
         }
