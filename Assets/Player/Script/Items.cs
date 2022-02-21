@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
+
+    public Transform slotsParent;
     //스위칭
     public List<GameObject> itemlist; //item object를 넣고
     public List<GameObject> currentItems = new List<GameObject>();//현재 입수한 아이템이 표시되도록 add해준다
@@ -14,12 +16,14 @@ public class Items : MonoBehaviour
     Player player;
     UsableItem usableItem;
     Animator animator;
+    public Slot4[] slots;
 
     private void Start()
     {
         player = GetComponent<Player>();
         animator = GetComponent<Animator>();
-
+        //slots = slotsParent.GetComponentsInChildren<Slot4>();
+        usableItem = GetComponentInChildren<UsableItem>();
     }
 
     void Update()
@@ -58,6 +62,7 @@ public class Items : MonoBehaviour
             }
 
             currentItems.Add(itemlist[0]);
+            //slots[0].image.sprite = usableItem.itemImage;
 
             if (currentItems.Count == 1)
             {
@@ -78,8 +83,9 @@ public class Items : MonoBehaviour
             }
 
             currentItems.Add(itemlist[1]);
+            //slots[0].image.sprite = usableItem.itemImage;
 
-             if (currentItems.Count == 1)
+            if (currentItems.Count == 1)
              {
                 usableItem = currentItems[0].GetComponent<UsableItem>();
                 addAbility(currentItems[0]);
@@ -98,6 +104,7 @@ public class Items : MonoBehaviour
             Debug.Log("얼음");
 
             currentItems.Add(itemlist[2]);
+            //slots[0].image.sprite = usableItem.itemImage;
 
             if (currentItems.Count == 1)
             {

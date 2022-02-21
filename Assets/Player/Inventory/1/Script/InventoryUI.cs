@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
-{
+{/*
     Inventory inven;
 
     public GameObject inventoryPanel; // inventoryUI
@@ -47,5 +47,5 @@ public class InventoryUI : MonoBehaviour
     {
         inven.SlotCnt++;
     }
-
+    */
 }

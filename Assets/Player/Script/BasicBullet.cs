@@ -52,8 +52,11 @@ public class BasicBullet : MonoBehaviour
         if (playerData.hotJelly == true)
         {
             //빨강
-            bulletColor.color = new Color(250 / 255f, 50 / 255f, 70 / 255f);
-            trailColor.color = new Color(145 / 255f, 47 / 255f, 60 / 255f);
+           // bulletColor.color = new Color(250 / 255f, 50 / 255f, 70 / 255f);
+            //trailColor.color = new Color(145 / 255f, 47 / 255f, 60 / 255f);
+
+            bulletColor.color = new Color(250 , 50 , 70 );
+            trailColor.color = new Color(145 , 47 , 60);
         }
 
         if (playerData.frozenJelly == true)
@@ -83,13 +86,13 @@ public class BasicBullet : MonoBehaviour
             bulletColor.color = new Color(30 / 255f, 31 / 255f, 30 / 255f);
             trailColor.color = new Color(0 / 255f, 0 / 255f, 0 / 255f);
         }
-
+        /*
         else
         {
             //분홍
             bulletColor.color = new Color(245 / 255f, 54 / 255f, 178 / 255f);
             trailColor.color = new Color(245 / 255f, 54 / 255f, 121 / 255f);
-        }
+        }*/
     }
 
 }
