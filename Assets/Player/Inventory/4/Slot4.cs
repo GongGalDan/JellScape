@@ -5,25 +5,16 @@ using UnityEngine.UI;
 
 public class Slot4 : MonoBehaviour
 {
-    public Image image;
-    /*
-    private Item3 _item;
-    public Item3 item
-    {
-        get { return _item; }
-        set
-        {
-            _item = value;
-            if(_item != null)
-            {
-                image.sprite = item.itemImage;
-                image.color = new Color(1, 1, 1, 1);
-            }
+    public List<Image> itemImage;
+    public Image currentItemImage;
+    ItemDB4 itemDataBase;
 
-            else
-            {
-                image.color = new Color(1, 1, 1, 0);
-            }
-        }
-        */
+    private void Start()
+    {
+        itemDataBase = GameObject.Find("GameManager").GetComponent<ItemDB4>();
+       // slot1 = GameObject.Find("SlotItem1").GetComponent<Image>();
+        //slot2 = GameObject.Find("SlotItem2").GetComponent<Image>();
+    }
+
+
 }

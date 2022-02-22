@@ -17,6 +17,7 @@ public class Items : MonoBehaviour
     UsableItem usableItem;
     Animator animator;
     public Slot4[] slots;
+    ItemDB4 itemDataBase;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class Items : MonoBehaviour
         animator = GetComponent<Animator>();
         //slots = slotsParent.GetComponentsInChildren<Slot4>();
         usableItem = GetComponentInChildren<UsableItem>();
+        itemDataBase = GameObject.Find("GameManager").GetComponent<ItemDB4>();
     }
 
     void Update()
@@ -62,7 +64,7 @@ public class Items : MonoBehaviour
             }
 
             currentItems.Add(itemlist[0]);
-            //slots[0].image.sprite = usableItem.itemImage;
+            itemDataBase.AllItemList[0].isUsing = true;
 
             if (currentItems.Count == 1)
             {
@@ -83,7 +85,7 @@ public class Items : MonoBehaviour
             }
 
             currentItems.Add(itemlist[1]);
-            //slots[0].image.sprite = usableItem.itemImage;
+            itemDataBase.AllItemList[1].isUsing = true;
 
             if (currentItems.Count == 1)
              {
@@ -104,7 +106,7 @@ public class Items : MonoBehaviour
             Debug.Log("얼음");
 
             currentItems.Add(itemlist[2]);
-            //slots[0].image.sprite = usableItem.itemImage;
+            itemDataBase.AllItemList[2].isUsing = true;
 
             if (currentItems.Count == 1)
             {
@@ -159,6 +161,21 @@ public class Items : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            if(currentItems[0].CompareTag("Apolo"))
+            {
+                itemDataBase.AllItemList[0].isUsing = false;
+            }
+
+            if (currentItems[0].CompareTag("Stick"))
+            {
+                itemDataBase.AllItemList[1].isUsing = false;
+            }
+
+            if (currentItems[0].CompareTag("Icesuit"))
+            {
+                itemDataBase.AllItemList[2].isUsing = false;
+            }
+
             currentItems[0].SetActive(false); //끄고
             deleteAbility(currentItems[0]);//능력치 삭제
             currentItems.Remove(currentItems[0]);//지운다.
