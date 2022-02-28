@@ -23,47 +23,72 @@ public class Inventory4 : MonoBehaviour
     }
 
 
-    //slot 1 2 위치에 이미지를 넣고 싶다...
     void AddItem()
     {
        if(itemDataBase.AllItemList[0].isUsing == true)
-        {
-            if (slot1.sprite = null)
-            {
-                slot1.sprite = itemImage[0];
-            }
-
-            if (slot1.sprite != null && slot1.sprite != itemImage[0])
+        { 
+            if (slot1.sprite != null && slot1.sprite !=itemImage[0])
             {
                 slot2.sprite = itemImage[0];
-                
+            }
+            else
+            {
+                slot1.sprite = itemImage[0];
             }
         }
 
         if (itemDataBase.AllItemList[1].isUsing == true)
         {
-            if(slot1.sprite = null)
-            {
-                slot1.sprite = itemImage[1];
-            }
             if (slot1.sprite != null && slot1.sprite != itemImage[1])
             {
                 slot2.sprite = itemImage[1];
+            }
+            else
+            {
+                slot1.sprite = itemImage[1];
             }
         }
 
         if (itemDataBase.AllItemList[2].isUsing == true)
         {
-            if (slot1.sprite = null)
-            {
-                slot1.sprite = itemImage[2];
-            }
-
             if (slot1.sprite != null && slot1.sprite != itemImage[2])
             {
                 slot2.sprite = itemImage[2];
             }
+            else
+            {
+                slot1.sprite = itemImage[2];
+            }
         }
     }
 
+
+     public void SwapItemImage()
+    {
+        Sprite swapImage;
+        swapImage = slot1.sprite;
+        slot1.sprite = slot2.sprite;
+        slot2.sprite = swapImage;
+    }
+
+    public void RemoveItemImage()
+    {
+        if(itemDataBase.AllItemList[0].isUsing == false && slot1.sprite ==itemImage[0])
+        {
+            slot1.sprite = null;
+            slot2.sprite = slot1.sprite;
+        }
+
+        if (itemDataBase.AllItemList[1].isUsing == false && slot1.sprite == itemImage[1])
+        {
+            slot1.sprite = null;
+            slot2.sprite = slot1.sprite;
+        }
+
+        if (itemDataBase.AllItemList[2].isUsing == false && slot1.sprite == itemImage[2])
+        {
+            slot1.sprite = null;
+            slot2.sprite = slot1.sprite;
+        }
+    }
 }

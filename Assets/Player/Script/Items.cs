@@ -18,20 +18,21 @@ public class Items : MonoBehaviour
     Animator animator;
     public Slot4[] slots;
     ItemDB4 itemDataBase;
+    Inventory4 inventory;
 
     private void Start()
     {
         player = GetComponent<Player>();
         animator = GetComponent<Animator>();
-        //slots = slotsParent.GetComponentsInChildren<Slot4>();
         usableItem = GetComponentInChildren<UsableItem>();
         itemDataBase = GameObject.Find("GameManager").GetComponent<ItemDB4>();
+        inventory = GameObject.Find("Inventory").GetComponent<Inventory4>();
     }
 
     void Update()
     {
         UpdateItem();
-        removeItem();
+        RemoveItem();
     }
 
     //아이템 능력치를 더해주는 함수
@@ -141,6 +142,7 @@ public class Items : MonoBehaviour
                 animator.SetTrigger("doSwap");
                 deleteAbility(currentItems[0]);
                 swap();
+                inventory.SwapItemImage();
                 addAbility(currentItems[0]);
                 StartCoroutine(SwitchDelay());
             }
@@ -157,7 +159,7 @@ public class Items : MonoBehaviour
     }
 
     //아이템 제거
-    void removeItem()
+    void RemoveItem()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -177,6 +179,7 @@ public class Items : MonoBehaviour
             }
 
             currentItems[0].SetActive(false); //끄고
+            inventory.RemoveItemImage();
             deleteAbility(currentItems[0]);//능력치 삭제
             currentItems.Remove(currentItems[0]);//지운다.
             addAbility(currentItems[0]);//가지고 있던 아이템이 0번째가 되서 능력치를 더해준다.
