@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
-    //아이템 종류
+    // 아이템 종류
     public enum ConditionType{둔화, 미끄러짐, 데미지};
     public ConditionType condition;
     public BoxCollider trapArea;
@@ -23,7 +23,7 @@ public class Trap : MonoBehaviour
         trapArea.enabled = true;
     }
 
-    //충돌 처리
+    // 충돌 처리
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -32,12 +32,12 @@ public class Trap : MonoBehaviour
         }
     }
 
-    //방해요소 능력
+    // 방해요소 능력
     IEnumerator Condition()
     {
         if (condition == ConditionType.둔화)
         {
-            //닿으면 속도가 느려짐
+            // 닿으면 속도가 느려짐
             playerStats.speed -= 1;
             trapArea.enabled = false;
 
@@ -47,12 +47,12 @@ public class Trap : MonoBehaviour
             yield return new WaitForSeconds(3);
             
             playerStats.speed = playerdata.speed; 
-            //3초가 지나면 뽑기로 더해진 능력치를 넣어서 원래대로 돌린다.
+            // 3초가 지나면 뽑기로 더해진 능력치를 넣어서 원래대로 돌린다.
         }
 
         if (condition == ConditionType.미끄러짐)
         { 
-            //닿으면 미끄러짐
+            // 닿으면 미끄러짐
             rigidbody.AddForce(playerStats.moveVec.normalized * 20, ForceMode.Impulse);
             playerStats.hp -= damage;
             trapArea.enabled = false;
@@ -63,7 +63,7 @@ public class Trap : MonoBehaviour
 
         if (condition == ConditionType.데미지)
         {
-            //닿으면 피해를 입음
+            // 닿으면 피해를 입음
             playerStats.hp -= damage;
             trapArea.enabled = false;
 

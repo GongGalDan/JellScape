@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
-
-    public Transform slotsParent;
-    //스위칭
-    public List<GameObject> itemlist; //item object를 넣고
-    public List<GameObject> currentItems = new List<GameObject>();//현재 입수한 아이템이 표시되도록 add해준다
+    // 스위칭
+    public List<GameObject> itemlist; // item object를 넣고
+    public List<GameObject> currentItems = new List<GameObject>();// 현재 입수한 아이템이 표시되도록 add해준다
 
     public float switchDelay;
     bool isSwitching;
@@ -16,17 +14,16 @@ public class Items : MonoBehaviour
     Player player;
     UsableItem usableItem;
     Animator animator;
-    public Slot4[] slots;
-    ItemDB4 itemDataBase;
-    Inventory4 inventory;
+    ItemDatabase itemDataBase;
+    Inventory inventory;
 
     private void Start()
     {
         player = GetComponent<Player>();
         animator = GetComponent<Animator>();
         usableItem = GetComponentInChildren<UsableItem>();
-        itemDataBase = GameObject.Find("GameManager").GetComponent<ItemDB4>();
-        inventory = GameObject.Find("Inventory").GetComponent<Inventory4>();
+        itemDataBase = GameObject.Find("GameManager").GetComponent<ItemDatabase>();
+        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
     }
 
     void Update()
@@ -35,7 +32,7 @@ public class Items : MonoBehaviour
         RemoveItem();
     }
 
-    //아이템 능력치를 더해주는 함수
+    // 아이템 능력치를 더해주는 함수
     void addAbility(GameObject currentItem) 
     {
         player.damage += currentItem.GetComponent<UsableItem>()._addDamage;
@@ -44,7 +41,7 @@ public class Items : MonoBehaviour
         player.defence += currentItem.GetComponent<UsableItem>()._addDefence;
     }
 
-    //아이템 능력치를 빼주는 함수
+    // 아이템 능력치를 빼주는 함수
     void deleteAbility(GameObject currentItem)
     {
         player.damage -= currentItem.GetComponent<UsableItem>()._addDamage;
@@ -53,7 +50,7 @@ public class Items : MonoBehaviour
         player.defence -= currentItem.GetComponent<UsableItem>()._addDefence;
     }
 
-    //아이템 획득
+    // 아이템 획득
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Apolo"))
@@ -119,7 +116,7 @@ public class Items : MonoBehaviour
         }
     }
 
-    //아이템 사용
+    // 아이템 사용
      void UpdateItem()
     {
         if (currentItems.Count == 0)
@@ -149,7 +146,7 @@ public class Items : MonoBehaviour
         }
     }
 
-    //아이템 교체
+    // 아이템 교체
     void swap()
     {
         GameObject swpItm;
@@ -158,7 +155,7 @@ public class Items : MonoBehaviour
         currentItems[1] = swpItm;
     }
 
-    //아이템 제거
+    // 아이템 제거
     void RemoveItem()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -178,11 +175,11 @@ public class Items : MonoBehaviour
                 itemDataBase.AllItemList[2].isUsing = false;
             }
 
-            currentItems[0].SetActive(false); //끄고
-            inventory.RemoveItemImage();
-            deleteAbility(currentItems[0]);//능력치 삭제
-            currentItems.Remove(currentItems[0]);//지운다.
-            addAbility(currentItems[0]);//가지고 있던 아이템이 0번째가 되서 능력치를 더해준다.
+            currentItems[0].SetActive(false); // 끄고
+            inventory.RemoveItemImage(); //이미지 삭제
+            deleteAbility(currentItems[0]);// 능력치 삭제
+            currentItems.Remove(currentItems[0]);// 지운다.
+            addAbility(currentItems[0]);// 가지고 있던 아이템이 0번째가 되서 능력치를 더해준다.
         }
     }
 

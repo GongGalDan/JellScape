@@ -9,27 +9,25 @@ public class UsableItem : MonoBehaviour
     public BoxCollider meleeArea;
 
     public string itemName;
-    public Sprite itemImage; //아이템 이미지
+    public Sprite itemImage; // 아이템 이미지
 
-    //아이템 추가 능력 수치
+    // 아이템 추가 능력 수치
     public float _addDamage;
     public float _addShootRate;
     public float _addRange;
     public float _addDefence;
 
-    //딜레이 시간
+    // 딜레이 시간
     float useDelay=0;
     float apoloDelay = 0.7f;
     float stickDelay = 1f;
 
-    Player player; //체력, speed 이동속도
     Items items;
     Animator animator;
 
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         items = GameObject.FindGameObjectWithTag("Player").GetComponent<Items>();
         animator = GetComponentInParent<Animator>();
         meleeArea.enabled = false;
@@ -51,7 +49,7 @@ public class UsableItem : MonoBehaviour
     }
 
 
-    //아이템 공격
+    // 아이템 공격
     void Use()
     {
         if (Input.GetMouseButtonDown(1) && items.currentItems.Count == 0)
@@ -90,7 +88,7 @@ public class UsableItem : MonoBehaviour
 
     }
 
-    //animation에 맞게 attack 설정
+    // animation에 맞게 attack 설정
     IEnumerator Swing()
     {
         yield return new WaitForSeconds(0.5f);

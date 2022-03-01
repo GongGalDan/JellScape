@@ -1,26 +1,26 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemType4 : MonoBehaviour
+public class ItemType : MonoBehaviour
 {
-    enum Type4
+    public enum Type
     {
         Apolo,
         Stick,
         Armor
     }
-    public Type type;
-    public string itemName;
-    public Sprite itemImage;
 
-    // ÇÃ·¹ÀÌ¾î ´É·ÂÄ¡¿¡ ´õÇØÁö´Â ¼öÄ¡
+    public Type type; //ë¬´ê¸° íƒ€ì…
+    public Sprite itemImage; // ì´ë¯¸ì§€
+
+    // í”Œë ˆì´ì–´ ëŠ¥ë ¥ì¹˜ì— ë”í•´ì§€ëŠ” ìˆ˜ì¹˜
     public float addDamage;
     public float addShootRate;
     public float addRange;
     public float addDefence;
 
-    // ¾ÆÀÌÅÛ ±âº» Á¤º¸
+    // ì•„ì´í…œ ê¸°ë³¸ ì •ë³´
     float useDelay = 0;
     float apoloDelay = 0.7f;
     float stickDelay = 1f;

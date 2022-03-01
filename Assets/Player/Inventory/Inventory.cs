@@ -1,18 +1,18 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory4 : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
-    public List<Sprite> itemImage; // ������ �̹���
-    Image slot1; // ù ��° ����
-    Image slot2; // �� ��° ����
-    ItemDB4 itemDataBase;
+    public List<Sprite> itemImage; // 아이템 이미지
+    Image slot1; // 첫 번째 슬롯
+    Image slot2; // 두 번째 슬롯
+    ItemDatabase itemDataBase;
 
     private void Start()
     {
-        itemDataBase = GameObject.Find("GameManager").GetComponent<ItemDB4>();
+        itemDataBase = GameObject.Find("GameManager").GetComponent<ItemDatabase>();
         slot1 = GameObject.Find("SlotItem1").GetComponent<Image>();
         slot2 = GameObject.Find("SlotItem2").GetComponent<Image>();
     }
@@ -23,16 +23,19 @@ public class Inventory4 : MonoBehaviour
     }
 
 
+    // 아이템 이미지 삽입
     void AddItem()
     {
        if(itemDataBase.AllItemList[0].isUsing == true)
         { 
+            // slot1이 비어있지 않고, slot1의 이미지가 0번째가 아닐 경우
             if (slot1.sprite != null && slot1.sprite !=itemImage[0])
             {
+                // slot2에 이미지를 넣는다.
                 slot2.sprite = itemImage[0];
             }
             else
-            {
+            { // 비어있을경우
                 slot1.sprite = itemImage[0];
             }
         }
@@ -62,7 +65,7 @@ public class Inventory4 : MonoBehaviour
         }
     }
 
-
+    // 무기가 교체될 때 이미지 변경
      public void SwapItemImage()
     {
         Sprite swapImage;
@@ -71,6 +74,7 @@ public class Inventory4 : MonoBehaviour
         slot2.sprite = swapImage;
     }
 
+    // 무기가 버려질 때 이미지 삭제
     public void RemoveItemImage()
     {
         if(itemDataBase.AllItemList[0].isUsing == false && slot1.sprite ==itemImage[0])
