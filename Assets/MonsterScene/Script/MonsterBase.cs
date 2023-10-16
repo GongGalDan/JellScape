@@ -85,7 +85,7 @@ public class MonsterBase : MonoBehaviour
 
         // 타겟을 향해 광선 발사
         Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), targetDir, out RaycastHit hit, 30f, layerMask);
-        Debug.DrawRay(new Vector3(transform.position.x, 0.5f, transform.position.z), targetDir, Color.green);
+        //Debug.DrawRay(new Vector3(transform.position.x, 0.5f, transform.position.z), targetDir, Color.green);
 
         // 타겟과의 거리
         distance = Vector3.Distance(player.transform.position, transform.position);

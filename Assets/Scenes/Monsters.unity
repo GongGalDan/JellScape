@@ -688,6 +688,248 @@ Transform:
   m_Father: {fileID: 1459766054}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &209602974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 209602978}
+  - component: {fileID: 209602977}
+  - component: {fileID: 209602976}
+  - component: {fileID: 209602975}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &209602975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209602974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b357b5da8b06b54fae5729832fe1fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  damage: 10
+  shootRate: 0.5
+  speed: 3
+  range: 0.5
+  defence: 0
+  critical: 10
+  invincible: 0
+  headShot: 0
+  bombJelly: 0
+  hotJelly: 0
+  frozenJelly: 0
+  poisonJelly: 0
+  sparkJelly: 0
+  frontJelly: 0
+  sideJelly: 0
+  addDamage: 0
+  addShootRate: 0
+  addRange: 0
+  addCritical: 0
+  addHp: 0
+  addDefence: 0
+  addSpeed: 0
+  isElementPicked: 0
+  numSelectedAbilities: 0
+  abilities:
+  - abilityName: "\uD5E4\uB4DC\uC0F7"
+    abilityTag: headShot
+    abilityImage: {fileID: 0}
+    abilityGrade: 0
+    weight: 5
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 1
+  - abilityName: "3\uCD08\uAC04 \uBB34\uC801"
+    abilityTag: invincible
+    abilityImage: {fileID: 0}
+    abilityGrade: 0
+    weight: 5
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 1
+  - abilityName: "\uD3ED\uD0C4 \uC824\uB9AC\uBE48"
+    abilityTag: bombJelly
+    abilityImage: {fileID: 0}
+    abilityGrade: 0
+    weight: 5
+    isPicked: 0
+    isSelected: 0
+    isElement: 1
+    isPickableOnce: 0
+  - abilityName: "\uB9E4\uC6B4\uB9DB \uC824\uB9AC\uBE48"
+    abilityTag: hotJelly
+    abilityImage: {fileID: 0}
+    abilityGrade: 1
+    weight: 10
+    isPicked: 0
+    isSelected: 0
+    isElement: 1
+    isPickableOnce: 0
+  - abilityName: "\uAF41\uAF41 \uC5B8 \uC824\uB9AC\uBE48"
+    abilityTag: frozenJelly
+    abilityImage: {fileID: 0}
+    abilityGrade: 1
+    weight: 10
+    isPicked: 0
+    isSelected: 0
+    isElement: 1
+    isPickableOnce: 0
+  - abilityName: "\uB3C5\uC774 \uB4E0 \uC824\uB9AC\uBE48"
+    abilityTag: poisonJelly
+    abilityImage: {fileID: 0}
+    abilityGrade: 1
+    weight: 10
+    isPicked: 0
+    isSelected: 0
+    isElement: 1
+    isPickableOnce: 0
+  - abilityName: "\uC9DC\uB9BF\uD55C \uC824\uB9AC\uBE48"
+    abilityTag: sparkJelly
+    abilityImage: {fileID: 0}
+    abilityGrade: 1
+    weight: 10
+    isPicked: 0
+    isSelected: 0
+    isElement: 1
+    isPickableOnce: 0
+  - abilityName: "\uBC1C\uC0AC \uC824\uB9AC\uBE48 1\uAC1C \uCD94\uAC00"
+    abilityTag: frontJelly
+    abilityImage: {fileID: 0}
+    abilityGrade: 2
+    weight: 20
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 1
+  - abilityName: "\uC591 \uC606 \uBC1C\uC0AC \uC824\uB9AC\uBE48 \uCD94\uAC00"
+    abilityTag: sideJelly
+    abilityImage: {fileID: 0}
+    abilityGrade: 2
+    weight: 20
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 1
+  - abilityName: "\uACF5\uACA9\uB825 \uC99D\uAC00"
+    abilityTag: addDamage
+    abilityImage: {fileID: 0}
+    abilityGrade: 2
+    weight: 20
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 0
+  - abilityName: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
+    abilityTag: addShootRate
+    abilityImage: {fileID: 0}
+    abilityGrade: 2
+    weight: 20
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 0
+  - abilityName: "\uACF5\uACA9 \uC0AC\uAC70\uB9AC \uC99D\uAC00"
+    abilityTag: addRange
+    abilityImage: {fileID: 0}
+    abilityGrade: 2
+    weight: 20
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 0
+  - abilityName: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960 \uC99D\uAC00"
+    abilityTag: addCritical
+    abilityImage: {fileID: 0}
+    abilityGrade: 2
+    weight: 20
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 0
+  - abilityName: "\uCCB4\uB825 \uC99D\uAC00"
+    abilityTag: addHp
+    abilityImage: {fileID: 0}
+    abilityGrade: 3
+    weight: 30
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 0
+  - abilityName: "\uBC29\uC5B4\uB825 \uC99D\uAC00"
+    abilityTag: addDefence
+    abilityImage: {fileID: 0}
+    abilityGrade: 3
+    weight: 30
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 0
+  - abilityName: "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
+    abilityTag: addSpeed
+    abilityImage: {fileID: 0}
+    abilityGrade: 3
+    weight: 30
+    isPicked: 0
+    isSelected: 0
+    isElement: 0
+    isPickableOnce: 0
+--- !u!114 &209602976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209602974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4132eff66cd6b54888bbf6532743796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterData: {fileID: 4900000, guid: cf6f0fb6dd7cdf943b5887627a6e2741, type: 3}
+--- !u!114 &209602977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209602974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f9221bb4ad77f4ab664a6969f890de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numOfCollectedKeys: 0
+  bossSceneLife: 0
+--- !u!4 &209602978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209602974}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &242711062
 GameObject:
   m_ObjectHideFlags: 0
@@ -4676,7 +4918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623633224}
   m_LocalRotation: {x: 0.327586, y: -0, z: -0, w: 0.9448214}
-  m_LocalPosition: {x: 0, y: 13.83, z: -11.68}
+  m_LocalPosition: {x: -10.339, y: 13.83, z: -11.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

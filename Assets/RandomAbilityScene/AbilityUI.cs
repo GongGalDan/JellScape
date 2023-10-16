@@ -19,7 +19,7 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
 
     PlayerData playerData;
 
-    void Start()
+    public void Start()
     {
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         isFliped = false;
